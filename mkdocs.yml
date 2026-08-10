@@ -1,5 +1,7 @@
 site_name: SOI-Vorbereitungskurs
 site_description: Vorbereitung auf Vorrunde und Erste Runde der Schweizer Informatik-Olympiade
+site_url: https://masta-nksa.github.io/soi-kurs/
+repo_url: https://github.com/masta-nksa/soi-kurs
 theme:
   name: material
   language: de
