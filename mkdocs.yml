@@ -1,0 +1,46 @@
+site_name: SOI-Vorbereitungskurs
+site_description: Vorbereitung auf Vorrunde und Erste Runde der Schweizer Informatik-Olympiade
+theme:
+  name: material
+  language: de
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/weather-night
+        name: Dunkles Design
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Helles Design
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - toc:
+      permalink: true
+
+nav:
+  - Start: index.md
+  - Lernpfad: lernpfad.md
+  - M0 Werkzeugkasten: m00-werkzeugkasten/index.md
+  # Weitere Module werden hier ergaenzt, sobald sie gebaut sind.
+  # Das Verzeichnis lp/ bleibt bewusst ausserhalb der Navigation.

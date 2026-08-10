@@ -1,0 +1,6 @@
+site/
+.claude/settings.local.json
+__pycache__/
+*.pyc
+.venv/
+mein_aus.txt
