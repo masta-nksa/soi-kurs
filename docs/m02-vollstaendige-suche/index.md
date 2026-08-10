@@ -267,7 +267,7 @@ eine versteckte Suche und eine Schätzaufgabe, die dich direkt nach M3 führt.
 Wenn du Endurance Teilaufgabe 1 und 2 gelöst hast, kannst du ein Problem in
 Möglichkeiten zerlegen, sie systematisch aufzählen und die beste behalten.
 
-In M3 kommt die Frage dazu, die hier schon angeklopft hat: **Wie viele
-Möglichkeiten sind zu viele?** Der Sprung von N ≤ 100 auf N ≤ 100 000 in
-Teilaufgabe 3 ist keine Fleissarbeit — er zwingt zu einer anderen Idee.
-<!-- TODO Link setzen, sobald M3 existiert -->
+In [M3 — Laufzeitdenken](../m03-laufzeitdenken/index.md) kommt die Frage dazu,
+die hier schon angeklopft hat: **Wie viele Möglichkeiten sind zu viele?** Der
+Sprung von N ≤ 100 auf N ≤ 100 000 in Teilaufgabe 3 ist keine Fleissarbeit — er
+zwingt zu einer anderen Idee.

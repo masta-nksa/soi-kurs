@@ -616,6 +616,10 @@ Modul N — Titel
   `directions` und `sushi` ST1/ST3 aus der Runde 2018
 - **M2 Vollständige Suche** — Anker `endurance` ST1/ST2, Übung `stairracing`
   ST2 aus der Runde 2021, dazu Laufzeit-Schätzaufgabe als Brücke zu M3
+- **M3 Laufzeitdenken** — Anker `endurance` ST2→ST3, Übung `stairracing`
+  ST3/ST4, Messübung zu versteckten Schleifen, Schätzrunde. Erste Anwendung
+  von Gerüststufe 2 (`vorlage-stufe2.py`)
+- **Kuratierungsliste** über sieben Archivrunden in `lp/kuratierung.md`
 
 **Anmerkung zu `wagashi`.** Die Aufgabe war als zweiter M2-Anker vorgesehen
 (Abschnitt 6 und 7), ist dort aber falsch einsortiert: ST1 ist die Summe aller
@@ -641,15 +645,15 @@ das Format auch unter Last trägt.
 
 ### Offen
 
-1. **M3 Laufzeitdenken** — erstes Modul mit Gerüststufe 2, also der erste echte
-   Test des Abbauplans aus Abschnitt 9. M2 endet bewusst mit einer
-   Schätzaufgabe, die genau auf diese Frage zuläuft.
-2. **M4 Felder und lineare Techniken**
-3. **M5 Sortieren und Suchen**, **M6 Konstruktive Verfahren**
-4. **Strang B** — M7 Pseudocode und Simulation, M8 Quiz-Training
-5. ~~Kuratierungsliste~~ — erledigt, steht in `lp/kuratierung.md`: sechs Runden,
-   48 Aufgaben, Bewertung A bis D pro Aufgabe und Modul. Die Einstufungen sind
-   eine Vorauswahl; vor dem Einbau bleibt es beim vollständigen Lesen des
-   Aufgabentexts.
-6. **Selbsttest vor Modul 0** — `docs/index.md` nennt ihn, verlinkt aber
+1. **M4 Felder und lineare Techniken** — `endurance` ST4/ST5. Zweite Anwendung
+   von Gerüststufe 2. `stairracing` ST4 liegt aus M3 als diagnostizierte, aber
+   ungelöste Aufgabe bereit und passt als Variation.
+2. **M5 Sortieren und Suchen**, **M6 Konstruktive Verfahren**
+3. **Strang B** — M7 Pseudocode und Simulation, M8 Quiz-Training. Material
+   steht bereit: `Greifer-Sortierung` ST1, `Trampolin` ST1 und sechs
+   Theorie-Teilaufgaben, siehe `lp/kuratierung.md`
+4. **Selbsttest vor Modul 0** — `docs/index.md` nennt ihn, verlinkt aber
    `books` nicht und sagt nicht, woran man „sicher gelöst" erkennt
+5. **Gemessene Laufzeiten überprüfen** — die Zahlen in Abschnitt 10 und in M3
+   stammen von einem Gerät. Auf Schulgeräten einmal nachmessen; die
+   Grössenordnungen sollten stimmen, die Sekundenwerte können abweichen

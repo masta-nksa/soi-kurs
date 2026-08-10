@@ -54,6 +54,9 @@ nav:
   - M2 Vollstaendige Suche:
       - Lernbaustein: m02-vollstaendige-suche/index.md
       - Uebungen: m02-vollstaendige-suche/uebungen.md
+  - M3 Laufzeitdenken:
+      - Lernbaustein: m03-laufzeitdenken/index.md
+      - Uebungen: m03-laufzeitdenken/uebungen.md
   # Weitere Module werden hier ergaenzt, sobald sie gebaut sind.
   # loesung.md steht bewusst NICHT in der Navigation - der Weg dorthin fuehrt
   # nur ueber den Link am Ende der Uebungsseite.
