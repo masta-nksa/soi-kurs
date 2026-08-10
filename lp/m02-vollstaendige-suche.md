@@ -96,10 +96,16 @@ Teilaufgabe 3 zu knacken — das ist M3 und darf ruhig vorgegriffen werden.
 ## Hinweis zum Aufgabenmaterial
 
 Der Modulplan in `KONZEPT.md` nennt als zweiten Anker `wagashi` Teilaufgabe 1 aus
-der Runde 2018. Die Aufgabenseite ist unter diesem Namen nicht abrufbar; die
-Übung wurde durch Treppenlauf Teilaufgabe 2 ersetzt, das M0 ohnehin schon als
-Selbsttest vormerkt. Falls `wagashi` erreichbar wird, passt es als zusätzliche
-Variation.
+der Runde 2018. Verwendet wird stattdessen Treppenlauf Teilaufgabe 2, und zwar
+aus einem inhaltlichen Grund: `wagashi` ST1 ist die Summe aller aᵢ·cᵢ, also eine
+einzige Schleife. Das ist eine saubere Modellierungsaufgabe — welche Grössen
+gehören paarweise zusammen? — aber keine vollständige Suche. Sie passt nach M1,
+nicht nach M2.
+
+Als zusätzliche Übung in M1 oder als Aufwärmaufgabe ist sie gut brauchbar. Die
+Schranken (N ≤ 1000, T ≤ 100) sind für eine einzelne Schleife unkritisch.
+
+Die vollständige Sichtung des Archivs steht in `lp/kuratierung.md`.
 
 ---
 

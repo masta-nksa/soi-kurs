@@ -557,9 +557,10 @@ Modul N — Titel
   ST2 aus der Runde 2021, dazu Laufzeit-Schätzaufgabe als Brücke zu M3
 
 **Anmerkung zu `wagashi`.** Die Aufgabe war als zweiter M2-Anker vorgesehen
-(Abschnitt 6 und 7). Ihre Seite ist unter diesem Namen nicht abrufbar; ersetzt
-durch `stairracing` ST2, das M0 ohnehin schon als Selbsttest vormerkt. Falls
-`wagashi` erreichbar wird, passt es als zusätzliche Variation in M2.
+(Abschnitt 6 und 7), ist dort aber falsch einsortiert: ST1 ist die Summe aller
+aᵢ·cᵢ, also eine einzige Schleife — Modellierung, keine vollständige Suche. Sie
+gehört zu M1. M2 verwendet stattdessen `stairracing` ST2, das M0 ohnehin schon
+als Selbsttest vormerkt.
 
 ### Abweichung von der ursprünglichen Planung
 
@@ -585,9 +586,9 @@ das Format auch unter Last trägt.
 2. **M4 Felder und lineare Techniken**
 3. **M5 Sortieren und Suchen**, **M6 Konstruktive Verfahren**
 4. **Strang B** — M7 Pseudocode und Simulation, M8 Quiz-Training
-5. **Kuratierungsliste** — welche Subtasks aus welchen Archivrunden geerntet
-   werden. Bisher pro Modul einzeln gesucht, was mit jedem Modul teurer wird.
-   Für archivierte Aufgaben lassen sich weiterhin Eingaben erzeugen und
-   Ausgaben prüfen, sie sind also gleichwertig zur Vorrunde.
+5. ~~Kuratierungsliste~~ — erledigt, steht in `lp/kuratierung.md`: sechs Runden,
+   48 Aufgaben, Bewertung A bis D pro Aufgabe und Modul. Die Einstufungen sind
+   eine Vorauswahl; vor dem Einbau bleibt es beim vollständigen Lesen des
+   Aufgabentexts.
 6. **Selbsttest vor Modul 0** — `docs/index.md` nennt ihn, verlinkt aber
    `books` nicht und sagt nicht, woran man „sicher gelöst" erkennt
