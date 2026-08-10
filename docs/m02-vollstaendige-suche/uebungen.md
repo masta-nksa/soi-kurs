@@ -38,7 +38,15 @@ programmierst — vor allem die erste: Was ist hier eine Möglichkeit?
 
 ---
 
-## Verschärfung — dieselbe Lösung, aber allgemein
+## Umsetzung — dieselbe Lösung, aber allgemein
+
+!!! note "Die Verschärfung hast du schon gemacht"
+    Sie steckt im Anker: Endurance Teilaufgabe 1 mit N = 3 lässt sich noch von
+    Hand unterscheiden, Teilaufgabe 2 mit N ≤ 100 erzwingt die systematische
+    Aufzählung. Dasselbe Problem, deine Lösung musste wachsen — genau das ist
+    eine Verschärfung.
+
+    Was jetzt kommt, ist keine neue Aufgabe, sondern eine Übung an deinem Code.
 
 Für Teilaufgabe 2 könntest du die vier Kombinationen von Hand hinschreiben. Tu
 es nicht.
@@ -64,8 +72,15 @@ Du hast jetzt zwei allgemeine Lösungen: eine für Endurance mit zwei Schleifen
 Strassenseiten. Beide haben mehr Teilaufgaben, als du gelöst hast.
 
 Schätze für jede der folgenden Teilaufgaben, wie viele Schritte deine Lösung
-ungefähr braucht, und entscheide dann, ob das in Python durchläuft. Denk daran:
-**T = 100 Testfälle**, und Python schafft 10⁶ bis 10⁷ Schritte pro Sekunde.
+ungefähr braucht, rechne das in eine Dauer um und entscheide dann, ob du damit
+einreichen kannst. Drei Dinge, die du dafür brauchst:
+
+- **T = 100 Testfälle** — der Faktor wird am häufigsten vergessen
+- Python schafft rund **10⁷ Schritte pro Sekunde**
+- Dein Zeitbudget sind die **fünf Minuten** zwischen Download und Upload. Der
+  Grader misst deine Laufzeit nicht, du lädst ja nur die Ausgabedatei hoch.
+
+Die letzte Angabe überrascht viele. Überleg, was sie für deine Urteile bedeutet.
 
 | Aufgabe | Teilaufgabe | Schranke |
 |---|---|---|

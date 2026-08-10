@@ -42,8 +42,11 @@ du sie wirklich getrennt lösen musst.
 Beschreibungen beliebig lang, in beide Richtungen.
 
 Die Schranken bleiben klein (höchstens 100 Zeichen), es geht also nicht um
-Geschwindigkeit. Es geht darum, ob dein Modell den allgemeinen Fall trifft oder
-nur die beiden Spezialfälle von vorhin.
+Geschwindigkeit. Verschärft wird auf einer anderen Achse: **vom Spezialfall zum
+allgemeinen Fall.** Teilaufgabe 1 und 2 haben dir je eine Annahme geschenkt —
+gleich lang, beziehungsweise nur ein Zeichen. Jetzt fällt beides weg, und es
+zeigt sich, ob dein Modell den allgemeinen Fall trifft oder nur die
+Sonderfälle.
 
 Ein Fall, den viele übersehen: Was, wenn Stofl sich an *mehr* erinnert, als
 Binna überhaupt aufgeschrieben hat?

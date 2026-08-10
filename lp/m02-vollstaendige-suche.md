@@ -93,6 +93,34 @@ Teilaufgabe 3 zu knacken — das ist M3 und darf ruhig vorgegriffen werden.
 
 ---
 
+## Spoiler-Risiko: der Anker steht im Archiv
+
+**`endurance` ist dieselbe Aufgabe wie `marathon` aus der Runde 2019/2020** —
+identische Teilaufgabenleiter, für die Vorrunde neu aufgelegt. Wer im Archiv
+stöbert oder nach „SOI marathon" sucht, findet Lösungen zu genau dem Problem, an
+dem M2 seine Entdeckung aufhängt.
+
+Das ist nicht zu verhindern, aber zu entschärfen: Verweise im Unterricht auf die
+Hinweisleiter, nicht aufs Archiv, und gib die Übungsaufgaben erst frei, wenn der
+Anker gelöst ist. Wer die Lösung nachschlägt, verliert nichts an Punkten und
+alles an Übung — das ist ein Satz, den die SuS von dir hören sollten, nicht von
+der Webseite.
+
+---
+
+## Laufzeit: unser Budget ist ungewöhnlich
+
+Rechne damit, dass die Zahlen im Modul Widerspruch auslösen. Die vollständige
+Suche läuft bei uns **viel weiter, als aus Wettbewerbsberichten bekannt ist**,
+weil wir nur die Ausgabedatei hochladen und niemand die Laufzeit misst. Zwölf
+Sekunden Rechenzeit sind bei uns völlig in Ordnung.
+
+Die Zahl, die stattdessen zählt, sind die fünf Minuten zwischen Download und
+Upload. Wer das verinnerlicht, trifft in M3 die richtigen Entscheidungen: Kleine
+Unterschiede sind egal, grosse sind tödlich. Ein Zwischending gibt es kaum.
+
+---
+
 ## Hinweis zum Aufgabenmaterial
 
 Der Modulplan in `KONZEPT.md` nennt als zweiten Anker `wagashi` Teilaufgabe 1 aus

@@ -161,27 +161,42 @@ Beispielen funktioniert" und trotzdem falsch ist.
 Beide Lösungen haben zwei ineinander liegende Schleifen, also **O(N²)** pro
 Testfall. Bei T = 100 Testfällen kommt der Faktor 100 dazu.
 
-| Aufgabe | Teilaufgabe | N | Schritte pro Fall | insgesamt | Urteil |
-|---|---|---|---|---|---|
-| Endurance | 3 | 10⁵ | 10¹⁰ | 10¹² | aussichtslos |
-| Treppenlauf | 3 | 10³ | 10⁶ | 10⁸ | zu langsam |
-| Treppenlauf | 4 | 10⁵ | 10¹⁰ | 10¹² | aussichtslos |
+| Aufgabe | Teilaufgabe | N | Schritte pro Fall | insgesamt | Dauer | Urteil |
+|---|---|---|---|---|---|---|
+| Treppenlauf | 3 | 10³ | 10⁶ | 10⁸ | ~12 s | **läuft** |
+| Endurance | 3 | 10⁵ | 10¹⁰ | 10¹² | über ein Tag | aussichtslos |
+| Treppenlauf | 4 | 10⁵ | 10¹⁰ | 10¹² | über ein Tag | aussichtslos |
 
-Python schafft 10⁶ bis 10⁷ Schritte pro Sekunde. Selbst die freundlichste Zeile
-der Tabelle liegt um mindestens den Faktor 10 daneben, die anderen um das
-Millionenfache.
+Python schafft rund 10⁷ Schritte pro Sekunde.
 
-**Das Ergebnis ist die eigentliche Botschaft:** Deine vollständige Suche endet in
-beiden Aufgaben exakt nach Teilaufgabe 2. Nicht weil du sie schlecht
-programmiert hättest — sondern weil mehr Möglichkeiten da sind, als man einzeln
-anschauen kann.
+**Die erste Zeile ist die Überraschung.** Treppenlauf Teilaufgabe 3 läuft mit
+deiner vollständigen Suche durch — zwölf Sekunden, volle 25 Punkte. Du musst
+nichts Besseres können. Probier es aus.
 
-Das ist kein Scheitern, sondern eine Diagnose. Man stellt sie in zwei Minuten auf
-Papier, statt sie nach vierzig Minuten Programmieren zu erleben.
+Der Grund ist unser Einreichungsweg: Wir laden eine Ausgabedatei hoch, kein
+Programm. **Niemand misst die Laufzeit.** Die einzige Uhr sind die fünf Minuten
+zwischen Download und Upload, und zwölf Sekunden passen dort bequem hinein. In
+einem Wettbewerb mit Sekundenlimit wäre dieselbe Lösung durchgefallen.
 
-Bemerkenswert ist die mittlere Zeile: Treppenlauf Teilaufgabe 3 wäre in C++
-knapp durchgelaufen. In Python nicht. Der Druck zur besseren Idee setzt bei uns
-früher ein — und diese bessere Idee ist der Inhalt von M3.
+Faustregel für den Rest des Kurses:
+
+| Dauer | Urteil |
+|---|---|
+| unter 10 s | unproblematisch |
+| 10 s bis 1 min | geht, aber ohne Reserve für einen zweiten Versuch |
+| über 2 min | zu riskant |
+
+**Die beiden anderen Zeilen sind die eigentliche Botschaft.** Dort hilft kein
+Warten: 10¹² Schritte sind über einen Tag. Zwischen „unbequem" und „unmöglich"
+liegen bei uns keine Zwischentöne — kleine Unterschiede sind egal, grosse sind
+tödlich.
+
+Deine vollständige Suche trägt also weiter, als du vielleicht dachtest, und
+endet dann schlagartig. Wo genau, sagt dir eine Schätzung in zwei Minuten auf
+Papier — statt vierzig Minuten Programmieren und einem Programm, das nie fertig
+wird.
+
+Wie man den Sprung nach 10⁵ trotzdem schafft, ist der Inhalt von M3.
 
 ---
 

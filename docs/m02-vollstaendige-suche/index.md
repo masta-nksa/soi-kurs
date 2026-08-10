@@ -163,11 +163,22 @@ Rechne nach, was das bei Teilaufgabe 2 bedeutet — N = 100 und T = 100 Testfäl
 
 | Weg | Schritte pro Testfall | insgesamt | in Python |
 |---|---|---|---|
-| A: O(N³) | 10⁶ | 10⁸ | viel zu langsam |
-| B: O(N²) | 10⁴ | 10⁶ | rund eine Sekunde |
+| A: O(N³) | 10⁶ | 10⁸ | rund 12 Sekunden |
+| B: O(N²) | 10⁴ | 10⁶ | rund eine Zehntelsekunde |
 
-Python schafft grob **10⁶ bis 10⁷ Schleifendurchläufe pro Sekunde**. Diese Zahl
-solltest du dir merken; ab M3 ist sie das wichtigste Werkzeug überhaupt.
+Python schafft grob **10⁷ Schleifendurchläufe pro Sekunde**. Diese Zahl solltest
+du dir merken; ab M3 ist sie das wichtigste Werkzeug überhaupt.
+
+!!! note "Beide Wege geben hier volle Punkte"
+    Zwölf Sekunden klingen nach viel, sind aber kein Problem: Du lädst eine
+    Ausgabedatei hoch, kein Programm. Niemand misst, wie lange dein Programm
+    gelaufen ist. Die einzige Uhr sind die fünf Minuten zwischen Download und
+    Upload.
+
+    Weg A ist also nicht falsch — er ist nur verschwenderisch. Der Unterschied
+    zwischen 10⁶ und 10⁸ Schritten kostet dich hier nichts. Merk dir trotzdem,
+    wo er herkommt: In Teilaufgabe 3 wird aus demselben Unterschied der zwischen
+    Sekunden und Jahren.
 
 ### Brute Force ist keine Notlösung
 
@@ -217,14 +228,17 @@ besser lässt. Diese Frage ist genau der Inhalt von M3.
     **Deine Lösung prüft jeden Abschnitt, indem sie ihn noch einmal ganz
     durchläuft. Bei N ≤ 100 und T = 100: Reicht das in Python?**
 
-    Nein.
+    Ja — knapp, aber es reicht.
 
     Drei Schleifen ergeben rund 100³ = 10⁶ Schritte pro Testfall, bei 100
-    Testfällen also etwa 10⁸. Python schafft 10⁶ bis 10⁷ pro Sekunde — das dauert
-    zu lange.
+    Testfällen also etwa 10⁸. Bei 10⁷ Schritten pro Sekunde sind das gut zwölf
+    Sekunden. Unangenehm, aber innerhalb der fünf Minuten problemlos.
 
-    Mit zwei Schleifen sind es 10⁶ insgesamt, und das läuft in etwa einer
-    Sekunde. Derselbe Ansatz, nur ohne die überflüssige dritte Schleife.
+    Mit zwei Schleifen sind es 10⁶ insgesamt und damit eine Zehntelsekunde.
+
+    Die richtige Antwort ist also nicht „zu langsam", sondern: **hundertmal mehr
+    Arbeit für dasselbe Ergebnis.** Ob das schadet, hängt allein von der Schranke
+    ab — und bei Teilaufgabe 3 schadet es.
 
 ??? success "Vergleiche deine Antwort — Frage 4"
     **Du hast eine Lösung für Teilaufgabe 1 und 2. Teilaufgabe 3 verlangt

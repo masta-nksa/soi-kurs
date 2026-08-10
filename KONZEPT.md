@@ -217,10 +217,38 @@ Jede Konzepteinheit braucht alle vier:
 
 - **Anker** — das Problem, an dem das Konzept entsteht
 - **Variation** — gleiche Struktur, andere Einkleidung
-- **Verschärfung** — höhere Schranke, erzwingt saubere Umsetzung
+- **Verschärfung** — dasselbe Problem, aber die bestehende Lösung muss besser
+  oder vollständiger werden
 - **Verkleidung** — Konzept nötig, aber nicht sichtbar (echter Transfer)
 
 Plus zwei Sondertypen: **Laufzeit-Schätzaufgaben** und **Widerlegungsaufgaben**.
+
+#### Die drei Achsen der Verschärfung
+
+SOI verschärft nicht nur über Schranken. Im Archiv sind drei Achsen belegt:
+
+| Achse | Was sie erzwingt | Beispiele |
+|---|---|---|
+| **Höhere Schranke** | bessere Komplexität | `endurance` ST2→ST3, `Gipfel` ST2→ST3 |
+| **Spezialfall → allgemeiner Fall** | vollständigeres Modell | `directions` ST1/2→ST3, `sushi` ST1→ST3, `Stickers` K=1→K beliebig |
+| **Zusätzliche Regel** | erweitertes Modell | `endurance` ST3→ST4 (K Löcher reparierbar), `cheeseparty` ST1→ST2 |
+
+Die Abgrenzung zur Variation bleibt scharf: Bei der Verschärfung ist es **dasselbe
+Problem**, deine Lösung muss wachsen. Bei der Variation ist es ein anderes Problem
+mit gleicher Struktur.
+
+**Die Schranken-Achse steht erst ab M3 zur Verfügung.** Bei T = 100 läuft
+vollständige Suche in Python bis etwa N = 100 bequem. Die nächste Sprosse einer
+SOI-Leiter liegt fast immer bei N ≤ 1000 oder darüber und verlangt damit gleich
+eine andere Idee, nicht bloss eine sauberere Umsetzung. In M1 und M2 tragen
+deshalb die beiden anderen Achsen.
+
+#### Rollen dürfen in derselben Aufgabe liegen
+
+Die vier Rollen verlangen **keine vier Aufgaben**. Anker und Verschärfung sitzen
+häufig auf ST1 und ST2 derselben Aufgabe — das ist die Subtask-Leiter aus
+Abschnitt 2, und sie ist der Normalfall, nicht die Ausnahme. Eine Rolle gilt als
+abgedeckt, sobald sie irgendwo im Modul vorkommt.
 
 ### Spoiler-Management
 
@@ -461,20 +489,53 @@ herunter. **Der Download-Klick gehört ans Ende der Lektion, nicht an den Anfang
 
 ### Laufzeit-Faustregel
 
-C++ schafft grob 10⁸ einfache Operationen pro Sekunde, CPython eher 10⁶–10⁷
-Schleifeniterationen. Die Regel „N-Schranke lesen ⇒ Komplexität ableiten" braucht
-daher eine eigene Tabelle:
+C++ schafft grob 10⁸ einfache Operationen pro Sekunde, CPython eher 10⁷
+Schleifeniterationen. Gemessen auf einem Schulgerät (August 2026):
 
-| N ≤ | erlaubte Komplexität (Python) |
+| Schritte | Dauer in Python |
 |---|---|
-| 20 | O(2ᴺ) |
-| 500 | O(N³) |
-| 3 000 | O(N²) |
-| 10⁵ – 10⁶ | O(N log N), O(N) |
+| 10⁶ | 0,1 s |
+| 10⁷ | 1 s |
+| 10⁸ | 12 s |
+| 10⁹ | 2 min |
+| 10¹⁰ | 20 min |
+| 10¹² | über einen Tag |
 
-Bei N ≤ 5000 und O(N²) wird es in Python grenzwertig, wo C++ noch bequem
-durchläuft. Didaktisch nützlich: Der Druck zur besseren Komplexität setzt früher
-ein.
+### Unser Zeitbudget ist nicht das übliche
+
+**Entscheidend und leicht zu übersehen:** Wir reichen eine Ausgabedatei ein, kein
+Programm. Der Grader misst keine Laufzeit. Die einzige Grenze sind die **fünf
+Minuten** zwischen Download und Upload.
+
+Das ist ein völlig anderes Budget als die ein bis zwei Sekunden, mit denen
+Wettbewerbsaufgaben sonst kalkuliert werden. Praktische Faustregel für den Kurs:
+
+- **unter 10 s** — unproblematisch
+- **10 s bis 1 min** — geht, aber ohne Reserve für einen zweiten Versuch
+- **über 2 min** — zu riskant, die fünf Minuten enthalten auch Download und Upload
+- **ab 10⁹ Schritten** — praktisch ausgeschlossen
+
+Didaktische Folge: Kleine Unterschiede sind bei uns **egal**, grosse sind
+**tödlich**. Eine Lösung mit 10⁸ statt 10⁶ Schritten kostet zwölf Sekunden statt
+einer Zehntelsekunde und gibt trotzdem volle Punkte. Eine mit 10¹² Schritten läuft
+nie durch. Das Laufzeitdenken in M3 zielt deshalb auf Grössenordnungen, nicht auf
+Konstanten.
+
+### Die Anzahl Testfälle gehört in jede Rechnung
+
+Fast alle SOI-Aufgaben haben **T = 100 Testfälle pro Durchlauf**. Eine Schranke
+von N ≤ 1000 bedeutet bei O(N²) also nicht 10⁶, sondern **10⁸ Schritte**. Die
+übliche Tabelle „N ≤ 3000 erlaubt O(N²)" gilt pro Testfall und ist ohne den
+Faktor T irreführend.
+
+Mit T = 100 und dem Budget oben:
+
+| N ≤ | O(N²) gesamt | Urteil |
+|---|---|---|
+| 100 | 10⁶ | bequem |
+| 1 000 | 10⁸ | läuft, rund 12 s |
+| 3 000 | 10⁹ | zu riskant |
+| 10⁵ | 10¹² | ausgeschlossen |
 
 ### Fallen, die in bestimmte Module gehören
 
