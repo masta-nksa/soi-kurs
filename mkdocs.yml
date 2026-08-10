@@ -22,6 +22,10 @@ theme:
         icon: material/weather-sunny
         name: Helles Design
 
+# Oeffnet alle Links auf fremde Seiten in einem neuen Tab.
+hooks:
+  - hooks/externe_links.py
+
 markdown_extensions:
   - admonition
   - attr_list

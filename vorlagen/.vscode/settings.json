@@ -1,0 +1,6 @@
+{
+  // Der Play-Knopf startet das Programm im Ordner der Datei, nicht im
+  // Arbeitsordner von VS Code. Nur so findet loesung.py die Dateien
+  // bsp_ein.txt und input.txt, die daneben liegen.
+  "python.terminal.executeInFileDir": true
+}

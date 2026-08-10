@@ -84,12 +84,41 @@ Hast du es wirklich selbst versucht?"
 ## Python im Material
 
 - Nur Standardbibliothek
-- Einlesen über `sys.stdin`, nie `input()`
 - Bezeichner auf Deutsch (`zahl`, `zahlen`, `loese`)
 - Gerüststufe pro Modul beachten: M0–M2 fertige Leser, M3–M4 Vorlage mit Lücke,
   ab M5 nur Grundgerüst
 - Laufzeit-Faustregeln immer für Python angeben (10⁶–10⁷ Iterationen/s), nie die
   C++-Zahlen
+
+### Start über den Play-Knopf, nicht über die Konsole
+
+Die SuS starten ihr Programm mit dem Play-Knopf in VS Code. Daraus folgt:
+
+- **Keine Umleitung mit `<` und `>`.** Ein- und Ausgabedatei stehen als
+  Konstanten im Kopf der Datei (`EINGABE`, `AUSGABE`) und liegen im
+  Aufgabenordner.
+- Einlesen mit `open(EINGABE)`, nie `sys.stdin` und nie `input()`
+- Die Ergebniszeilen werden gesammelt und am Schluss über `pruefe.schreibe`
+  geschrieben. Diese Zeile in Gerüststufe 1 und 2 immer mitliefern.
+- `print` ist damit frei für Debug-Ausgaben — im Material auch so benennen.
+- Nie behaupten, `print` schreibe das Ergebnis.
+
+### Keine Kurzformen
+
+Die SuS bringen sehr unterschiedliche Programmiererfahrung mit. Code im Material
+verwendet nur Konstrukte, die auch in einem ersten Kurs vorkommen:
+
+- Keine List Comprehensions — `for`-Schleife mit `append`
+- Keine einzeiligen `if/else`-Ausdrücke — normales `if/else`
+- Keine f-Strings — `"Case #" + str(i) + ": " + str(ergebnis)`
+- Kein `_` als Wegwerf-Variable
+- `+=` ist in Ordnung, ebenso `with open(...)`
+
+## Externe Links
+
+Links auf fremde Seiten öffnen immer in einem neuen Tab. Das erledigt der Hook
+`hooks/externe_links.py` beim Bauen automatisch für jede Adresse mit `http://`
+oder `https://` — im Markdown ist nichts zu tun.
 
 ## Nicht bauen
 

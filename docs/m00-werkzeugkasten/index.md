@@ -74,28 +74,39 @@ was wir verwenden, ist eingebaut.
 4. Öffne über *Terminal → Neues Terminal* das eingebaute Terminal. Es erscheint
    unten im Fenster.
 
+Das Terminal brauchst du nur zum Nachschauen. Gestartet wird jedes Programm in
+diesem Kurs mit dem **Play-Knopf** oben rechts im Editor — dem Dreieck. Was dein
+Programm ausgibt, erscheint dann unten im Terminal.
+
 !!! success "Kontrollpunkt"
     Tipp im VS-Code-Terminal denselben Versionsbefehl wie oben. Wenn hier
     dieselbe Versionsnummer erscheint, ist alles verbunden.
 
-!!! tip "Ab jetzt gilt"
-    In allen Befehlen unten steht `python`. **Auf dem Mac tippst du überall
-    `python3`.**
+!!! tip "Der Unterschied Windows / Mac"
+    Beim Versionsbefehl heisst es auf dem Mac `python3` statt `python`. Für den
+    Play-Knopf spielt das keine Rolle — VS Code weiss selbst, wie Python auf
+    deinem Gerät heisst.
 
 ---
 
 ## Schritt 3 — Ordner und Vorlage einrichten
 
-Leg einen Ordner für die Aufgabe an, zum Beispiel `treppenlauf/`. Kopier
-`vorlage.py` und `pruefe.py` aus dem Ordner `vorlagen/` hinein und benenne die
-Vorlage in `loesung.py` um.
+Leg einen Ordner für die Aufgabe an, zum Beispiel `treppenlauf/`. Kopier den
+gesamten Inhalt des Ordners `vorlagen/` hinein und benenne `vorlage.py` in
+`loesung.py` um.
 
-Öffne den Ordner in VS Code über *Datei → Ordner öffnen*. Das eingebaute Terminal
-startet dann automatisch in diesem Ordner — wichtig, damit die Befehle die
-richtigen Dateien finden.
+Du kopierst damit drei Dinge: `loesung.py` bearbeitest du gleich selbst,
+`pruefe.py` ist ein Helfer und muss nur danebenliegen, und der Ordner `.vscode`
+enthält eine Einstellung, die dafür sorgt, dass dein Programm seine Dateien
+findet.
+
+Öffne den Aufgabenordner in VS Code über *Datei → Ordner öffnen*. **Nicht nur die
+Datei öffnen, sondern den Ordner** — sonst sucht dein Programm später an der
+falschen Stelle.
 
 !!! success "Kontrollpunkt"
-    Links in der Seitenleiste siehst du `loesung.py` und `pruefe.py`.
+    Links in der Seitenleiste siehst du `loesung.py` und `pruefe.py`, und zwar
+    unterhalb des Ordnernamens `TREPPENLAUF`.
 
 ---
 
@@ -164,8 +175,18 @@ Case #0: 5
 Case #1: 1337
 ```
 
-Öffne `loesung.py`. Der obere Teil liest die Eingabe — daran musst du nichts
-ändern. Deine Aufgabe ist nur die Funktion in der Mitte:
+Öffne `loesung.py`. Ganz oben steht, mit welchen Dateien das Programm arbeitet:
+
+```python
+EINGABE = "bsp_ein.txt"
+AUSGABE = "output.txt"
+```
+
+Solange dort `bsp_ein.txt` steht, rechnest du mit dem Beispiel. Das Ergebnis
+landet in `output.txt`.
+
+Der Teil darunter liest die Eingabe — daran musst du nichts ändern. Deine Aufgabe
+ist die Funktion in der Mitte:
 
 ```python
 def loese(n, werte):
@@ -177,22 +198,26 @@ Bei Teilaufgabe 1 besteht ein Testfall aus `N`, dann `a`, dann `b`. Passe den
 Hauptteil so an, dass er genau diese drei Zahlen liest, und gib die Summe der
 beiden Höhen zurück.
 
-Dann im Terminal:
+Dann klick den **Play-Knopf** oben rechts. Unten im Terminal steht, was passiert
+ist:
 
 ```
-python loesung.py < bsp_ein.txt > mein_aus.txt
-python pruefe.py bsp_aus.txt mein_aus.txt
+output.txt geschrieben (2 Zeilen).
+Alles richtig (2 Zeilen).
+Du kannst jetzt die echte Eingabe herunterladen.
 ```
 
-Der erste Befehl schickt `bsp_ein.txt` als Eingabe in dein Programm und schreibt
-alles, was du mit `print` ausgibst, nach `mein_aus.txt`. Der zweite vergleicht.
+Dein Programm hat `bsp_ein.txt` gelesen, gerechnet, `output.txt` geschrieben und
+das Ergebnis anschliessend mit `bsp_aus.txt` verglichen. Stimmt etwas nicht,
+zeigt es dir die erste abweichende Zeile.
 
-!!! tip "In VS Code geht das auf Tastendruck"
-    Die mitgelieferte `tasks.json` führt beide Befehle zusammen aus. Menü
-    *Terminal → Task ausführen → SOI: Beispiel testen*.
+!!! tip "print ist zum Suchen da"
+    Deine Ergebnisse landen in der Datei, nicht im Terminal. Du kannst also
+    jederzeit `print` einbauen, um nachzusehen, was dein Programm gerade rechnet
+    — die Ausgabedatei bleibt davon unberührt.
 
 !!! success "Kontrollpunkt"
-    `pruefe.py` meldet „Alles richtig (2 Zeilen)." Erst dann geht es weiter.
+    Im Terminal steht „Alles richtig (2 Zeilen)." Erst dann geht es weiter.
 
 ---
 
@@ -204,16 +229,26 @@ soi.ch und musst eingeloggt sein.
 
 1. **Eingabedaten herunterladen** — du bekommst eine `input.txt` mit frischen
    Testfällen. Die Uhr läuft. Auf der Seite erscheint jetzt der Upload-Bereich.
-2. Speicher die Datei in deinen Aufgabenordner.
-3. Im Terminal:
+2. Speicher die Datei in deinen Aufgabenordner, neben `loesung.py`.
+3. Ändere in `loesung.py` die oberste Zeile auf die echte Eingabe:
 
-    ```
-    python loesung.py < input.txt > output.txt
+    ```python
+    EINGABE = "input.txt"
     ```
 
-4. Lade `output.txt` auf der Aufgabenseite hoch.
+4. Play-Knopf. Im Terminal steht `output.txt geschrieben`.
+5. Lade `output.txt` auf der Aufgabenseite hoch.
 
 Nur die Ausgabedatei — dein Python-Code bleibt bei dir.
+
+Übe den Wechsel in Schritt 3 einmal vorher. Es ist eine einzige Zeile, aber unter
+Zeitdruck ist sie leicht zu vergessen — und dann lädst du das Ergebnis des
+Beispiels hoch.
+
+!!! tip "Danach wieder zurückstellen"
+    Für den nächsten Test setzt du `EINGABE` wieder auf `"bsp_ein.txt"`. Sonst
+    rechnet dein Programm weiter mit einer Eingabedatei, deren Lösung du gar
+    nicht kennst.
 
 !!! tip "Falls die Zeit abläuft"
     Kein Problem. Lade neue Eingabedaten herunter und fang von vorne an. Jeder
@@ -240,30 +275,38 @@ Nur die Ausgabedatei — dein Python-Code bleibt bei dir.
     Auf dem Mac heisst der Befehl `python3`. Das gilt in allen Befehlen dieses
     Kurses.
 
-??? tip "`pruefe.py` meldet eine falsche Zeilenzahl"
-    Meist gibst du eine Zeile zu viel oder zu wenig aus. Prüfe: genau ein `print`
-    pro Testfall, keine zusätzliche Ausgabe wie „Bitte Zahl eingeben".
+??? tip "`FileNotFoundError: bsp_ein.txt`"
+    Dein Programm findet die Eingabedatei nicht. Drei mögliche Ursachen:
 
-    Debug-Ausgaben landen in der Ausgabedatei und machen sie kaputt. Wenn du beim
-    Suchen etwas ausgeben willst, nutze `print(..., file=sys.stderr)` — das
-    erscheint im Terminal, nicht in der Datei.
+    - Die Datei liegt nicht im selben Ordner wie `loesung.py`.
+    - Sie heisst anders, als oben in `EINGABE` steht. Windows blendet Endungen
+      manchmal aus — aus `bsp_ein.txt` wird dann heimlich `bsp_ein.txt.txt`.
+    - Du hast in VS Code nur die Datei geöffnet, nicht den Ordner. Mach
+      *Datei → Ordner öffnen* und wähle den Aufgabenordner.
+
+??? tip "`ModuleNotFoundError: No module named 'pruefe'`"
+    `pruefe.py` fehlt im Aufgabenordner. Kopier sie aus `vorlagen/` daneben.
+
+??? tip "Die Zeilenzahl stimmt nicht"
+    Meist schreibst du eine Zeile zu viel oder zu wenig. Prüfe: genau ein
+    `zeilen.append(...)` pro Testfall.
+
+    Achtung, das ist etwas anderes als `print`. Was du mit `print` ausgibst,
+    erscheint nur im Terminal und landet nie in der Ausgabedatei.
 
 ??? tip "Alle Zeilen sind um eins verschoben"
     Klassiker: `Case #1` als erste Zeile statt `Case #0`. Die Schleife muss bei
     null anfangen.
 
-??? tip "`mein_aus.txt` ist leer"
-    Entweder ist dein Programm mit einem Fehler abgestürzt — dann steht die
-    Meldung im Terminal — oder du hast `>` vergessen und die Ausgabe ist im
-    Terminal gelandet.
-
 ??? tip "Das Programm wartet und tut nichts"
-    Du hast irgendwo `input()` benutzt. Die Vorlage liest über `sys.stdin`;
-    `input()` blockiert, wenn keine Datei umgeleitet wird.
+    Du hast irgendwo `input()` benutzt. Damit wartet Python auf eine Eingabe über
+    die Tastatur. Die Vorlage liest aus der Datei — `input()` brauchst du in
+    diesem Kurs nie.
 
-??? tip "Das Terminal findet meine Dateien nicht"
-    Du hast den Ordner nicht in VS Code geöffnet, sondern nur die Datei. Mach
-    *Datei → Ordner öffnen* und wähle den Aufgabenordner.
+??? tip "Der Play-Knopf fehlt oder startet etwas anderes"
+    Die Python-Erweiterung von Microsoft ist nicht installiert (Schritt 2). Zur
+    Not geht es auch über *Rechtsklick im Editor → Python-Datei im Terminal
+    ausführen*.
 
 ---
 

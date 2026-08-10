@@ -53,16 +53,26 @@ früh.
 Jeder Download erzeugt andere Testfälle. Gut, um zu erklären, *warum* ein
 Programm nötig ist und nicht Rechnen von Hand.
 
-**`print` schreibt auf den Bildschirm.**
-Bei `>` schreibt es in die Datei. Der Umleitungsoperator ist für viele neu und
-verdient zwei Minuten an der Tafel — sonst bleibt Schritt 3 magisch.
+**„Was ich mit `print` ausgebe, ist mein Ergebnis."**
+Nicht mehr. Die Ausgabedatei wird geschrieben, `print` landet im Terminal. Das
+ist eine Umstellung für alle, die Programmieren bisher als „auf den Bildschirm
+schreiben" kennen — dafür sind Debug-Ausgaben ab jetzt gefahrlos. Zwei Minuten
+an der Tafel wert.
+
+**„Ich habe getestet, also kann ich hochladen."**
+Zwischen Test und Upload liegt die Umstellung von `EINGABE` auf `"input.txt"`.
+Wer sie vergisst, lädt das Ergebnis des Beispiels hoch und bekommt null Punkte
+ohne erkennbaren Grund. Das ist der wahrscheinlichste Fehler in Schritt 6 — vorher
+einmal gemeinsam durchspielen.
 
 ---
 
 ## Diagnosefragen
 
 - „Warum steht in der ersten Zeile `Case #0` und nicht `Case #1`?"
-- „Was passiert, wenn du `>` weglässt?"
+- „Du hast die echte Eingabe heruntergeladen. Welche Zeile in deinem Programm
+  musst du ändern, bevor du auf Play drückst?"
+- „Wo landet die Ausgabe von `print`, und wo landet dein Ergebnis?"
 - „Du hast die Eingabedaten heruntergeladen und merkst, dass dein Programm einen
   Fehler hat. Was tust du?"
 - „Warum reicht es nicht, das Ergebnis von Hand auszurechnen?"
@@ -75,9 +85,9 @@ verdient zwei Minuten an der Tafel — sonst bleibt Schritt 3 magisch.
 bereits eine echte Algorithmusaufgabe und gehört eigentlich zu M2 — als
 Vorgriff aber unproblematisch.
 
-**Langsame** brauchen oft nur Hilfe beim Terminal, nicht beim Programmieren.
-Zweiergruppen an einem Rechner funktionieren hier gut, weil der Ablauf gemeinsam
-eingeübt wird.
+**Langsame** brauchen oft nur Hilfe bei der Installation und beim Auffinden der
+Dateien, nicht beim Programmieren. Zweiergruppen an einem Rechner funktionieren
+hier gut, weil der Ablauf gemeinsam eingeübt wird.
 
 Wer mit der Installation fertig ist, hilft den anderen — das ist die effizienteste
 Nutzung der ersten Lektion und kostet dich nichts.

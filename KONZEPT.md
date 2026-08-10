@@ -367,52 +367,90 @@ Aufgabe, und Formatfehler sind der häufigste Punkteverlust.
 | 2 | M3–M4 | Vorlage mit Lücke — Parsing nach Muster ergänzen |
 | 3 | ab M5 | nur noch das Grundgerüst, Parsing komplett selbst |
 
+### Dateien statt Umleitung
+
+Gestartet wird über den **Play-Knopf in VS Code**, nicht über die Konsole. Die
+SuS sollen sich auf die Aufgabe konzentrieren, nicht auf eine Shell, die sie
+sonst nie benutzen. Ein- und Ausgabedatei stehen deshalb als Konstanten im Kopf
+der Datei und liegen im Aufgabenordner.
+
+Das ist nicht nur bequemer, sondern auch sicherer: `python loesung.py > output.txt`
+schreibt in Windows PowerShell 5.1 eine **UTF-16-Datei**. Der Grader erwartet
+UTF-8. Dieser Fehler ist von aussen nicht zu sehen und genau die Sorte, für die
+SOI eine eigene Hilfeseite betreibt. Schreibt Python die Datei selbst, ist das
+Problem weg — mitsamt der Zeilenumbruch-Frage, denn `newline="\n"` steht in der
+Vorlage.
+
+Zwei Nebeneffekte, beide erwünscht: `print` landet wieder im Terminal und ist
+damit gefahrlos für Debug-Ausgaben, und die Vorlage braucht kein `import sys`
+mehr.
+
+Der Preis ist ein Handgriff: Vor dem echten Lauf muss `EINGABE` von
+`"bsp_ein.txt"` auf `"input.txt"` umgestellt werden. Das ist der wahrscheinlichste
+Fehler in M0 und gehört einmal gemeinsam durchgespielt.
+
+### Der Token-Leser
+
 Die SOI-Formate sind einheitlich genug, dass ein einziger Token-Leser fast alles
 abdeckt:
 
 ```python
-import sys
+EINGABE = "bsp_ein.txt"
+AUSGABE = "output.txt"
 
-_tokens = sys.stdin.read().split()
-_pos = 0
+with open(EINGABE, encoding="utf-8") as datei:
+    tokens = datei.read().split()
+
+position = 0
 
 def zahl():
-    global _pos
-    _pos += 1
-    return int(_tokens[_pos - 1])
+    global position
+    position = position + 1
+    return int(tokens[position - 1])
 
-def zahlen(n):
-    return [zahl() for _ in range(n)]
+def zahlen(anzahl):
+    liste = []
+    for i in range(anzahl):
+        liste.append(zahl())
+    return liste
 
 def wort():
-    global _pos
-    _pos += 1
-    return _tokens[_pos - 1]
+    global position
+    position = position + 1
+    return tokens[position - 1]
 ```
 
 Damit wird `endurance` zu:
 
 ```python
+zeilen = []
+
 T = zahl()
 for i in range(T):
-    N, K = zahl(), zahl()
+    N = zahl()
+    K = zahl()
     p = zahlen(N)
     ergebnis = loese(N, K, p)      # ← das ist die Aufgabe der SuS
-    print(f"Case #{i}: {ergebnis}")
+    zeilen.append("Case #" + str(i) + ": " + str(ergebnis))
+
+pruefe.schreibe(AUSGABE, zeilen)
 ```
 
-**Die `print`-Zeile in Stufe 1 und 2 immer mitliefern**, erst in Stufe 3
-freigeben. `Case #i` ist nullbasiert — ein Zählfehler kostet 100 Punkte.
+**Die Zeilen für `append` und `schreibe` in Stufe 1 und 2 immer mitliefern**,
+erst in Stufe 3 freigeben. `Case #i` ist nullbasiert — ein Zählfehler kostet
+100 Punkte.
+
+Der Code verzichtet bewusst auf List Comprehensions, f-Strings und
+Mehrfachzuweisungen. Die Einstiegsniveaus sind zu verschieden; wer diese
+Schreibweisen nicht kennt, liest sonst die halbe Vorlage nicht.
 
 ### Lokale Testroutine
 
 Die Beispiel-Ein-/Ausgaben stehen bei jedem Subtask in der Aufgabenstellung.
-Feste Konvention: abtippen als `bsp_ein.txt` / `bsp_aus.txt`, dann
-
-```
-python loesung.py < bsp_ein.txt > mein_aus.txt
-python pruefe.py bsp_aus.txt mein_aus.txt
-```
+Feste Konvention: abtippen als `bsp_ein.txt` / `bsp_aus.txt`. Ein Klick auf Play
+rechnet, schreibt `output.txt` und vergleicht anschliessend selbst — der Vergleich
+steht als letzte Zeile in der Vorlage und läuft nur, solange `EINGABE` auf
+`bsp_ein.txt` steht.
 
 Das nimmt der 5-Minuten-Regel den Schrecken: Wer hier grün sieht, lädt entspannt
 herunter. **Der Download-Klick gehört ans Ende der Lektion, nicht an den Anfang.**
@@ -442,7 +480,8 @@ ein.
 
 - **`liste.pop(0)` ist O(N)** — gehört als Anker-Beispiel in M3, weil es an
   echtem Code zeigt, wie eine harmlose Zeile die Komplexität kippt
-- **`input()` ist langsam** — `sys.stdin` gehört in die Vorlage
+- **`input()` ist langsam und blockiert** — die Vorlage liest die Datei in einem
+  Zug mit `read().split()`
 - **Nur Standardbibliothek** — damit lokal und beim Grader dasselbe läuft
 - Rekursionstiefe (Standard 1000) ist im reduzierten Umfang kaum relevant, wäre
   aber bei M6 zu beachten
@@ -464,7 +503,8 @@ soi-kurs/
 │  │   └─ loesung.md
 │  ├─ m03-laufzeit/
 │  └─ ...
-├─ vorlagen/                  # vorlage.py, pruefe.py, tasks.json
+├─ vorlagen/                  # vorlage.py, pruefe.py, .vscode/settings.json
+├─ hooks/                     # MkDocs-Hooks (externe Links im neuen Tab)
 ├─ lp/                        # LP-Blätter (Diagnose, Fehlvorstellungen)
 └─ mkdocs.yml
 ```
@@ -504,7 +544,7 @@ Modul N — Titel
 
 1. **Prototyp Modul 4** als fertige Markdown-Seite in der Struktur aus
    Abschnitt 8 — testet Analogie und Gerüstabbau gleichzeitig
-2. **Vorlagendateien** `vorlage.py`, `pruefe.py`, VS-Code-`tasks.json`
+2. **Vorlagendateien** `vorlage.py`, `pruefe.py`, VS-Code-`settings.json`
 3. **Kuratierungsliste** — welche Subtasks aus welchen Archivrunden geerntet
    werden
 4. **Abhängigkeitsgraph** über alle Bausteine
