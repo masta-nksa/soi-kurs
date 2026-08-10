@@ -100,6 +100,26 @@ Du kopierst damit drei Dinge: `loesung.py` bearbeitest du gleich selbst,
 enthält eine Einstellung, die dafür sorgt, dass dein Programm seine Dateien
 findet.
 
+### Falls du `.vscode` gar nicht siehst
+
+Namen, die mit einem Punkt beginnen, gelten als versteckt.
+
+=== "Windows"
+
+    Der Explorer zeigt den Ordner normalerweise an. Falls nicht: oben im Reiter
+    *Ansicht* das Häkchen bei *Ausgeblendete Elemente* setzen.
+
+=== "macOS"
+
+    Der Finder blendet solche Namen aus. Drück **Cmd + Shift + Punkt** — dann
+    erscheint `.vscode`, etwas blasser als die übrigen Ordner. Dieselbe
+    Tastenkombination blendet ihn wieder aus. Kopieren kannst du ihn nur,
+    solange er sichtbar ist.
+
+Ohne `.vscode` funktioniert trotzdem alles, solange du im nächsten Absatz den
+Ordner öffnest und nicht nur die Datei. Der Ordner ist die Absicherung für den
+Fall, dass du das einmal vergisst.
+
 Öffne den Aufgabenordner in VS Code über *Datei → Ordner öffnen*. **Nicht nur die
 Datei öffnen, sondern den Ordner** — sonst sucht dein Programm später an der
 falschen Stelle.
