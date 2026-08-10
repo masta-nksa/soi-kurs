@@ -540,12 +540,47 @@ Modul N — Titel
 
 ---
 
-## 13. Nächste Schritte
+## 13. Stand und nächste Schritte
 
-1. **Prototyp Modul 4** als fertige Markdown-Seite in der Struktur aus
-   Abschnitt 8 — testet Analogie und Gerüstabbau gleichzeitig
-2. **Vorlagendateien** `vorlage.py`, `pruefe.py`, VS-Code-`settings.json`
-3. **Kuratierungsliste** — welche Subtasks aus welchen Archivrunden geerntet
-   werden
-4. **Abhängigkeitsgraph** über alle Bausteine
-5. Restliche Module nach dem Steckbrief-Schema
+### Erledigt
+
+- **Technisches Gerüst** — Repo, MkDocs Material, GitHub Pages über Actions,
+  Hook für externe Links
+- **Vorlagendateien** `vorlage.py`, `pruefe.py`, `.vscode/settings.json` —
+  Start über den Play-Knopf, Ein- und Ausgabedatei als Konstanten
+- **Abhängigkeitsgraph** in `docs/lernpfad.md`
+- **M0 Werkzeugkasten** — Werkzeug-Baustein nach der Ausnahmestruktur, Anker
+  `stairracing` ST1 aus der Runde 2021
+- **M1 Problemanalyse und Modellierung** — Anker `cheeseparty`, Übungen
+  `directions` und `sushi` ST1/ST3 aus der Runde 2018
+
+### Abweichung von der ursprünglichen Planung
+
+Vorgesehen war **Modul 4 als Prototyp**, um Analogie und Gerüstabbau früh zu
+testen. Nach M0 ist die Reihenfolge stattdessen linear geworden. Zwei Gründe:
+
+- M4 ankert auf `endurance` ST4/ST5 und setzt das Laufzeitdenken aus M3 voraus.
+  Wer M4 zuerst schreibt, muss erfinden, was M3 etabliert hat, und es später
+  nachziehen.
+- Die Seitenstruktur aus Abschnitt 8 wird von M1 ebenso getestet. M0 prüft sie
+  nicht, weil Werkzeug-Bausteine der Ausnahmestruktur folgen.
+
+Der Prototyp-Gedanke ist damit eingelöst, aber nicht vollständig: **Gerüststufe 2
+(Vorlage mit Lücke) und eine Analogie zu einem schweren Konzept sind weiterhin
+ungetestet.** Beim Bau von M3 und M4 gezielt darauf achten — dort zeigt sich, ob
+das Format auch unter Last trägt.
+
+### Offen
+
+1. **M2 Vollständige Suche**
+2. **M3 Laufzeitdenken** — erstes Modul mit Gerüststufe 2, also der erste echte
+   Test des Abbauplans aus Abschnitt 9
+3. **M4 Felder und lineare Techniken**
+4. **M5 Sortieren und Suchen**, **M6 Konstruktive Verfahren**
+5. **Strang B** — M7 Pseudocode und Simulation, M8 Quiz-Training
+6. **Kuratierungsliste** — welche Subtasks aus welchen Archivrunden geerntet
+   werden. Bisher pro Modul einzeln gesucht, was mit jedem Modul teurer wird.
+   Für archivierte Aufgaben lassen sich weiterhin Eingaben erzeugen und
+   Ausgaben prüfen, sie sind also gleichwertig zur Vorrunde.
+7. **Selbsttest vor Modul 0** — `docs/index.md` nennt ihn, verlinkt aber
+   `books` nicht und sagt nicht, woran man „sicher gelöst" erkennt
