@@ -48,5 +48,10 @@ nav:
   - Start: index.md
   - Lernpfad: lernpfad.md
   - M0 Werkzeugkasten: m00-werkzeugkasten/index.md
+  - M1 Problemanalyse:
+      - Lernbaustein: m01-problemanalyse/index.md
+      - Uebungen: m01-problemanalyse/uebungen.md
   # Weitere Module werden hier ergaenzt, sobald sie gebaut sind.
+  # loesung.md steht bewusst NICHT in der Navigation - der Weg dorthin fuehrt
+  # nur ueber den Link am Ende der Uebungsseite.
   # Das Verzeichnis lp/ bleibt bewusst ausserhalb der Navigation.

@@ -340,4 +340,4 @@ Wenn du magst: **Teilaufgabe 2** von Treppenlauf ist ein guter Selbsttest. Zwei
 Wolkenkratzer pro Seite, vier mögliche Kombinationen. Mehr als Ausprobieren
 braucht es nicht — und du übst den Ablauf ein zweites Mal.
 
-Weiter geht es mit Modul 1 — Problemanalyse. <!-- TODO Link setzen, sobald M1 existiert -->
+Weiter geht es mit [M1 — Problemanalyse und Modellierung](../m01-problemanalyse/index.md).
