@@ -553,6 +553,13 @@ Modul N — Titel
   `stairracing` ST1 aus der Runde 2021
 - **M1 Problemanalyse und Modellierung** — Anker `cheeseparty`, Übungen
   `directions` und `sushi` ST1/ST3 aus der Runde 2018
+- **M2 Vollständige Suche** — Anker `endurance` ST1/ST2, Übung `stairracing`
+  ST2 aus der Runde 2021, dazu Laufzeit-Schätzaufgabe als Brücke zu M3
+
+**Anmerkung zu `wagashi`.** Die Aufgabe war als zweiter M2-Anker vorgesehen
+(Abschnitt 6 und 7). Ihre Seite ist unter diesem Namen nicht abrufbar; ersetzt
+durch `stairracing` ST2, das M0 ohnehin schon als Selbsttest vormerkt. Falls
+`wagashi` erreichbar wird, passt es als zusätzliche Variation in M2.
 
 ### Abweichung von der ursprünglichen Planung
 
@@ -572,15 +579,15 @@ das Format auch unter Last trägt.
 
 ### Offen
 
-1. **M2 Vollständige Suche**
-2. **M3 Laufzeitdenken** — erstes Modul mit Gerüststufe 2, also der erste echte
-   Test des Abbauplans aus Abschnitt 9
-3. **M4 Felder und lineare Techniken**
-4. **M5 Sortieren und Suchen**, **M6 Konstruktive Verfahren**
-5. **Strang B** — M7 Pseudocode und Simulation, M8 Quiz-Training
-6. **Kuratierungsliste** — welche Subtasks aus welchen Archivrunden geerntet
+1. **M3 Laufzeitdenken** — erstes Modul mit Gerüststufe 2, also der erste echte
+   Test des Abbauplans aus Abschnitt 9. M2 endet bewusst mit einer
+   Schätzaufgabe, die genau auf diese Frage zuläuft.
+2. **M4 Felder und lineare Techniken**
+3. **M5 Sortieren und Suchen**, **M6 Konstruktive Verfahren**
+4. **Strang B** — M7 Pseudocode und Simulation, M8 Quiz-Training
+5. **Kuratierungsliste** — welche Subtasks aus welchen Archivrunden geerntet
    werden. Bisher pro Modul einzeln gesucht, was mit jedem Modul teurer wird.
    Für archivierte Aufgaben lassen sich weiterhin Eingaben erzeugen und
    Ausgaben prüfen, sie sind also gleichwertig zur Vorrunde.
-7. **Selbsttest vor Modul 0** — `docs/index.md` nennt ihn, verlinkt aber
+6. **Selbsttest vor Modul 0** — `docs/index.md` nennt ihn, verlinkt aber
    `books` nicht und sagt nicht, woran man „sicher gelöst" erkennt

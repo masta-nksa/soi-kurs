@@ -132,8 +132,31 @@ Der Fall, den viele übersehen: Wenn `s` länger ist als `b`, kann `b` nicht mit
 programmiert vergisst man diese Prüfung leicht und liest über das Ende der
 Zeichenkette hinaus.
 
-Achte hier auf `Case #` mit nullbasierter Nummer. Das Beispiel zum Testen tippst
-du von der Aufgabenseite ab.
+Achte hier auf `Case #` mit nullbasierter Nummer.
+
+Zum Testen `bsp_ein.txt`:
+
+```
+3
+rrlr
+rrrr
+lrrrl
+lrrrl
+rrll
+llrr
+```
+
+und `bsp_aus.txt`:
+
+```
+Case #0: NO
+Case #1: YES
+Case #2: NO
+```
+
+Beachte, dass die beiden Zeichenketten eines Testfalls auf zwei getrennten
+Zeilen stehen. Für den Leser aus der Vorlage macht das keinen Unterschied — er
+zerlegt die ganze Datei in Wörter und gibt sie eines nach dem anderen heraus.
 
 ---
 

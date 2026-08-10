@@ -246,6 +246,6 @@ sollst.
 Wenn du beide Teilaufgaben von Cheeseparty gelöst und die Übungen gemacht hast,
 kannst du aus einem Aufgabentext ein Modell bauen und es am Extremfall prüfen.
 
-In M2 reicht das Hinschauen nicht mehr: Dort gibt es keine Formel, sondern nur
-noch die Möglichkeit, alle Fälle durchzuprobieren.
-<!-- TODO Link setzen, sobald M2 existiert -->
+In [M2 — Vollständige Suche](../m02-vollstaendige-suche/index.md) reicht das
+Hinschauen nicht mehr: Dort gibt es keine Formel, sondern nur noch die
+Möglichkeit, alle Fälle durchzuprobieren.
