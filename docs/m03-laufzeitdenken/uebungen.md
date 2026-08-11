@@ -21,9 +21,9 @@ Jetzt stehen beliebig viele Wolkenkratzer auf jeder Seite:
 T = 100 in beiden.
 
 **Schätze zuerst, für beide Teilaufgaben getrennt.** Deine allgemeine Lösung aus
-M2 hat zwei ineinander liegende Schleifen. Rechne aus, wie viele Schritte das
-gibt und wie lange es dauert. Schreib beide Zahlen auf, bevor du irgendetwas
-startest.
+M2 hat zwei ineinander liegende Schleifen, ist also O(N²). Rechne aus, wie viele
+Schritte das insgesamt gibt, und schlag die Grössenordnung nach. Schreib beides
+auf, bevor du irgendetwas startest.
 
 Eine der beiden Teilaufgaben kannst du mit deiner alten Lösung einreichen. Finde
 heraus, welche — und lade sie dann auch wirklich hoch. Es sind 25 Punkte, für die
@@ -68,11 +68,20 @@ print("Dauer:", time.time() - start)
 ```
 
 1. Starte es. Notiere die Dauer.
-2. Ändere die 20 000 auf 40 000 und starte erneut. Wie verhält sich die Dauer?
-   Vergleiche mit der Tabelle „versteckte Schleife" aus dem Konzept.
+2. Ändere die 20 000 auf 40 000 und starte erneut. **Ist es doppelt so langsam
+   oder deutlich mehr?** Was sagt dir das über die Komplexität?
 3. **In diesem Programm steht keine zweite Schleife.** Trotzdem verhält es sich
    wie O(N²). Welche Zeile ist die versteckte Schleife, und warum?
 4. Beschreibe in einem Satz, was das Programm bei jeder einzelnen Zahl tut.
+
+!!! tip "Was du beim Messen erwarten kannst"
+    Bei O(N²) brauchen doppelt so viele Elemente rund **viermal** so lange, bei
+    O(N) doppelt so lange. Genau messen wirst du das nicht: Bei so grossen
+    Listen kommen Speichereffekte dazu, und dein Gerät ist nebenbei mit anderem
+    beschäftigt.
+
+    Achte deshalb nicht auf die Sekunden, sondern auf den **Faktor**. Etwa vier
+    statt etwa zwei — das ist die Aussage.
 
 Das ist die gefährlichste Sorte Laufzeitproblem: Die teure Stelle sieht aus wie
 eine einfache Frage.
@@ -89,9 +98,12 @@ eine einfache Frage.
 
 Papier und Bleistift. Kein Rechner, keine Programme.
 
-Für jede Zeile: Wie viele Schritte insgesamt, wie lange dauert das in Python,
-und kannst du damit einreichen? **T = 100 in allen Fällen**, und Python schafft
-rund 10⁷ Schritte pro Sekunde.
+Für jede Zeile: Wie viele Schritte insgesamt, welche Grössenordnung ist das, und
+kannst du damit einreichen? **T = 100 in allen Fällen**, und wir rechnen mit rund
+10⁷ Schritten pro Sekunde.
+
+Antworte in Grössenordnungen — „Sekunden", „Minuten", „Tage". Eine Antwort wie
+„17,4 Sekunden" wäre eine Genauigkeit, die die Rechnung nicht hergibt.
 
 | | Aufgabe | Schranke | deine Lösung |
 |---|---|---|---|

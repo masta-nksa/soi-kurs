@@ -17,14 +17,26 @@ nichts zu verbessern.
 ## Vorbereitung
 
 - Endurance Teilaufgabe 3 selbst lösen und dabei die Zeit stoppen.
-- **Die Zahlen kennen**, sie kommen in jeder Lektion vor: Python schafft rund
-  10⁷ Schritte pro Sekunde; 10⁸ sind zwölf Sekunden; ab 10⁹ wird es unmöglich.
+- **Die Faustregel kennen:** Python schafft rund 10⁷ Schritte pro Sekunde.
+  Daraus folgt: 10⁸ sind Sekunden, 10⁹ sind Minuten, ab 10¹⁰ ist es vorbei.
 - Eine grosse Eingabedatei vorbereiten, um sie zeigen zu können. Der Härtefall
-  von Endurance ST3 sind 20 MB und 10 Millionen Zahlen — das beeindruckt mehr
-  als jede Tabelle.
+  von Endurance ST3 sind 10 Millionen Zahlen und rund 20 MB — das beeindruckt
+  mehr als jede Tabelle.
+
 - Gerüststufe 2 ab hier: `vorlage-stufe2.py`. Das Einlesen eines Testfalls
   schreiben die SuS erstmals selbst. Bei Endurance ist das Format dasselbe wie in
   M2, der Umstieg ist also bewusst sanft gelegt.
+
+**Wichtig für die Haltung im Unterricht:** Das Material rechnet durchgehend in
+**Grössenordnungen**, nicht in Sekunden. Sekundenwerte hängen vom Gerät ab, von
+der Art der Operationen und vom Speicher; zusammen leicht eine Grössenordnung.
+Wenn jemand fragt „aber wie lange genau?", ist die richtige Antwort: „Das sagt
+uns die Rechnung nicht — und es ist auch nicht die Frage. Wir wollen wissen, ob
+es Sekunden oder Tage sind."
+
+Gemessen wird trotzdem, aber mit anderem Zweck: nicht um Sekunden vorherzusagen,
+sondern um den **Faktor** zu sehen, wenn N sich verdoppelt. Das ist die Signatur
+der Komplexität und geräteunabhängig.
 
 ---
 
@@ -42,7 +54,7 @@ Daraus folgt die Leitlinie des Moduls:
 
 > Kleine Unterschiede sind egal. Grosse sind tödlich.
 
-Konkret: Zwölf Sekunden Rechenzeit sind bei uns völlig in Ordnung und geben
+Konkret: Ein paar Sekunden Rechenzeit sind bei uns völlig in Ordnung und geben
 volle Punkte. Zwischen 10⁶ und 10⁸ Schritten liegt didaktisch nichts, zwischen
 10⁸ und 10¹² liegt alles.
 
@@ -63,7 +75,7 @@ T = 100; das an der Tafel zu korrigieren ist wirksamer als jeder Hinweis im
 Material.
 
 **Zweite Lektion — Treppenlauf.** Schätzen lassen, dann Teilaufgabe 3 einreichen.
-Die zwölf Sekunden gemeinsam abwarten, das prägt sich ein. Teilaufgabe 4 nur
+Die Wartezeit gemeinsam aushalten, das prägt sich ein. Teilaufgabe 4 nur
 diagnostizieren, nicht lösen — die Technik gehört zu M4.
 
 **Dritte Lektion — versteckte Bremsen.** Die Messübung läuft am Rechner und
@@ -79,10 +91,10 @@ auf.
 
 **„Der Faktor 100 für die Testfälle ist doch egal."**
 Die häufigste Rechenlücke. Er entscheidet zwischen 10⁶ und 10⁸ und damit
-zwischen einer Zehntelsekunde und zwölf Sekunden. Am Ende der Lektion sollte
+zwischen einem Sekundenbruchteil und mehreren Sekunden. Am Ende der Lektion sollte
 niemand mehr eine Laufzeit ohne T angeben.
 
-**„Zwölf Sekunden sind zu langsam."**
+**„Ein paar Sekunden Rechenzeit sind zu langsam."**
 Der Reflex aus jedem Tutorial im Netz, und bei uns falsch. Wer ihn hat, sucht
 nach besseren Lösungen, wo längst Punkte zu holen wären.
 
@@ -93,8 +105,9 @@ Brute-Force-Botschaft aus M2.
 
 **„O(N) ist immer gut."**
 Nicht, wenn N Zahlen einzulesen schon zu lange dauert. Zeile d der Schätzrunde
-zielt genau darauf. Bei Endurance ST3 gehen 72 % der Zeit ins Einlesen — das
-lässt sich am Rechner vorführen und überrascht regelmässig.
+zielt genau darauf. Das Einlesen ist selbst O(N·T) — bei Endurance ST3 also
+genauso gross wie der Algorithmus. Ein Programm kann nie schneller sein als
+seine Eingabe.
 
 **„Eine kurze Zeile ist eine billige Zeile."**
 `liste.pop(0)` und `if x in liste` sehen aus wie ein Schritt und sind N. Wer das
@@ -105,8 +118,8 @@ einmal gemessen hat, fragt künftig nach.
 ## Diagnosefragen
 
 - „Wie viele Schritte macht dein Programm insgesamt? Mit Testfällen."
-- „Wie lange dauert das? Sag mir eine Zahl in Sekunden."
-- „Deine Lösung braucht zwölf Sekunden. Was tust du?"
+- „Welche Grössenordnung ist das — Sekunden, Minuten oder Tage?"
+- „Deine Rechnung ergibt 10⁸ Schritte. Was tust du?"
 - „Woran erkennst du an den Limits, dass eine Teilaufgabe eine neue Idee
   braucht?"
 - „Wo steckt in diesem Programm eine Schleife, die man nicht sieht?"

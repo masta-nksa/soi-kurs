@@ -489,17 +489,48 @@ herunter. **Der Download-Klick gehört ans Ende der Lektion, nicht an den Anfang
 
 ### Laufzeit-Faustregel
 
-C++ schafft grob 10⁸ einfache Operationen pro Sekunde, CPython eher 10⁷
-Schleifeniterationen. Gemessen auf einem Schulgerät (August 2026):
+### Das Modell im Kurs — vier Schritte
 
-| Schritte | Dauer in Python |
+Die Laufzeitabschätzung läuft im ganzen Material über die Komplexität, nie über
+Messwerte. Vier Schritte, mehr nicht:
+
+1. **Schleifen zählen.** Ineinander liegende Schleifen über die Eingabe:
+   eine → O(N), zwei → O(N²), drei → O(N³).
+2. **Schranke einsetzen.** O(N²) mit N = 1000 ergibt 10⁶.
+3. **Mal die Anzahl Testfälle T.**
+4. **Grössenordnung nachschlagen.**
+
+| Schritte | Grössenordnung der Dauer |
 |---|---|
-| 10⁶ | 0,1 s |
-| 10⁷ | 1 s |
-| 10⁸ | 12 s |
-| 10⁹ | 2 min |
-| 10¹⁰ | 20 min |
-| 10¹² | über einen Tag |
+| 10⁶ | Sekundenbruchteil |
+| 10⁷ | rund eine Sekunde |
+| 10⁸ | rund zehn Sekunden |
+| 10⁹ | Minuten |
+| 10¹⁰ | halbe Stunde |
+| 10¹² | Tage |
+
+### Die vereinfachte Annahme — und was sie unterschlägt
+
+Der Tabelle liegt eine grobe Annahme zugrunde: **Python schafft rund 10⁷
+Schleifendurchläufe pro Sekunde, und jeder Durchlauf ist gleich teuer.** Beides
+stimmt nicht genau.
+
+Unterschlagen werden:
+
+- **Konstanten.** Ein Durchlauf mit einer Multiplikation und einem Listenzugriff
+  dauert länger als einer mit einem Vergleich — leicht ein Faktor 3.
+- **Geräteunterschiede.** Ein anderes Notebook rechnet zwei- bis dreimal
+  schneller oder langsamer.
+- **Speichereffekte.** Sehr grosse Listen werden langsamer, als die Zählung
+  vermuten lässt.
+
+Zusammen können das leicht ein bis zwei Grössenordnungen sein. Die Näherung
+trägt trotzdem, weil die Unterschiede, auf die es ankommt, **Faktoren von tausend
+und mehr** sind: zwischen 10⁸ und 10¹² liegt der Unterschied zwischen Sekunden
+und Tagen, und daran ändert ein Faktor 3 nichts.
+
+**Im Material wird diese Vereinfachung immer mitgenannt.** Die SuS sollen die
+Grössenordnung schätzen und nicht glauben, sie könnten Sekunden vorhersagen.
 
 ### Unser Zeitbudget ist nicht das übliche
 
@@ -510,16 +541,17 @@ Minuten** zwischen Download und Upload.
 Das ist ein völlig anderes Budget als die ein bis zwei Sekunden, mit denen
 Wettbewerbsaufgaben sonst kalkuliert werden. Praktische Faustregel für den Kurs:
 
-- **unter 10 s** — unproblematisch
-- **10 s bis 1 min** — geht, aber ohne Reserve für einen zweiten Versuch
-- **über 2 min** — zu riskant, die fünf Minuten enthalten auch Download und Upload
-- **ab 10⁹ Schritten** — praktisch ausgeschlossen
+| Schritte | Grössenordnung | Urteil |
+|---|---|---|
+| bis 10⁸ | Sekunden | unproblematisch |
+| 10⁹ | Minuten | ohne Reserve für einen zweiten Versuch |
+| ab 10¹⁰ | halbe Stunde und mehr | ausgeschlossen |
 
 Didaktische Folge: Kleine Unterschiede sind bei uns **egal**, grosse sind
-**tödlich**. Eine Lösung mit 10⁸ statt 10⁶ Schritten kostet zwölf Sekunden statt
-einer Zehntelsekunde und gibt trotzdem volle Punkte. Eine mit 10¹² Schritten läuft
+**tödlich**. Eine Lösung mit 10⁸ statt 10⁶ Schritten braucht Sekunden statt eines
+Sekundenbruchteils und gibt trotzdem volle Punkte. Eine mit 10¹² Schritten läuft
 nie durch. Das Laufzeitdenken in M3 zielt deshalb auf Grössenordnungen, nicht auf
-Konstanten.
+Konstanten — und genau deshalb reicht die grobe Annahme oben.
 
 ### Die Anzahl Testfälle gehört in jede Rechnung
 
@@ -533,7 +565,7 @@ Mit T = 100 und dem Budget oben:
 | N ≤ | O(N²) gesamt | Urteil |
 |---|---|---|
 | 100 | 10⁶ | bequem |
-| 1 000 | 10⁸ | läuft, rund 12 s |
+| 1 000 | 10⁸ | läuft, Sekunden |
 | 3 000 | 10⁹ | zu riskant |
 | 10⁵ | 10¹² | ausgeschlossen |
 

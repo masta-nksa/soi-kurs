@@ -161,16 +161,27 @@ Dabei zählst du die Länge einfach mit. Zwei Schleifen, also **O(N²)**.
 
 Rechne nach, was das bei Teilaufgabe 2 bedeutet — N = 100 und T = 100 Testfälle:
 
-| Weg | Schritte pro Testfall | insgesamt | in Python |
+| Weg | Schritte pro Testfall | insgesamt | Grössenordnung |
 |---|---|---|---|
-| A: O(N³) | 10⁶ | 10⁸ | rund 12 Sekunden |
-| B: O(N²) | 10⁴ | 10⁶ | rund eine Zehntelsekunde |
+| A: O(N³) | 10⁶ | 10⁸ | Sekunden |
+| B: O(N²) | 10⁴ | 10⁶ | Sekundenbruchteil |
 
-Python schafft grob **10⁷ Schleifendurchläufe pro Sekunde**. Diese Zahl solltest
-du dir merken; ab M3 ist sie das wichtigste Werkzeug überhaupt.
+Als grobe Faustregel rechnen wir mit **10⁷ Schritten pro Sekunde in Python**.
+Diese Zahl solltest du dir merken; ab M3 ist sie das wichtigste Werkzeug
+überhaupt.
+
+!!! warning "Eine bewusst grobe Rechnung"
+    Wir tun so, als wäre jeder Schleifendurchlauf gleich teuer. Das stimmt nicht:
+    Ein Durchlauf mit Multiplikation und Listenzugriff dauert länger als einer mit
+    einem Vergleich, und dein Gerät ist schneller oder langsamer als das der
+    Nachbarin.
+
+    Solche Unterschiede machen leicht einen Faktor 3 aus. Das ist in Ordnung,
+    denn worauf es ankommt, sind Faktoren von **tausend und mehr**. Schätz die
+    Grössenordnung, nicht die Sekunden.
 
 !!! note "Beide Wege geben hier volle Punkte"
-    Zwölf Sekunden klingen nach viel, sind aber kein Problem: Du lädst eine
+    Ein paar Sekunden klingen nach viel, sind aber kein Problem: Du lädst eine
     Ausgabedatei hoch, kein Programm. Niemand misst, wie lange dein Programm
     gelaufen ist. Die einzige Uhr sind die fünf Minuten zwischen Download und
     Upload.
@@ -178,7 +189,7 @@ du dir merken; ab M3 ist sie das wichtigste Werkzeug überhaupt.
     Weg A ist also nicht falsch — er ist nur verschwenderisch. Der Unterschied
     zwischen 10⁶ und 10⁸ Schritten kostet dich hier nichts. Merk dir trotzdem,
     wo er herkommt: In Teilaufgabe 3 wird aus demselben Unterschied der zwischen
-    Sekunden und Jahren.
+    Sekunden und Tagen.
 
 ### Brute Force ist keine Notlösung
 
@@ -228,13 +239,14 @@ besser lässt. Diese Frage ist genau der Inhalt von M3.
     **Deine Lösung prüft jeden Abschnitt, indem sie ihn noch einmal ganz
     durchläuft. Bei N ≤ 100 und T = 100: Reicht das in Python?**
 
-    Ja — knapp, aber es reicht.
+    Ja — es reicht.
 
     Drei Schleifen ergeben rund 100³ = 10⁶ Schritte pro Testfall, bei 100
-    Testfällen also etwa 10⁸. Bei 10⁷ Schritten pro Sekunde sind das gut zwölf
-    Sekunden. Unangenehm, aber innerhalb der fünf Minuten problemlos.
+    Testfällen also etwa 10⁸. Bei 10⁷ Schritten pro Sekunde ist das die
+    Grössenordnung von Sekunden. Unangenehm, aber innerhalb der fünf Minuten
+    problemlos.
 
-    Mit zwei Schleifen sind es 10⁶ insgesamt und damit eine Zehntelsekunde.
+    Mit zwei Schleifen sind es 10⁶ insgesamt und damit ein Sekundenbruchteil.
 
     Die richtige Antwort ist also nicht „zu langsam", sondern: **hundertmal mehr
     Arbeit für dasselbe Ergebnis.** Ob das schadet, hängt allein von der Schranke

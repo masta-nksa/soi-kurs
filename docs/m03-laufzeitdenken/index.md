@@ -112,23 +112,38 @@ bevor du programmierst — nicht danach.
 
 Die Rechnung dazu geht immer gleich:
 
-1. **Schleifen zählen.** Zwei ineinander liegende Schleifen über die Eingabe
-   sind O(N²), eine ist O(N).
+1. **Schleifen zählen.** Ineinander liegende Schleifen über die Eingabe:
+   eine ist O(N), zwei sind O(N²), drei sind O(N³).
 2. **N einsetzen.** Aus O(N²) mit N = 100 000 werden 10¹⁰ Schritte.
 3. **Mal T.** Bei 100 Testfällen also 10¹².
-4. **In Zeit umrechnen.** Python schafft rund 10⁷ Schritte pro Sekunde.
-5. **Mit deinem Budget vergleichen.**
+4. **Grössenordnung nachschlagen** und mit deinem Budget vergleichen.
 
 Schritt 3 wird am häufigsten vergessen, und er ist ein Faktor 100.
 
-| Schritte | Dauer in Python |
+| Schritte | Grössenordnung der Dauer |
 |---|---|
-| 10⁶ | 0,1 s |
-| 10⁷ | 1 s |
-| 10⁸ | 12 s |
-| 10⁹ | 2 min |
-| 10¹⁰ | 20 min |
-| 10¹² | über einen Tag |
+| 10⁶ | Sekundenbruchteil |
+| 10⁷ | rund eine Sekunde |
+| 10⁸ | rund zehn Sekunden |
+| 10⁹ | Minuten |
+| 10¹⁰ | halbe Stunde |
+| 10¹² | Tage |
+
+!!! warning "Diese Rechnung ist absichtlich grob"
+    Der Tabelle liegt eine Annahme zugrunde: **Python schafft rund 10⁷ Schritte
+    pro Sekunde, und jeder Schritt ist gleich teuer.** Beides stimmt nicht genau.
+
+    - Ein Schleifendurchlauf mit Multiplikation und Listenzugriff dauert länger
+      als einer mit einem einzigen Vergleich — leicht ein Faktor 3.
+    - Dein Gerät rechnet schneller oder langsamer als das der Nachbarin.
+    - Sehr grosse Listen werden zusätzlich langsamer.
+
+    Zusammen kann das eine Grössenordnung ausmachen. Trotzdem reicht die
+    Näherung, denn die Unterschiede, um die es geht, sind **Faktoren von tausend
+    und mehr**. Ob 10⁸ Schritte nun sieben oder dreissig Sekunden dauern, ändert
+    an keiner Entscheidung etwas. Ob es 10⁸ oder 10¹² sind, entscheidet alles.
+
+    **Schätze also die Grössenordnung, nie die Sekunden.**
 
 ### Dein Budget sind fünf Minuten, keine Sekunde
 
@@ -140,28 +155,28 @@ Programm wird abgebrochen, wenn es länger braucht.
 deine Laufzeit. Die einzige Uhr sind die fünf Minuten zwischen Download und
 Upload.
 
-| Dauer | Urteil |
-|---|---|
-| unter 10 s | unproblematisch |
-| 10 s bis 1 min | geht, aber ohne Reserve für einen zweiten Versuch |
-| über 2 min | zu riskant, Download und Upload brauchen auch Zeit |
+| Schritte insgesamt | Grössenordnung | Urteil |
+|---|---|---|
+| bis 10⁸ | Sekunden | unproblematisch |
+| 10⁹ | Minuten | ohne Reserve für einen zweiten Versuch |
+| ab 10¹⁰ | halbe Stunde und mehr | ausgeschlossen |
 
 Daraus folgt eine Regel, die überraschend viel erklärt:
 
 > **Kleine Unterschiede sind egal. Grosse sind tödlich.**
 
-Ob dein Programm eine Zehntelsekunde oder zwölf Sekunden braucht, ändert an
-deiner Punktzahl nichts. Zwischen zwölf Sekunden und einem Tag liegt dagegen
-alles. Deshalb geht es beim Laufzeitdenken um **Grössenordnungen**, nie um
-Feinschliff.
+Ob dein Programm einen Sekundenbruchteil oder ein paar Sekunden braucht, ändert
+an deiner Punktzahl nichts. Zwischen Sekunden und Tagen liegt dagegen alles.
+Deshalb geht es beim Laufzeitdenken um **Grössenordnungen**, nie um Feinschliff —
+und deshalb darf die Rechnung so grob sein.
 
 ### Die Rechnung für Endurance
 
-| | Schritte pro Testfall | mal T = 100 | Dauer |
+| | Schritte pro Testfall | mal T = 100 | Grössenordnung |
 |---|---|---|---|
-| Teilaufgabe 2, O(N²), N = 100 | 10⁴ | 10⁶ | 0,1 s |
-| Teilaufgabe 3, O(N²), N = 10⁵ | 10¹⁰ | 10¹² | über einen Tag |
-| Teilaufgabe 3, O(N), N = 10⁵ | 10⁵ | 10⁷ | rund 3 s |
+| Teilaufgabe 2, O(N²), N = 100 | 10⁴ | 10⁶ | Sekundenbruchteil |
+| Teilaufgabe 3, O(N²), N = 10⁵ | 10¹⁰ | 10¹² | Tage |
+| Teilaufgabe 3, O(N), N = 10⁵ | 10⁵ | 10⁷ | rund eine Sekunde |
 
 Dieselbe Lösung, dieselbe Aufgabe, nur eine andere Zahl in den Limits — und der
 Unterschied zwischen „läuft sofort" und „wird nie fertig".
@@ -183,25 +198,30 @@ eine Position aus dem Ergebnis der vorherigen abzuleiten, statt neu zu zählen.
 
 Genau das ist der Sprung von O(N²) auf O(N): **weitergeben statt neu berechnen.**
 
-### Was du nicht siehst: das Einlesen kostet am meisten
+### Was du nicht siehst: das Einlesen zählt mit
 
 Bei N = 100 000 und T = 100 stehen **zehn Millionen Zahlen** in der
-Eingabedatei. Das ist eine Datei von rund 20 Megabyte.
+Eingabedatei.
 
-Gemessen an der fertigen Lösung:
+Jede einzelne davon muss gelesen und in eine Zahl umgewandelt werden. Das ist
+selbst eine Schleife über die ganze Eingabe, also **O(N · T)** — dieselbe
+Grössenordnung wie dein Algorithmus. Der Aufwand steht nirgends im Code, den du
+schreibst, aber er ist da.
 
-| | Dauer | Anteil |
-|---|---|---|
-| Zahlen einlesen und umwandeln | 1,8 s | 72 % |
-| die eigentliche Rechnung | 0,7 s | 28 % |
+Daraus folgt eine Grenze, die du nicht unterbieten kannst:
 
-Fast drei Viertel der Zeit vergehen, **bevor** der Algorithmus überhaupt
-anfängt. Das ist der Grund, warum die Vorlage die ganze Datei auf einmal liest
-und in Wörter zerlegt, statt Zeile für Zeile zu arbeiten.
+> **Dein Programm kann nie schneller sein als das Einlesen.**
 
-Merk dir: Die Grösse der Eingabe ist Teil der Laufzeit. Eine Aufgabe mit N ≤ 10⁶
-und T = 100 hat hundert Millionen Zahlen in der Eingabe — dort wird selbst eine
-perfekte O(N)-Lösung in Python unangenehm.
+Bei Endurance Teilaufgabe 3 sind beide Teile gleich gross. Das ist ein gutes
+Zeichen: Wenn das Einlesen mit dem Algorithmus gleichzieht, ist beim Algorithmus
+nichts mehr zu holen.
+
+Gefährlich wird es, wenn die Eingabe grösser ist als nötig. Eine Aufgabe mit
+N ≤ 10⁶ und T = 100 hat **hundert Millionen Zahlen** in der Eingabe. Das sind
+allein fürs Einlesen 10⁸ Schritte — dort wird selbst eine perfekte O(N)-Lösung
+unangenehm, und die Datei ist mehrere hundert Megabyte gross.
+
+Merk dir: Die Grösse der Eingabe ist Teil der Laufzeit.
 
 ### Die versteckte Schleife
 
@@ -217,19 +237,22 @@ Elemente um einen Platz nach vorne rücken — das ist selbst eine Schleife übe
 die ganze Liste. Wer `pop(0)` in einer Schleife aufruft, hat O(N²) geschrieben,
 ohne eine zweite Schleife zu tippen.
 
-Gemessen, alle Elemente einer Liste zu entfernen:
+Zähl nach, was es kostet, eine Liste mit N Elementen so ganz zu leeren:
 
-| Länge | `pop(0)` (vorne) | `pop()` (hinten) |
-|---|---|---|
-| 50 000 | 0,7 s | 0,002 s |
-| 100 000 | 2,8 s | 0,006 s |
-| 200 000 | 13 s | 0,008 s |
+| | Schritte pro Aufruf | Schritte insgesamt | |
+|---|---|---|---|
+| `pop(0)` (vorne) | bis zu N | rund N² / 2 | O(N²) |
+| `pop()` (hinten) | 1 | N | O(N) |
 
-Schau auf die linke Spalte: Doppelt so viele Elemente brauchen **viermal** so
-lange. Das ist die Signatur von O(N²). Rechts verdoppelt sich die Zeit — das ist
-O(N).
+Beim ersten Aufruf rücken N−1 Elemente nach, beim zweiten N−2, und so weiter.
+Diese Summe ist ungefähr N²/2.
 
-`pop()` ohne Argument nimmt das letzte Element und ist harmlos.
+Die Signatur erkennst du beim Messen: Bei `pop(0)` brauchen **doppelt so viele
+Elemente etwa viermal so lange**, bei `pop()` nur doppelt so lange. In den
+Übungen misst du genau das selbst.
+
+`pop()` ohne Argument nimmt das letzte Element — dahinter steht nichts, was
+verschoben werden müsste, also ein Schritt unabhängig von der Länge.
 
 ### Die Analogie und ihre Grenze
 
@@ -255,24 +278,27 @@ ersten, war der zweite überflüssig.
 
     Nein, und zwar nicht knapp.
 
-    200 000² sind 4 · 10¹⁰ Schritte pro Testfall, mal 100 also 4 · 10¹². Bei
-    10⁷ Schritten pro Sekunde sind das über vier Tage.
+    200 000² sind 4 · 10¹⁰ Schritte pro Testfall, mal 100 also rund 10¹².
+    Grössenordnung: Tage.
 
-    Wichtig ist nicht die genaue Zahl, sondern die Grössenordnung: Alles ab etwa
-    10⁹ ist ausserhalb deines Budgets. Diese Rechnung machst du auf Papier in
-    einer Minute.
+    Wichtig ist nicht die genaue Zahl, sondern die Grössenordnung. Ob es zwei
+    oder acht Tage werden, spielt keine Rolle — alles ab etwa 10¹⁰ ist
+    ausserhalb deines Budgets. Diese Rechnung machst du auf Papier in einer
+    Minute.
 
 ??? success "Vergleiche deine Antwort — Frage 2"
-    **Dein Programm braucht 40 Sekunden. Ist das ein Problem?**
+    **Deine Rechnung ergibt 10⁹ Schritte. Ist das ein Problem?**
 
-    Nein — aber du solltest es wissen, bevor du herunterlädst.
+    Grenzwertig — und du solltest es wissen, bevor du herunterlädst.
 
-    Vierzig Sekunden passen bequem in die fünf Minuten. Was fehlt, ist die
-    Reserve: Wenn dabei etwas schiefgeht und du noch einmal starten musst, wird
-    es knapp.
+    10⁹ Schritte sind die Grössenordnung von Minuten. Das passt in die fünf
+    Minuten, aber ohne Reserve: Wenn etwas schiefgeht und du noch einmal starten
+    musst, wird es knapp. Und ob es bei dir eine Minute oder fünf werden, sagt
+    dir die Schätzung nicht.
 
-    Praktisch heisst das: einmal mit dem Beispiel messen, wie lange dein Programm
-    läuft, und **dann** herunterladen. Nicht umgekehrt.
+    Genau hier lohnt sich das Messen — nicht als Ersatz für die Schätzung,
+    sondern als Kontrolle: einmal mit dem Beispiel laufen lassen, hochrechnen,
+    und **dann** herunterladen. Nicht umgekehrt.
 
 ??? success "Vergleiche deine Antwort — Frage 3"
     **Warum ist `while liste: liste.pop(0)` langsam, `while liste: liste.pop()`
