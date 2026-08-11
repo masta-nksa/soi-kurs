@@ -651,6 +651,9 @@ Modul N — Titel
 - **M3 Laufzeitdenken** — Anker `endurance` ST2→ST3, Übung `stairracing`
   ST3/ST4, Messübung zu versteckten Schleifen, Schätzrunde. Erste Anwendung
   von Gerüststufe 2 (`vorlage-stufe2.py`)
+- **M4 Felder und lineare Techniken** — Anker `endurance` ST4/ST5
+  (Präfixsummen, Zweizeiger), Übung `stairracing` ST4. Damit sind auf beiden
+  Aufgaben alle Punkte erreichbar
 - **Kuratierungsliste** über sieben Archivrunden in `lp/kuratierung.md`
 
 **Anmerkung zu `wagashi`.** Die Aufgabe war als zweiter M2-Anker vorgesehen
@@ -677,10 +680,9 @@ das Format auch unter Last trägt.
 
 ### Offen
 
-1. **M4 Felder und lineare Techniken** — `endurance` ST4/ST5. Zweite Anwendung
-   von Gerüststufe 2. `stairracing` ST4 liegt aus M3 als diagnostizierte, aber
-   ungelöste Aufgabe bereit und passt als Variation.
-2. **M5 Sortieren und Suchen**, **M6 Konstruktive Verfahren**
+1. **M5 Sortieren und Suchen** — `sushi` ST2/ST4 aus 2018, dazu `Thermalquellen`
+   ST1 als Reserve. Erste Anwendung von Gerüststufe 3 (nur noch Grundgerüst)
+2. **M6 Konstruktive Verfahren** — `mahjong` ST1 aus 2018, `Mäusetanz` ST1/ST2
 3. **Strang B** — M7 Pseudocode und Simulation, M8 Quiz-Training. Material
    steht bereit: `Greifer-Sortierung` ST1, `Trampolin` ST1 und sechs
    Theorie-Teilaufgaben, siehe `lp/kuratierung.md`

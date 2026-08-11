@@ -344,7 +344,8 @@ Wenn du Endurance Teilaufgabe 3 gelöst hast, kannst du aus einer Schranke
 ablesen, welche Lösung überhaupt in Frage kommt — und du hast einmal erlebt,
 wie aus O(N²) ein einzelner Durchgang wird.
 
-In M4 wird daraus ein Werkzeug. Der Trick „weitergeben statt neu berechnen" hat
-einen Namen und mehrere Formen: Präfixsummen und Zweizeiger. Damit fällt
-Teilaufgabe 4 und 5 von Endurance.
-<!-- TODO Link setzen, sobald M4 existiert -->
+In [M4 — Felder und lineare Techniken](../m04-lineare-techniken/index.md) wird
+daraus ein Werkzeug. Der Trick „weitergeben statt neu berechnen" hat einen Namen
+und mehrere Formen: Präfixsummen und Zweizeiger. Damit fallen Teilaufgabe 4 und 5
+von Endurance — und Treppenlauf Teilaufgabe 4, die du hier nur diagnostiziert
+hast.
