@@ -7,9 +7,8 @@ dabei: Sie darf **bis zu K Löcher reparieren**, bevor der Marathon startet.
 
 Wie lang ist die längste Strecke, die sie so hinbekommt?
 
-[Endurance](https://soi.ch/contests/2025/preround/endurance/), **Teilaufgabe 4
-und 5**. Das Eingabeformat ändert sich leicht: In der ersten Zeile eines
-Testfalls stehen jetzt zwei Zahlen, N und K.
+**Endurance**, Teilaufgabe 4 und 5. Das Eingabeformat ändert sich leicht: In
+der ersten Zeile eines Testfalls stehen jetzt zwei Zahlen, N und K.
 
 ```
 Eingabe:                        Ausgabe:
@@ -33,6 +32,11 @@ viele, wie Binna reparieren kann.
 
 T = 100 wie immer.
 
+!!! note "Du musst nichts nachschlagen"
+    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
+    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
+    dort holst du die Eingabedaten, und dann läuft die Uhr.
+
 ---
 
 ## Probier es selbst
@@ -53,6 +57,15 @@ merken, dass du grosszügig sein darfst. Bei Teilaufgabe 5 nicht.
 
     Wenn du gar nicht erst anfängst, weil dir das Reparieren zu kompliziert
     vorkommt: Hinweis 1 räumt genau das aus dem Weg.
+
+!!! success "Erst wenn deine Lösung am Beispiel läuft"
+    Dann geht es zum Einreichen. Die Links springen direkt zur richtigen
+    Teilaufgabe:
+
+    - [Endurance Teilaufgabe 4](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-4-strasse-flicken-20-punkte)
+    - [Teilaufgabe 5](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-5-marathon-20-punkte)
+
+    Ab dem Klick auf „Eingabedaten herunterladen" hast du fünf Minuten.
 
 ---
 

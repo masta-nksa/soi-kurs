@@ -6,7 +6,7 @@ Die Aufgabe, die in M3 offen geblieben ist, dazu zwei Trockenübungen.
 
 ## Variation — Treppenlauf, Teilaufgabe 4
 
-**[Treppenlauf, Teilaufgabe 4](https://soi.ch/contests/2021/round1/stairracing/)**
+**[Treppenlauf, Teilaufgabe 4](https://soi.ch/contests/2021/round1/stairracing/#teilaufgabe-4-eine-lange-strasse-25-punkte)**
 aus der Runde 2021. Diese hast du in M3 ausgerechnet und liegen gelassen: N ≤ 100 000,
 deine Lösung mit zwei Schleifen bräuchte 10¹² Schritte.
 

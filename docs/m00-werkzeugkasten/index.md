@@ -132,7 +132,7 @@ falschen Stelle.
 
 ## Schritt 4 — Die Aufgabe verstehen
 
-Wir nehmen **[Treppenlauf, Teilaufgabe 1](https://soi.ch/contests/2021/round1/stairracing/)**
+Wir nehmen **[Treppenlauf, Teilaufgabe 1](https://soi.ch/contests/2021/round1/stairracing/#teilaufgabe-1-eine-sehr-kurze-strasse-25-punkte)**
 aus der Runde 2020/2021.
 
 Eine Strasse hat auf jeder Seite genau einen Wolkenkratzer. Maus Binna startet auf

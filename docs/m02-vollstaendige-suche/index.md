@@ -8,9 +8,7 @@ einem zusammenhängenden Stück ohne Loch.
 
 Wie lang ist das längste Stück, auf dem man laufen kann?
 
-Die Aufgabe heisst
-[Endurance](https://soi.ch/contests/2025/preround/endurance/) und steht in der
-Vorrunde. Sie hat fünf Teilaufgaben zu je 20 Punkten. **In diesem Modul lösen
+Die Aufgabe heisst **Endurance** und steht in der Vorrunde. Sie hat fünf Teilaufgaben zu je 20 Punkten. **In diesem Modul lösen
 wir die ersten beiden**, die anderen kommen in M3 und M4.
 
 Eingabe: zuerst die Anzahl Testfälle T. Pro Testfall die Länge N, dann N Zahlen
@@ -37,6 +35,11 @@ Strasse in zwei Stücke der Länge 1.
 
 In beiden Fällen ist T = 100.
 
+!!! note "Du musst nichts nachschlagen"
+    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
+    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
+    dort holst du die Eingabedaten, und dann läuft die Uhr.
+
 ---
 
 ## Probier es selbst
@@ -53,6 +56,15 @@ schau danach genau hin, warum dieser Weg bei Teilaufgabe 2 nicht mehr trägt.
 
     Wenn es am Ablauf hakt und nicht am Denken: Play-Knopf, `EINGABE`, Upload —
     das steht in [M0 — Werkzeugkasten](../m00-werkzeugkasten/index.md).
+
+!!! success "Erst wenn deine Lösung am Beispiel läuft"
+    Dann geht es zum Einreichen. Die Links springen direkt zur richtigen
+    Teilaufgabe:
+
+    - [Endurance Teilaufgabe 1](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-1-eine-kurze-strecke-20-punkte)
+    - [Teilaufgabe 2](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-2-ein-langerer-weg-20-punkte)
+
+    Ab dem Klick auf „Eingabedaten herunterladen" hast du fünf Minuten.
 
 ---
 

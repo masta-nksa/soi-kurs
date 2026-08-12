@@ -14,7 +14,7 @@ echte Punkte.
 
 ## Variation — Directions
 
-**[Directions, Teilaufgaben 1 und 2](https://soi.ch/contests/2025/preround/directions/)**
+**[Directions, Teilaufgaben 1 und 2](https://soi.ch/contests/2025/preround/directions/#teilaufgabe-1-sehr-gutes-gedachtnis-20-punkte)**
 aus derselben Vorrunde.
 
 Binna hat eine Wegbeschreibung aus lauter `l` und `r`. Stofl hat sich nur den
@@ -38,7 +38,8 @@ du sie wirklich getrennt lösen musst.
 
 ## Verschärfung — Directions, Teilaufgabe 3
 
-**Teilaufgabe 3** derselben Aufgabe, 60 der 100 Punkte. Jetzt sind beide
+**[Teilaufgabe 3](https://soi.ch/contests/2025/preround/directions/#teilaufgabe-3-allgemeiner-fall-60-punkte)** derselben
+Aufgabe, 60 der 100 Punkte. Jetzt sind beide
 Beschreibungen beliebig lang, in beide Richtungen.
 
 Die Schranken bleiben klein (höchstens 100 Zeichen), es geht also nicht um
@@ -55,7 +56,8 @@ Binna überhaupt aufgeschrieben hat?
 
 ## Verkleidung — Sushi
 
-**[Sushi, Teilaufgaben 1 und 3](https://soi.ch/contests/2018/round1/sushi/)** aus
+**[Sushi, Teilaufgabe 1](https://soi.ch/contests/2018/round1/sushi/#teilaufgabe-1-happy-hour-10-punkte) und
+[Teilaufgabe 3](https://soi.ch/contests/2018/round1/sushi/#teilaufgabe-3-die-happy-hour-vorbei-10-punkte)** aus
 dem Archiv.
 
 Stofl bestellt Sushi. Es gibt ein Angebot: Wer eine Flasche Sake dazu bestellt,

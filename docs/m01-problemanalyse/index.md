@@ -8,9 +8,13 @@ Jede Maus an der Party möchte **S Stück Käse**.
 
 Wie viele Stück Käse muss Stofl besorgen?
 
-Die Aufgabe heisst
-[Cheeseparty](https://soi.ch/contests/2025/preround/cheeseparty/) und steht in
-der Vorrunde. Sie hat zwei Teilaufgaben zu je 50 Punkten.
+Die Aufgabe heisst **Cheeseparty** und steht in der Vorrunde. Sie hat zwei
+Teilaufgaben zu je 50 Punkten.
+
+!!! note "Du musst nichts nachschlagen"
+    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
+    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
+    dort holst du die Eingabedaten, und dann läuft die Uhr.
 
 **Teilaufgabe 1.** Gegeben sind N, K und S auf einer Zeile. Gesucht ist die
 Anzahl Stück Käse.
@@ -55,6 +59,15 @@ klemmt.
     Wenn du beim Einrichten hängst statt beim Denken: Der Ablauf mit
     `loesung.py`, dem Play-Knopf und `bsp_ein.txt` steht in
     [M0 — Werkzeugkasten](../m00-werkzeugkasten/index.md).
+
+!!! success "Erst wenn deine Lösung am Beispiel läuft"
+    Dann geht es zum Einreichen:
+    [Cheeseparty Teilaufgabe 1](https://soi.ch/contests/2025/preround/cheeseparty/#teilaufgabe-1-50-points)
+    und
+    [Teilaufgabe 2](https://soi.ch/contests/2025/preround/cheeseparty/#teilaufgabe-2-50-points).
+    Die Links springen direkt zur richtigen Teilaufgabe.
+
+    Ab dem Klick auf „Eingabedaten herunterladen" hast du fünf Minuten.
 
 ---
 

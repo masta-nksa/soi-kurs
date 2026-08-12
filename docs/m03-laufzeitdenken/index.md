@@ -5,8 +5,7 @@
 Dieselbe Aufgabe wie in M2. Dieselbe Strasse, dieselben Löcher, dieselbe Frage:
 Wie lang ist der längste Abschnitt ohne Loch?
 
-[Endurance](https://soi.ch/contests/2025/preround/endurance/), **Teilaufgabe 3**.
-Eingabe- und Ausgabeformat sind unverändert. Geändert hat sich genau eine Zeile
+**Endurance**, Teilaufgabe 3. Eingabe- und Ausgabeformat sind unverändert. Geändert hat sich genau eine Zeile
 in den Limits:
 
 | Teilaufgabe | Schranke | |
@@ -15,6 +14,11 @@ in den Limits:
 | 3 | 1 ≤ N ≤ **100 000** | 20 Punkte |
 
 T = 100 wie immer.
+
+!!! note "Du musst nichts nachschlagen"
+    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
+    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
+    dort holst du die Eingabedaten, und dann läuft die Uhr.
 
 Deine Lösung aus M2 ist **richtig**. Sie findet für jede Strasse die korrekte
 Antwort, auch für eine mit 100 000 Abschnitten. Starte sie mit dieser Eingabe,
@@ -49,6 +53,14 @@ merkt, dass es zu lange dauert, hat die halbe Lektion verschenkt.
 
     Wenn du beim Schätzen nicht weiterkommst und nicht beim Programmieren: Fang
     mit der Frage an, wie viele ineinander liegende Schleifen deine Lösung hat.
+
+!!! success "Erst wenn deine Lösung am Beispiel läuft"
+    Dann geht es zum Einreichen. Die Links springen direkt zur richtigen
+    Teilaufgabe:
+
+    - [Endurance Teilaufgabe 3](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-3-ein-sehr-langer-weg-20-punkte)
+
+    Ab dem Klick auf „Eingabedaten herunterladen" hast du fünf Minuten.
 
 ---
 

@@ -7,8 +7,9 @@ auf Papier.
 
 ## Variation — Treppenlauf, Teilaufgabe 3 und 4
 
-**[Treppenlauf](https://soi.ch/contests/2021/round1/stairracing/)** aus der Runde
-2021, Teilaufgaben 3 und 4. Teilaufgabe 1 kennst du aus M0, Teilaufgabe 2 aus
+**[Treppenlauf Teilaufgabe 3](https://soi.ch/contests/2021/round1/stairracing/#teilaufgabe-3-eine-langere-strasse-25-punkte)**
+und **[Teilaufgabe 4](https://soi.ch/contests/2021/round1/stairracing/#teilaufgabe-4-eine-lange-strasse-25-punkte)** aus der
+Runde 2021. Teilaufgabe 1 kennst du aus M0, Teilaufgabe 2 aus
 M2.
 
 Jetzt stehen beliebig viele Wolkenkratzer auf jeder Seite:

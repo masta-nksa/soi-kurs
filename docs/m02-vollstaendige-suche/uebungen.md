@@ -7,7 +7,7 @@ kein Ersatz — sie üben genau das, was beim blossen Einreichen wegfällt.
 
 ## Variation — Treppenlauf, Teilaufgabe 2
 
-**[Treppenlauf, Teilaufgabe 2](https://soi.ch/contests/2021/round1/stairracing/)**
+**[Treppenlauf, Teilaufgabe 2](https://soi.ch/contests/2021/round1/stairracing/#teilaufgabe-2-eine-kurze-strasse-25-punkte)**
 aus der Runde 2021. Teilaufgabe 1 kennst du schon aus M0.
 
 Auf jeder Seite der Strasse steht jetzt nicht mehr ein Wolkenkratzer, sondern
