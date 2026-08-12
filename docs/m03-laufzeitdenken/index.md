@@ -5,13 +5,16 @@
 Dieselbe Aufgabe wie in M2. Dieselbe Strasse, dieselben Löcher, dieselbe Frage:
 Wie lang ist der längste Abschnitt ohne Loch?
 
-**Endurance**, Teilaufgabe 3. Eingabe- und Ausgabeformat sind unverändert. Geändert hat sich genau eine Zeile
-in den Limits:
+**Endurance**, Teilaufgabe 3. Eingabe- und Ausgabeformat sind unverändert.
+Geändert hat sich genau eine Zeile in den Limits:
 
-| Teilaufgabe | Schranke | |
-|---|---|---|
-| 2 | 1 ≤ N ≤ 100 | hast du in M2 gelöst |
-| 3 | 1 ≤ N ≤ **100 000** | 20 Punkte |
+| Teilaufgabe | Schranke | Punkte | |
+|---|---|---|---|
+| 1 | N = 3 | 20 | erledigt in M2 |
+| 2 | 1 ≤ N ≤ 100 | 20 | erledigt in M2 |
+| 3 | 1 ≤ N ≤ **100 000** | 20 | **dieses Modul** |
+| 4 | mit einer zusätzlichen Regel | 20 | M4 |
+| 5 | mit einer zusätzlichen Regel | 20 | M4 |
 
 T = 100 wie immer.
 

@@ -8,13 +8,15 @@ Jede Maus an der Party möchte **S Stück Käse**.
 
 Wie viele Stück Käse muss Stofl besorgen?
 
-Die Aufgabe heisst **Cheeseparty** und steht in der Vorrunde. Sie hat zwei
-Teilaufgaben zu je 50 Punkten.
+Die Aufgabe heisst **Cheeseparty** und steht in der Vorrunde. So sieht ihre
+Leiter aus:
 
-!!! note "Du musst nichts nachschlagen"
-    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
-    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
-    dort holst du die Eingabedaten, und dann läuft die Uhr.
+| Teilaufgabe | worum es geht | Punkte | |
+|---|---|---|---|
+| 1 | Käse berechnen | 50 | **dieses Modul** |
+| 2 | eine Rechnung prüfen | 50 | **dieses Modul** |
+
+Beide zusammen sind 100 Punkte — die ganze Aufgabe.
 
 **Teilaufgabe 1.** Gegeben sind N, K und S auf einer Zeile. Gesucht ist die
 Anzahl Stück Käse.
@@ -41,6 +43,11 @@ Schranken: 0 ≤ N, K, S < 100 und 0 ≤ R < 2 000 000.
 
     Das Ausgabeformat steht in jeder Aufgabenstellung. Übernimm es nie aus der
     Aufgabe von letzter Woche.
+
+!!! note "Du musst nichts nachschlagen"
+    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
+    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
+    dort holst du die Eingabedaten, und dann läuft die Uhr.
 
 ---
 

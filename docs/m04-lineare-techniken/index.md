@@ -10,6 +10,15 @@ Wie lang ist die längste Strecke, die sie so hinbekommt?
 **Endurance**, Teilaufgabe 4 und 5. Das Eingabeformat ändert sich leicht: In
 der ersten Zeile eines Testfalls stehen jetzt zwei Zahlen, N und K.
 
+| Teilaufgabe | Schranken | Punkte | |
+|---|---|---|---|
+| 1 bis 3 | ohne Reparaturen | 60 | erledigt in M2 und M3 |
+| 4 | 1 ≤ N ≤ 100, K = 3 | 20 | **dieses Modul** |
+| 5 | 1 ≤ N ≤ 100 000, 1 ≤ K ≤ 100 | 20 | **dieses Modul** |
+
+T = 100 wie immer. Nach diesem Modul sind alle 100 Punkte dieser Aufgabe
+erreicht.
+
 ```
 Eingabe:                        Ausgabe:
 
@@ -24,13 +33,6 @@ Im ersten Testfall gibt es genau drei Löcher, und alle drei dürfen repariert
 werden — also ist die ganze Strasse befahrbar, Länge 10. Im zweiten liegt die
 beste Strecke von Position 2 bis Position 9; dort sind drei Löcher, genau so
 viele, wie Binna reparieren kann.
-
-| Teilaufgabe | Schranken | Punkte |
-|---|---|---|
-| 4 | 1 ≤ N ≤ 100, K = 3 | 20 |
-| 5 | 1 ≤ N ≤ 100 000, 1 ≤ K ≤ 100 | 20 |
-
-T = 100 wie immer.
 
 !!! note "Du musst nichts nachschlagen"
     Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und

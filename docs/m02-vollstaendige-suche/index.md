@@ -8,8 +8,20 @@ einem zusammenhängenden Stück ohne Loch.
 
 Wie lang ist das längste Stück, auf dem man laufen kann?
 
-Die Aufgabe heisst **Endurance** und steht in der Vorrunde. Sie hat fünf Teilaufgaben zu je 20 Punkten. **In diesem Modul lösen
-wir die ersten beiden**, die anderen kommen in M3 und M4.
+Die Aufgabe heisst **Endurance** und steht in der Vorrunde. Sie hat fünf
+Teilaufgaben zu je 20 Punkten. Hier die ganze Leiter, damit du weisst, wo du
+stehst:
+
+| Teilaufgabe | Schranke | Punkte | |
+|---|---|---|---|
+| 1 | N = 3 | 20 | **dieses Modul** |
+| 2 | 1 ≤ N ≤ 100 | 20 | **dieses Modul** |
+| 3 | 1 ≤ N ≤ 100 000 | 20 | M3 |
+| 4 | mit einer zusätzlichen Regel | 20 | M4 |
+| 5 | mit einer zusätzlichen Regel | 20 | M4 |
+
+In allen Teilaufgaben ist T = 100. **In diesem Modul lösen wir die ersten
+beiden.**
 
 Eingabe: zuerst die Anzahl Testfälle T. Pro Testfall die Länge N, dann N Zahlen
 `p_i` — eine `1` bedeutet Loch, eine `0` bedeutet heile Strasse.
@@ -27,13 +39,6 @@ Eingabe:              Ausgabe:
 Im ersten Testfall ist gleich am Anfang ein Loch, danach kommen zwei heile
 Abschnitte — also 2. Im zweiten liegt das Loch in der Mitte und zerteilt die
 Strasse in zwei Stücke der Länge 1.
-
-| Teilaufgabe | Schranke | Punkte |
-|---|---|---|
-| 1 | N = 3 | 20 |
-| 2 | 1 ≤ N ≤ 100 | 20 |
-
-In beiden Fällen ist T = 100.
 
 !!! note "Du musst nichts nachschlagen"
     Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
