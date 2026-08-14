@@ -211,6 +211,12 @@ Stichprobe Runde 2018:
 Manche Subtasks sind reine **Theorieaufgaben** („beschreibe deine Lösungsidee und
 begründe die Korrektheit", ohne Code) — direkt verwendbar für Strang B.
 
+**Die Stichprobe oben ist inzwischen überholt.** Die vollständige Sichtung von
+sieben Runden mit 55 Aufgaben, Bewertung A bis D und Zuordnung zu den Modulen
+steht in `lp/kuratierung.md`. Dort auch die drei Befunde, die für jede Auswahl
+gelten: der Faktor T = 100, dass `marathon` (2020) dieselbe Aufgabe ist wie
+`endurance`, und dass sechs Theorie-Teilaufgaben für Strang B bereitstehen.
+
 ### Aufgabenrollen
 
 Jede Konzepteinheit braucht alle vier:
@@ -264,11 +270,11 @@ erst nach dokumentiertem eigenem Versuch.
 
 | | Modul | L | Anker |
 |---|---|---|---|
-| M0 | Werkzeugkasten | 2 | `addition`, `books` — VS Code, stdin/stdout, 5-Minuten-Regel |
-| M1 | Problemanalyse & Modellierung | 2 | `cheeseparty` (ST1→ST2 dreht das Problem um: prüfen statt rechnen), `directions` |
-| M2 | Vollständige Suche | 2 | `endurance` ST1/2, `wagashi` ST1 |
-| M3 | Laufzeitdenken | 3 | `endurance` ST2→ST3 — der Sprung N: 100 → 10⁵ *ist* die Lektion |
-| M4 | Felder & lineare Techniken | 3 | `endurance` ST4/5 — Präfixsummen, Zweizeiger |
+| M0 | Werkzeugkasten | 2 | `stairracing` ST1 — VS Code, Play-Knopf, Dateien statt Konsole, 5-Minuten-Regel |
+| M1 | Problemanalyse & Modellierung | 2 | `cheeseparty` (ST1→ST2 dreht das Problem um: prüfen statt rechnen), `directions`, `sushi` ST1/ST3 |
+| M2 | Vollständige Suche | 2 | `endurance` ST1/2, `stairracing` ST2 |
+| M3 | Laufzeitdenken | 3 | `endurance` ST2→ST3 — der Sprung N: 100 → 10⁵ *ist* die Lektion; `stairracing` ST3/ST4 |
+| M4 | Felder & lineare Techniken | 3 | `endurance` ST4/5 — Präfixsummen, Zweizeiger; `stairracing` ST4 |
 | M5 | Sortieren & Suchen | 3 | `sushi` ST2/ST4 — Sortieren als Vorverarbeitung, binäre Suche |
 | M6 | Konstruktive Verfahren | 2 | `mahjong` ST1 — Invarianten, Zustandsdenken |
 
@@ -391,8 +397,8 @@ Aufgabe, und Formatfehler sind der häufigste Punkteverlust.
 
 | Stufe | Module | Was die SuS bekommen |
 |---|---|---|
-| 1 | M0–M2 | fertige `lies_*`-Funktionen, direkt aufrufbar |
-| 2 | M3–M4 | Vorlage mit Lücke — Parsing nach Muster ergänzen |
+| 1 | M0–M2 | `vorlage.py` — Leser und Hauptteil fertig, nur `loese` fehlt |
+| 2 | M3–M4 | `vorlage-stufe2.py` — Leser fertig, das Einlesen eines Testfalls ist eine Lücke mit Muster |
 | 3 | ab M5 | nur noch das Grundgerüst, Parsing komplett selbst |
 
 ### Dateien statt Umleitung
@@ -590,13 +596,14 @@ soi-kurs/
 ├─ docs/
 │  ├─ index.md                # Wegweiser + Selbsttest
 │  ├─ lernpfad.md             # Abhängigkeitsgraph
-│  ├─ m00-werkzeugkasten/
-│  │   ├─ index.md
-│  │   ├─ uebungen.md
-│  │   └─ loesung.md
-│  ├─ m03-laufzeit/
+│  ├─ m00-werkzeugkasten/     # nur index.md (Werkzeug-Baustein)
+│  ├─ m01-problemanalyse/     # index.md, uebungen.md, loesung.md
+│  ├─ m02-vollstaendige-suche/
+│  ├─ m03-laufzeitdenken/
+│  ├─ m04-lineare-techniken/
 │  └─ ...
-├─ vorlagen/                  # vorlage.py, pruefe.py, .vscode/settings.json
+├─ vorlagen/                  # vorlage.py, vorlage-stufe2.py, pruefe.py,
+│                            # .vscode/settings.json
 ├─ hooks/                     # MkDocs-Hooks (externe Links im neuen Tab)
 ├─ lp/                        # LP-Blätter (Diagnose, Fehlvorstellungen)
 └─ mkdocs.yml
@@ -655,6 +662,10 @@ Modul N — Titel
   (Präfixsummen, Zweizeiger), Übung `stairracing` ST4. Damit sind auf beiden
   Aufgaben alle Punkte erreichbar
 - **Kuratierungsliste** über sieben Archivrunden in `lp/kuratierung.md`
+- **Zugang zu den Aufgaben** — alle Links springen direkt zur Teilaufgabe, der
+  Link zum Einreichen steht am Ende von „Probier es selbst" statt zuoberst,
+  jedes Modul zeigt die Leiter seiner Ankeraufgabe, und `docs/lernpfad.md` hat
+  neben dem Abhängigkeitsgraphen die Aufgabenachse
 
 **Anmerkung zu `wagashi`.** Die Aufgabe war als zweiter M2-Anker vorgesehen
 (Abschnitt 6 und 7), ist dort aber falsch einsortiert: ST1 ist die Summe aller

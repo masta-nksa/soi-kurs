@@ -39,6 +39,37 @@ docs/mNN-name/
 6. `## Übungen` — Verweis auf `uebungen.md`
 7. `## Weiter zu ...`
 
+## Ankeraufgabe im Modul
+
+Jedes Modul hängt an einer SOI-Aufgabe. Drei Regeln, entstanden beim Bau von M1
+bis M4:
+
+**Leitertabelle in `## Das Problem`.** Alle Teilaufgaben der Ankeraufgabe mit
+Schranke, Punkten und Markierung: `erledigt in M2`, `**dieses Modul**`, `M4`.
+Damit sieht man, wo man in der Aufgabe steht, ohne nachzuschlagen.
+
+Künftige Teilaufgaben stehen als Zeile da, **ihr Inhalt aber nicht** — statt der
+Schranke dort „mit einer zusätzlichen Regel". Sonst nimmt die Tabelle die
+Entdeckung eines späteren Moduls vorweg.
+
+**Aufgaben-Links tragen den Anker ihrer Teilaufgabe.** Jede Aufgaben-URL auf
+soi.ch liefert dieselbe Seite mit *allen* Aufgaben der Runde; ohne Anker landet
+man ganz oben und scrollt an bereits gelösten Teilaufgaben vorbei. Die Anker
+sehen so aus:
+
+```
+https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-4-strasse-flicken-20-punkte
+```
+
+Kleingeschrieben, Umlaute aufgelöst, Punktzahl am Schluss. Vor dem Verlinken auf
+der Aufgabenseite nachschauen, nicht raten.
+
+**Der Link zum Einreichen steht am Ende von `## Probier es selbst`**, nicht in
+`## Das Problem`. Oben stehen nur der Aufgabenname und ein `!!! note`, dass alles
+Nötige auf der Kursseite steht. Andernfalls liest sich das Modul als
+Aufforderung nachzuschlagen — und widerspricht M0, wo der Download ans Ende der
+Lektion gehört.
+
 ## Ausnahme: Werkzeug-Bausteine
 
 M0 und ähnliche Einrichtungs-Module folgen der Seitenstruktur oben **nicht**.
@@ -85,10 +116,30 @@ Hast du es wirklich selbst versucht?"
 
 - Nur Standardbibliothek
 - Bezeichner auf Deutsch (`zahl`, `zahlen`, `loese`)
-- Gerüststufe pro Modul beachten: M0–M2 fertige Leser, M3–M4 Vorlage mit Lücke,
-  ab M5 nur Grundgerüst
-- Laufzeit-Faustregeln immer für Python angeben (10⁶–10⁷ Iterationen/s), nie die
-  C++-Zahlen
+- Gerüststufe pro Modul beachten: M0–M2 `vorlage.py` (fertige Leser), M3–M4
+  `vorlage-stufe2.py` (Einlesen eines Testfalls als Lücke), ab M5 nur noch das
+  Grundgerüst
+- Datenstrukturen kommen dort, wo ein Problem sie erzwingt, nie als eigenes
+  Thema. `set` wird deshalb erst in M3 eingeführt, weil dort `if x in liste` zu
+  langsam wird.
+
+### Laufzeit über Komplexität, nie über Messwerte
+
+- Immer über O(N), O(N²) rechnen und in **Grössenordnungen** antworten —
+  „Sekundenbruchteil", „Sekunden", „Minuten", „Tage". Nie gemessene
+  Sekundenwerte ins Material schreiben: Sie hängen vom Gerät ab und täuschen
+  eine Genauigkeit vor, die die Rechnung nicht hergibt.
+- Faustregel: rund **10⁷ Schritte pro Sekunde** in Python, nie die C++-Zahlen.
+- **Der Faktor T gehört in jede Rechnung.** Fast alle SOI-Aufgaben haben T = 100
+  Testfälle — der am häufigsten vergessene Faktor 100.
+- **Vereinfachungen werden als solche benannt.** Dass jeder Schritt gleich teuer
+  sei, stimmt nicht; Geräte unterscheiden sich; grosse Listen werden langsamer.
+  Zusammen leicht eine Grössenordnung. Die Näherung trägt trotzdem, weil die
+  Unterschiede, um die es geht, Faktoren von tausend und mehr sind.
+- Unser Zeitbudget sind die **fünf Minuten** zwischen Download und Upload, nicht
+  ein Grader-Zeitlimit. Kleine Unterschiede sind deshalb egal, grosse tödlich.
+- Gemessen wird nur, um den **Faktor beim Verdoppeln** zu zeigen (die Signatur
+  der Komplexität), nie um Sekunden vorherzusagen.
 
 ### Start über den Play-Knopf, nicht über die Konsole
 
