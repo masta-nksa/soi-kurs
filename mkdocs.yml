@@ -7,9 +7,16 @@ theme:
   language: de
   features:
     - navigation.sections
+    # Der Modultitel selbst verlinkt auf den Lernbaustein.
+    - navigation.indexes
     - navigation.top
+    # Blaettern am Seitenende: der rote Faden auch in der Bedienung.
+    - navigation.footer
+    - navigation.tracking
     - content.code.copy
     - toc.follow
+    - search.suggest
+    - search.highlight
   palette:
     - scheme: default
       primary: teal
@@ -29,6 +36,8 @@ hooks:
 markdown_extensions:
   - admonition
   - attr_list
+  # md_in_html wird fuer die Karten auf der Startseite gebraucht.
+  - md_in_html
   - tables
   - footnotes
   - pymdownx.details
@@ -47,20 +56,32 @@ markdown_extensions:
 nav:
   - Start: index.md
   - Lernpfad: lernpfad.md
+  - Konzepte von A bis Z: konzepte.md
   - M0 Werkzeugkasten: m00-werkzeugkasten/index.md
-  - M1 Problemanalyse:
-      - Lernbaustein: m01-problemanalyse/index.md
-      - Uebungen: m01-problemanalyse/uebungen.md
-  - M2 Vollstaendige Suche:
-      - Lernbaustein: m02-vollstaendige-suche/index.md
-      - Uebungen: m02-vollstaendige-suche/uebungen.md
+  - M1 Problemanalyse und Modellierung:
+      - m01-problemanalyse/index.md
+      - Übungen zu M1: m01-problemanalyse/uebungen.md
+  - M2 Vollständige Suche:
+      - m02-vollstaendige-suche/index.md
+      - Übungen zu M2: m02-vollstaendige-suche/uebungen.md
   - M3 Laufzeitdenken:
-      - Lernbaustein: m03-laufzeitdenken/index.md
-      - Uebungen: m03-laufzeitdenken/uebungen.md
-  - M4 Lineare Techniken:
-      - Lernbaustein: m04-lineare-techniken/index.md
-      - Uebungen: m04-lineare-techniken/uebungen.md
-  # Weitere Module werden hier ergaenzt, sobald sie gebaut sind.
+      - m03-laufzeitdenken/index.md
+      - Übungen zu M3: m03-laufzeitdenken/uebungen.md
+  - M4 Felder und lineare Techniken:
+      - m04-lineare-techniken/index.md
+      - Übungen zu M4: m04-lineare-techniken/uebungen.md
+  - M5 Sortieren und Suchen:
+      - m05-sortieren-und-suchen/index.md
+      - Übungen zu M5: m05-sortieren-und-suchen/uebungen.md
+  - Hintergrund:
+      - Sortierverfahren: hintergrund/sortierverfahren.md
+  # Weitere Module werden hier ergaenzt, sobald sie gebaut sind: M6
+  # Zeichenketten und Gitter, M7 Konstruktive Verfahren, B1 und B2 fuer
+  # Strang B.
+  #
+  # "Hintergrund" steht bewusst ausserhalb des Kursfadens: Seiten, die
+  # erklaeren, wie ein Werkzeug innen funktioniert. Optional zu lesen.
+  #
   # loesung.md steht bewusst NICHT in der Navigation - der Weg dorthin fuehrt
   # nur ueber den Link am Ende der Uebungsseite.
   # Das Verzeichnis lp/ bleibt bewusst ausserhalb der Navigation.
