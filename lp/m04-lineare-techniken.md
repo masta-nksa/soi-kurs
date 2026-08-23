@@ -13,9 +13,40 @@ nicht motivierbar — bei N ≤ 100 wäre der Zweizeiger unnötig.
 
 ---
 
+## Neu an diesem Modul
+
+**Umgestellt auf das Konzept-zuerst-Format** (August 2026). Zwei Konzeptblöcke,
+**Präfixsummen** und **Zweizeiger und Fenster**, beide mit eigener Analogie:
+Kilometerzähler beziehungsweise Klassenbuch.
+
+Die Umformulierung „bis zu K Löcher reparieren" = „höchstens K Löcher" ist
+kein eigener Block mehr, sondern steht im Abschnitt „Worum es geht" des
+Zweizeigers. Sie ist eine Anwendung von M1, kein neues Konzept — trotzdem bleibt
+sie der wichtigste Moment der ersten Lektion.
+
+**Die Ablauftabelle des Zweizeigers ist neu und nachgerechnet.** Sie zeigt für
+`0 1 0 0 1 1 0 1 0 0 1 0` mit K = 3 den Zustand am Ende jedes Durchlaufs. Zwei
+Dinge werden daran sichtbar, die im Fliesstext untergingen: dass das linke Ende
+nur vorwärts geht (0 → 2 → 5, insgesamt fünf Schritte), und dass die
+Löcherzahl nie über K steigt — die Invariante zum Anfassen.
+
+Eignet sich gut fürs Plenum: mit zwei Fingern auf der Zahlenreihe mitwandern
+und die Tabelle Zeile für Zeile füllen lassen.
+
+**Neue Selbstcheck-Frage 5** zur Monotonie: Der Zweizeiger funktioniert *nicht*,
+wenn negative Werte erlaubt sind. Diese Voraussetzung wurde vorher nur nebenbei
+erwähnt und ist der häufigste Grund, warum das Verfahren später falsch
+angewendet wird.
+
+**Trockenübung 1 hat eine fünfte Frage** — ab wie vielen Fragen sich die
+Vorbereitung lohnt. Antwort: schon ab zwei. Das ist ein guter Vergleichspunkt zu
+M5, wo dieselbe Schwelle beim Sortieren bei rund zwanzig liegt.
+
+---
+
 ## Vorbereitung
 
-- Endurance Teilaufgabe 4 und 5 selbst lösen. Der Zweizeiger ist kurz, aber die
+- Ausdauer Teilaufgabe 4 und 5 selbst lösen. Der Zweizeiger ist kurz, aber die
   Reihenfolge im Schleifenrumpf ist heikel; schreib ihn einmal von Hand.
 - Treppenlauf Teilaufgabe 4 durchrechnen. Die Umformung
   `a[i] + b[j] + |i−j|` in zwei Fälle ist der anspruchsvollste Schritt des
@@ -96,7 +127,7 @@ an einem Beispiel mit drei Elementen von Hand nachrechnen, nie im Kopf.
 
 ## Differenzierung
 
-**Basisspur:** Endurance Teilaufgabe 4 mit Brute Force. 20 Punkte, und die
+**Basisspur:** Ausdauer Teilaufgabe 4 mit Brute Force. 20 Punkte, und die
 Umformulierung ist trotzdem geübt.
 
 **Kernspur:** der Zweizeiger und damit Teilaufgabe 4 und 5. Das ist das
@@ -112,7 +143,7 @@ Aufgabe.
 
 ## Was hier zusammenläuft
 
-M4 schliesst den Bogen über die Vorrunde. Nach diesem Modul sind auf Endurance
+M4 schliesst den Bogen über die Vorrunde. Nach diesem Modul sind auf Ausdauer
 alle 100 Punkte erreichbar und auf Treppenlauf ebenfalls — mit Lösungen, die die
 SuS über vier Module hinweg selbst entwickelt haben.
 

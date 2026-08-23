@@ -4,44 +4,74 @@ Diese Seite verrät die Lösung. Hast du es wirklich selbst versucht?
 
 ---
 
-## Endurance, Teilaufgabe 4 und 5
+## Einstieg und Kern — Ausdauer, Teilaufgabe 4 und 5
 
 **Das Modell.** Ein Abschnitt ist brauchbar, wenn er höchstens K Löcher enthält.
-Gesucht ist der längste solche Abschnitt.
+Gesucht ist der längste solche Abschnitt. Welche Löcher repariert werden, ist
+keine Entscheidung — es sind alle im gewählten Abschnitt.
 
 **Der Zweizeiger.** Ein Fenster wandert über die Strasse. Das rechte Ende geht in
 jedem Schritt eins weiter; wenn zu viele Löcher im Fenster sind, wird das linke
 Ende nachgezogen.
 
 ```python
-T = zahl()
+import pruefe
+
+EINGABE = "bsp_ein.txt"
+# EINGABE = "input.txt"
+AUSGABE = "output.txt"
+ERWARTET = "bsp_aus.txt"
+
+with open(EINGABE, encoding="utf-8") as datei:
+    tokens = datei.read().split()
+
+position = 0
+
+
+def zahl():
+    global position
+    position = position + 1
+    return int(tokens[position - 1])
+
+
+def zahlen(anzahl):
+    liste = []
+    for i in range(anzahl):
+        liste.append(zahl())
+    return liste
+
+
+def loese(n, k, p):
+    bestes = 0
+    links = 0
+    loecher = 0
+    for rechts in range(n):
+        if p[rechts] == 1:
+            loecher = loecher + 1
+        while loecher > k:
+            if p[links] == 1:
+                loecher = loecher - 1
+            links = links + 1
+        laenge = rechts - links + 1
+        if laenge > bestes:
+            bestes = laenge
+    return bestes
+
 
 zeilen = []
+
+T = zahl()
 for i in range(T):
     N = zahl()
     K = zahl()
     p = zahlen(N)
-
-    bestes = 0
-    links = 0
-    loecher = 0
-
-    for rechts in range(N):
-        if p[rechts] == 1:
-            loecher = loecher + 1
-
-        while loecher > K:
-            if p[links] == 1:
-                loecher = loecher - 1
-            links = links + 1
-
-        laenge = rechts - links + 1
-        if laenge > bestes:
-            bestes = laenge
-
-    zeilen.append("Case #" + str(i) + ": " + str(bestes))
+    ergebnis = loese(N, K, p)
+    zeilen.append("Case #" + str(i) + ": " + str(ergebnis))
 
 pruefe.schreibe(AUSGABE, zeilen)
+
+if EINGABE == "bsp_ein.txt":
+    pruefe.vergleiche(ERWARTET, AUSGABE)
 ```
 
 **Dieses Programm löst Teilaufgabe 4 und 5** — zusammen 40 Punkte. Und mit K = 0
@@ -49,6 +79,9 @@ liefert es auch das Ergebnis von Teilaufgabe 3.
 
 Achte auf die Reihenfolge im Schleifenrumpf: erst das neue Element aufnehmen,
 dann verkleinern, dann messen. Wer zuerst misst, misst ein ungültiges Fenster.
+
+Und `while`, nicht `if`: Bei K = 0 und mehreren Löchern hintereinander muss das
+linke Ende in einem Schritt mehrfach vorrücken.
 
 Zum Testen das Beispiel aus der Aufgabenstellung, `bsp_ein.txt`:
 
@@ -82,46 +115,65 @@ M3. Beide müssen dasselbe liefern.
 
 ---
 
-## Treppenlauf, Teilaufgabe 4
+## Vertiefung — Treppenlauf, Teilaufgabe 4
 
 **Die Umformung.** Gesucht ist das Maximum von
 
 ```
-a[i] + b[j] + Abstand zwischen i und j
+a[i] + |i − j| + b[j]
 ```
 
-Der Abstand ist `|i - j|`, und dieser Betrag ist das Problem: Solange er drin
-steht, hängen `i` und `j` aneinander. Also spaltet man die zwei Fälle auf.
+Der Betrag ist das Problem: Solange er drinsteht, hängen `i` und `j` aneinander.
+Also spaltet man die zwei Fälle auf.
 
-**Fall 1: der linke Wolkenkratzer steht bei der kleineren Position**, also
-i ≤ j. Dann ist `|i - j| = j - i`, und man kann sortieren:
+**Fall 1: der Wolkenkratzer links steht bei der kleineren Position**, also
+i ≤ j. Dann ist `|i − j| = j − i`, und man kann sortieren:
 
 ```
-a[i] + b[j] + j - i  =  (a[i] - i)  +  (b[j] + j)
+a[i] + (j − i) + b[j]  =  (a[i] − i)  +  (b[j] + j)
 ```
 
 Jetzt steht links nur noch etwas mit `i`, rechts nur noch etwas mit `j`. Für ein
-festes `j` brauchst du also nur den **grössten Wert von `a[i] - i` unter allen i
-bis j** — und den kannst du mitführen, statt ihn jedes Mal zu suchen. Das ist
+festes `j` brauchst du also nur den **grössten Wert von `a[i] − i` unter allen
+i ≤ j** — und den kannst du mitführen, statt ihn jedes Mal zu suchen. Das ist
 dieselbe Idee wie bei den Präfixsummen, nur mit Maximum statt Summe.
 
-**Fall 2: der linke Wolkenkratzer steht rechts**, also i ≥ j. Dann ist
-`|i - j| = i - j`, und dieselbe Umformung ergibt `(a[i] + i) + (b[j] - j)`.
+**Fall 2: der Wolkenkratzer links steht rechts**, also i ≥ j. Dann ist
+`|i − j| = i − j`, und dieselbe Umformung ergibt `(a[i] + i) + (b[j] − j)`.
 
 ```python
-T = zahl()
+import pruefe
 
-zeilen = []
-for i in range(T):
-    N = zahl()
-    a = zahlen(N)
-    b = zahlen(N)
+EINGABE = "bsp_ein.txt"
+# EINGABE = "input.txt"
+AUSGABE = "output.txt"
+ERWARTET = "bsp_aus.txt"
 
+with open(EINGABE, encoding="utf-8") as datei:
+    tokens = datei.read().split()
+
+position = 0
+
+
+def zahl():
+    global position
+    position = position + 1
+    return int(tokens[position - 1])
+
+
+def zahlen(anzahl):
+    liste = []
+    for i in range(anzahl):
+        liste.append(zahl())
+    return liste
+
+
+def loese(n, a, b):
     bestes = 0
 
     # Fall 1: (a[k] - k) + (b[j] + j) fuer k <= j
     bestes_a = a[0]
-    for j in range(N):
+    for j in range(n):
         wert = a[j] - j
         if wert > bestes_a:
             bestes_a = wert
@@ -131,7 +183,7 @@ for i in range(T):
 
     # Fall 2: (b[k] - k) + (a[j] + j) fuer k <= j
     bestes_b = b[0]
-    for j in range(N):
+    for j in range(n):
         wert = b[j] - j
         if wert > bestes_b:
             bestes_b = wert
@@ -139,17 +191,35 @@ for i in range(T):
         if strecke > bestes:
             bestes = strecke
 
-    zeilen.append("Case #" + str(i) + ": " + str(bestes))
+    return bestes
+
+
+zeilen = []
+
+T = zahl()
+for i in range(T):
+    N = zahl()
+    a = zahlen(N)
+    b = zahlen(N)
+    ergebnis = loese(N, a, b)
+    zeilen.append("Case #" + str(i) + ": " + str(ergebnis))
 
 pruefe.schreibe(AUSGABE, zeilen)
+
+if EINGABE == "bsp_ein.txt":
+    pruefe.vergleiche(ERWARTET, AUSGABE)
 ```
+
+Der zweite Durchgang sieht aus wie der erste mit vertauschten Rollen, und genau
+das ist er auch: Dort ist der Turm auf der **b**-Seite der weiter links stehende.
+Ein Durchgang von rechts nach links wäre gleichwertig.
 
 Zwei Durchgänge, jeder O(N) — insgesamt O(N) statt O(N²). Bei N ≤ 100 000 und
 T = 100 sind das 2 · 10⁷ Schritte statt 10¹².
 
-**Dieses Programm löst alle vier Teilaufgaben von Treppenlauf**, also 100 Punkte.
-Prüf es zur Sicherheit am Beispiel von Teilaufgabe 1: Dort ist N = 1, es bleibt
-nur Position 0, und es muss 5 beziehungsweise 1337 herauskommen.
+**Dieses Programm löst alle vier Teilaufgaben des Treppenlaufs**, also 100
+Punkte. Prüf es am Beispiel von Teilaufgabe 3 — dort muss `Case #0: 11`
+herauskommen.
 
 ??? tip "Die zuverlässigste Fehlersuche"
     Lass deine neue Lösung und die alte aus M2 auf denselben zufälligen kleinen
@@ -162,7 +232,7 @@ nur Position 0, und es muss 5 beziehungsweise 1337 herauskommen.
 
 ---
 
-## Verkleidung — die Frage, die hundertmal gestellt wird
+## Trockenübung 1 — die Frage, die hundertmal gestellt wird
 
 **1. Die naive Lösung.** Pro Frage werden bis zu N Tage durchgezählt, bei Q
 Fragen also `N · Q` Schritte:
@@ -194,13 +264,24 @@ der vorherigen addiert wird.
 Ein Sekundenbruchteil statt einer halben Stunde. Aus `N · Q` ist `N + Q`
 geworden, und das ist der ganze Trick.
 
-Merk dir die Form: **Wenn dieselbe Art Frage sehr oft gestellt wird, lohnt sich
-eine Vorbereitung, die jede einzelne Frage billig macht.** Genau dafür sind
-Präfixsummen da.
+**5. Ab wann es sich lohnt.** Gleichsetzen: `Q · N = N + Q` ergibt
+`Q · (N − 1) = N`, also `Q ≈ 1`.
+
+Die Antwort ist überraschend: **schon ab der zweiten Frage.** Die Vorbereitung
+kostet genauso viel wie eine einzige naive Frage im schlimmsten Fall — ab der
+zweiten ist sie geschenkt.
+
+Das ist ein guter Vergleichspunkt für später: Beim Sortieren in
+[M5](../m05-sortieren-und-suchen/index.md) liegt dieselbe Schwelle bei etwa
+log N, also rund zwanzig Fragen. Präfixsummen sind billiger vorzubereiten und
+lohnen sich deshalb fast immer.
+
+Merk dir die Form: **Wenn dieselbe Art Frage mehr als einmal gestellt wird, lohnt
+sich eine Vorbereitung, die jede einzelne Frage billig macht.**
 
 ---
 
-## Laufzeitbeweis
+## Trockenübung 2 — warum zwei Schleifen nicht immer O(N²) sind
 
 **1. Eine teure Eingabe.** Nimm K = 0 und eine Strasse aus lauter Nullen, an
 deren Ende ein einziges Loch steht:

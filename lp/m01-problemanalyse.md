@@ -1,9 +1,9 @@
 # M1 — Problemanalyse und Modellierung (Lehrperson)
 
 **LP-Wert: mittel.** Der Baustein funktioniert solo, gewinnt aber deutlich durch
-eine kurze gemeinsame Auswertung. Die zwei Einsichten — „zähle, bevor du
-rechnest" und „prüfen ist rechnen plus vergleichen" — sitzen erfahrungsgemäss
-erst, wenn sie einmal ausgesprochen wurden.
+eine kurze gemeinsame Auswertung. Die drei Einsichten — „zähle, bevor du
+rechnest", „prüf am Extremfall" und „prüfen ist rechnen plus vergleichen" —
+sitzen erfahrungsgemäss erst, wenn sie einmal ausgesprochen wurden.
 
 **Freischaltkriterium:** Die SuS schreiben zu einem unbekannten Aufgabentext ohne
 Hilfe auf, was gegeben ist, was gesucht ist und welche Beziehung beides
@@ -14,9 +14,36 @@ sitzen, sonst geht die Lektion für Werkzeugfragen drauf.
 
 ---
 
+## Neu an diesem Modul
+
+**Umgestellt auf das Konzept-zuerst-Format** (August 2026). Die Modulseite
+erklärt die drei Konzepte vorne; die Aufgaben stehen auf `uebungen.md`, mit je
+drei Hinweisstufen. Was früher „Probier es selbst" war, ist jetzt die Zeitangabe
+bei der einzelnen Aufgabe.
+
+Die drei Konzepte sind hier **Gewohnheiten, keine Techniken**: Man erkennt nicht
+an Signalen im Text, dass sie anzuwenden sind — sie gelten immer. Deshalb heisst
+der entsprechende Abschnitt auf der Modulseite `Wann du es brauchst` und nennt
+statt Erkennungssignalen die Anzeichen dafür, dass man den Schritt
+übersprungen hat.
+
+**Das ändert die Rolle der LP.** Im alten Format war die Hürde, überhaupt auf
+Stofl zu kommen. Jetzt steht er auf der Seite. Die neue Hürde: Wer die Erklärung
+gelesen hat, glaubt zu können und überspringt genau die Gewohnheit, um die es
+geht. Nicht fragen „habt ihr das verstanden", sondern eine Aufgabe geben und
+zusehen, ob jemand vor dem Tippen etwas aufschreibt.
+
+**Aufgabennamen.** Das Material verwendet ab jetzt durchgehend die deutschen
+Namen von soi.ch: **Käsefest** (`cheeseparty`), **Wegbeschreibung**
+(`directions`), **Ausdauer** (`endurance`). Vorher standen dort die englischen
+Kürzel aus der Adresszeile — wer den Link anklickte, sah einen anderen Namen als
+auf der Kursseite.
+
+---
+
 ## Vorbereitung
 
-- Cheeseparty selbst lösen, beide Teilaufgaben. Dauert fünf Minuten und du
+- Das Käsefest selbst lösen, beide Teilaufgaben. Dauert fünf Minuten und du
   kennst danach die Stolperstellen.
 - Klären, ob die SuS ihre soi.ch-Accounts noch haben. Die Übungen geben Punkte,
   das motiviert — aber nur, wenn der Login funktioniert.
@@ -29,7 +56,7 @@ sitzen, sonst geht die Lektion für Werkzeugfragen drauf.
 
 ## Ablauf-Empfehlung
 
-Die 20 Minuten „Probier es selbst" wirklich abwarten. Cheeseparty sieht so
+Die 20 Minuten „Probier es selbst" wirklich abwarten. Das Käsefest sieht so
 einfach aus, dass die Versuchung gross ist, sofort die Formel an die Tafel zu
 schreiben — dann ist der Baustein wertlos.
 
@@ -65,9 +92,9 @@ Fünf-Minuten-Diskussion im Plenum, wenn die Zeit für die schriftliche Bearbeit
 fehlt.
 
 **„Das Ausgabeformat ist immer `Case #i:`."**
-Cheeseparty hat keines, Directions schon. Wer M0 verinnerlicht hat, überträgt es
-falsch. Das ist ein produktiver Fehler — er zeigt, dass Formate gelesen und nicht
-gewohnheitsmässig übernommen werden.
+Das Käsefest hat keines, die Wegbeschreibung schon. Wer M0 verinnerlicht
+hat, überträgt es falsch. Das ist ein produktiver Fehler — er zeigt, dass
+Formate gelesen und nicht gewohnheitsmässig übernommen werden.
 
 ---
 
@@ -78,18 +105,19 @@ gewohnheitsmässig übernommen werden.
 - „Dein Programm liefert beim Beispiel das Richtige. Warum ist es trotzdem
   möglich, dass du null Punkte bekommst?"
 - „Woher weisst du, ob deine Ausgabe mit `Case #0:` beginnen muss?"
-- Bei Directions: „Was passiert, wenn Stofl sich an mehr erinnert, als Binna
-  aufgeschrieben hat?"
+- Bei der Wegbeschreibung: „Was passiert, wenn Stofl sich an mehr erinnert,
+  als Binna aufgeschrieben hat?"
 
 ---
 
 ## Differenzierung
 
-**Basisspur:** Cheeseparty Teilaufgabe 1 und 2, das sind bereits volle 100
+**Einstiegsspur:** Käsefest Teilaufgabe 1 und 2, das sind bereits volle 100
 Punkte. Wer nur das schafft, hat den Baustein bestanden.
 
-**Kernspur:** dazu Directions, alle drei Teilaufgaben. Der Hinweis, dass ein
-einziges Programm alle drei löst, ist hier der Lerngewinn — nicht die Punkte.
+**Kernspur:** dazu die Wegbeschreibung, alle drei Teilaufgaben. Der Hinweis,
+dass ein einziges Programm alle drei löst, ist hier der Lerngewinn — nicht
+die Punkte.
 
 **Vertiefung:** Sushi Teilaufgabe 1 und 3 plus die Widerlegungsaufgabe
 schriftlich. Wer Sushi schnell hat, kann versuchen, Teilaufgabe 2 zu knacken —
@@ -100,5 +128,5 @@ solange klar ist, dass die Lösung dort systematisch kommt.
 
 ## Zeitbedarf
 
-Zwei Lektionen. Cheeseparty samt Auswertung füllt die erste, die Übungen die
+Zwei Lektionen. Das Käsefest samt Auswertung füllt die erste, die Übungen die
 zweite. Bei knapper Zeit fällt Sushi weg, nicht die Widerlegungsaufgabe.

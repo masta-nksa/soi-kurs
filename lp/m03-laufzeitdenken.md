@@ -9,22 +9,52 @@ dauert das?" fragt, fällt die Klasse in „ausprobieren und schauen" zurück.
 aus Schranke, Komplexität und Testfallzahl eine Dauer aus und entscheiden
 begründet, ob sie damit einreichen — **bevor** sie programmieren.
 
-**Voraussetzung:** M2. Die O(N²)-Lösung von Endurance muss stehen, sonst gibt es
+**Voraussetzung:** M2. Die O(N²)-Lösung von Ausdauer muss stehen, sonst gibt es
 nichts zu verbessern.
+
+---
+
+## Neu an diesem Modul
+
+**Umgestellt auf das Konzept-zuerst-Format** (August 2026), mit **vier**
+Konzeptblöcken — das umfangreichste Modul des Kurses:
+
+- **Komplexität und Faktor T** — die Vierschrittrechnung, beide Tabellen
+- **Weitergeben statt neu berechnen** — der Sprung von O(N²) auf O(N), vorher
+  „Ein einziger Durchgang"
+- **Versteckte Schleifen** — `pop(0)`, `x in liste`, dazu das Einlesen
+- **Mengen und Wörterbücher** — siehe unten
+
+**`set` stand bisher nur auf der Lösungsseite.** Wer die Uebung selbst löste
+und die Lösung nie öffnete, erfuhr nie, dass es den Typ gibt. Das war der
+konkrete Befund, der die ganze Umstellung ausgelöst hat, und er ist jetzt
+behoben: Mengen und Wörterbücher sind ein benanntes Konzept auf der
+Modulseite, mit `dict` als Ergänzung.
+
+**Reihenfolge der Übungen umgestellt.** Neu kommt Treppenlauf ST3 zuerst — die
+Aufgabe, für die man **nichts Neues** programmieren muss, sondern nur rechnen.
+25 Punkte für eine Papierrechnung. Das ist der bessere Einstieg als die
+Ankeraufgabe, weil es die Botschaft des Moduls in Reinform zeigt: Laufzeitdenken
+sagt dir auch, wann du dir Arbeit **sparen** kannst.
+
+**Die Diagnose von Treppenlauf ST4 ist jetzt eine eigene Vertiefungsaufgabe** mit
+vier schriftlichen Fragen. Die vierte — die Umformung `a[i] + |i−j| + b[j]` in
+zwei Fälle — ist der Vorgriff auf M4 und der anspruchsvollste Schritt. Sie lohnt
+eigene Vorbereitung.
 
 ---
 
 ## Vorbereitung
 
-- Endurance Teilaufgabe 3 selbst lösen und dabei die Zeit stoppen.
+- Ausdauer Teilaufgabe 3 selbst lösen und dabei die Zeit stoppen.
 - **Die Faustregel kennen:** Python schafft rund 10⁷ Schritte pro Sekunde.
   Daraus folgt: 10⁸ sind Sekunden, 10⁹ sind Minuten, ab 10¹⁰ ist es vorbei.
 - Eine grosse Eingabedatei vorbereiten, um sie zeigen zu können. Der Härtefall
-  von Endurance ST3 sind 10 Millionen Zahlen und rund 20 MB — das beeindruckt
+  von Ausdauer ST3 sind 10 Millionen Zahlen und rund 20 MB — das beeindruckt
   mehr als jede Tabelle.
 
 - Gerüststufe 2 ab hier: `vorlage-stufe2.py`. Das Einlesen eines Testfalls
-  schreiben die SuS erstmals selbst. Bei Endurance ist das Format dasselbe wie in
+  schreiben die SuS erstmals selbst. Bei Ausdauer ist das Format dasselbe wie in
   M2, der Umstieg ist also bewusst sanft gelegt.
 
 **Wichtig für die Haltung im Unterricht:** Das Material rechnet durchgehend in
@@ -105,7 +135,7 @@ Brute-Force-Botschaft aus M2.
 
 **„O(N) ist immer gut."**
 Nicht, wenn N Zahlen einzulesen schon zu lange dauert. Zeile d der Schätzrunde
-zielt genau darauf. Das Einlesen ist selbst O(N·T) — bei Endurance ST3 also
+zielt genau darauf. Das Einlesen ist selbst O(N·T) — bei Ausdauer ST3 also
 genauso gross wie der Algorithmus. Ein Programm kann nie schneller sein als
 seine Eingabe.
 
@@ -129,7 +159,7 @@ einmal gemessen hat, fragt künftig nach.
 
 ## Differenzierung
 
-**Basisspur:** Endurance Teilaufgabe 3. Zusammen mit M2 sind das 60 Punkte auf
+**Basisspur:** Ausdauer Teilaufgabe 3. Zusammen mit M2 sind das 60 Punkte auf
 dieser Aufgabe.
 
 **Kernspur:** dazu Treppenlauf Teilaufgabe 3 einreichen und Teilaufgabe 4

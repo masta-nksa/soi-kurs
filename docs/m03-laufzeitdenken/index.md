@@ -1,134 +1,48 @@
 # M3 — Laufzeitdenken
 
-## Das Problem
+!!! note "Du kannst hier einsteigen, wenn ..."
+    ... du zu einem neuen Problem selbständig die drei Fragen beantwortest — was
+    ist eine Möglichkeit, wie zähle ich alle auf, woran erkenne ich die beste —
+    und eine Lösung schreiben kannst, die alle Möglichkeiten durchgeht. Das ist
+    der Inhalt von [M2](../m02-vollstaendige-suche/index.md).
 
-Dieselbe Aufgabe wie in M2. Dieselbe Strasse, dieselben Löcher, dieselbe Frage:
-Wie lang ist der längste Abschnitt ohne Loch?
+    **Bring deine Lösung von Ausdauer Teilaufgabe 2 mit.** Dieses Modul baut
+    direkt auf ihr auf.
 
-**Endurance**, Teilaufgabe 3. Eingabe- und Ausgabeformat sind unverändert.
-Geändert hat sich genau eine Zeile in den Limits:
-
-| Teilaufgabe | Schranke | Punkte | |
-|---|---|---|---|
-| 1 | N = 3 | 20 | erledigt in M2 |
-| 2 | 1 ≤ N ≤ 100 | 20 | erledigt in M2 |
-| 3 | 1 ≤ N ≤ **100 000** | 20 | **dieses Modul** |
-| 4 | mit einer zusätzlichen Regel | 20 | M4 |
-| 5 | mit einer zusätzlichen Regel | 20 | M4 |
-
-T = 100 wie immer.
-
-!!! note "Du musst nichts nachschlagen"
-    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
-    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
-    dort holst du die Eingabedaten, und dann läuft die Uhr.
+**In diesem Modul:** [Komplexität und Faktor T](#komplexitat-und-faktor-t)
+· [Weitergeben statt neu berechnen](#weitergeben-statt-neu-berechnen)
+· [Versteckte Schleifen](#versteckte-schleifen)
+· [Mengen und Wörterbücher](#mengen-und-worterbucher)
 
 Deine Lösung aus M2 ist **richtig**. Sie findet für jede Strasse die korrekte
 Antwort, auch für eine mit 100 000 Abschnitten. Starte sie mit dieser Eingabe,
 und sie wird trotzdem nie fertig.
 
-Das ist die unangenehmste Sorte Fehler: Es gibt keine Fehlermeldung, keine
-falsche Zahl, nichts zum Debuggen. Nur ein Programm, das läuft und läuft.
+Das ist die unangenehmste Sorte Fehler: keine Fehlermeldung, keine falsche Zahl,
+nichts zum Debuggen. Nur ein Programm, das läuft und läuft. Dieses Modul bringt
+dir bei, ihn zu sehen, **bevor** er passiert.
 
 ---
 
-## Probier es selbst
+## Komplexität und Faktor T
 
-Nimm dir **30 Minuten**, und zwar für zwei Aufträge in dieser Reihenfolge.
-
-**Erstens: schätzen, bevor du programmierst.** Schreib auf ein Blatt, wie viele
-Rechenschritte deine M2-Lösung für Teilaufgabe 3 ungefähr braucht, und wie lange
-das dauert. Eine Zahl, kein Gefühl.
-
-**Zweitens: eine Lösung suchen, die durchläuft.** Erst danach.
-
-Die Reihenfolge ist der Kern dieses Moduls. Wer zuerst programmiert und dann
-merkt, dass es zu lange dauert, hat die halbe Lektion verschenkt.
-
-!!! tip "Ab jetzt: neue Vorlage"
-    Verwende `vorlage-stufe2.py` aus dem Ordner `vorlagen/`. Die Werkzeuge zum
-    Einlesen bekommst du weiterhin fertig, aber das Muster für einen Testfall
-    trägst du selbst ein. Bei Endurance ist es dasselbe wie in M2 — ein guter
-    Moment, um es einmal ohne Vorlage hinzuschreiben.
-
-??? tip "Kommst du nicht weiter?"
-    Dann arbeite dich durch die Hinweise unten, einen nach dem anderen.
-
-    Wenn du beim Schätzen nicht weiterkommst und nicht beim Programmieren: Fang
-    mit der Frage an, wie viele ineinander liegende Schleifen deine Lösung hat.
-
-!!! success "Erst wenn deine Lösung am Beispiel läuft"
-    Dann geht es zum Einreichen. Die Links springen direkt zur richtigen
-    Teilaufgabe:
-
-    - [Endurance Teilaufgabe 3](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-3-ein-sehr-langer-weg-20-punkte)
-
-    Ab dem Klick auf „Eingabedaten herunterladen" hast du fünf Minuten.
-
----
-
-## Hinweise
-
-??? tip "Hinweis 1 — erst selbst versuchen"
-    Nimm eine ganz kurze Strasse ohne ein einziges Loch, etwa fünf Abschnitte.
-
-    Wie oft schaut deine M2-Lösung die **letzte** Position an? Zähl es auf
-    Papier durch, indem du die Startpunkte der Reihe nach durchgehst.
-
-??? tip "Hinweis 2 — erst selbst versuchen"
-    > **Analogie:** Du willst wissen, wie viele Schritte du am Stück gehen
-    > kannst, ohne auf eine Fuge zu treten. Du stellst dich auf die erste
-    > Bodenplatte und gehst los, bis eine Fuge kommt. Dann gehst du zurück,
-    > stellst dich auf die zweite Platte und gehst wieder los. Dann auf die
-    > dritte.
-    >
-    > Bei zwanzig Platten ist das mühsam. Bei hunderttausend gehst du dieselbe
-    > Strecke immer wieder ab, obwohl sich am Boden nichts ändert.
-
-    Der Boden ändert sich nicht. Deine Information über ihn auch nicht — du
-    wirfst sie nur jedes Mal weg.
-
-??? tip "Hinweis 3 — erst selbst versuchen"
-    Geh ein einziges Mal von links nach rechts.
-
-    Was musst du dir unterwegs merken, damit du am Ende die Antwort hast? Es
-    sind zwei Zahlen. Überleg, welche das sind, bevor du weiterliest.
-
-??? tip "Hinweis 4 — erst selbst versuchen"
-    Jede Position wird genau einmal angeschaut.
-
-    Wenn ein Loch kommt, beginnt die laufende Länge wieder bei null. Alles, was
-    du vorher gezählt hast, ist nicht verloren — es steckt bereits im Maximum,
-    das du mitführst.
-
-??? tip "Hinweis 5 — nur bei Implementierungsproblemen"
-    Zwei Variablen vor der Schleife: eine für die **laufende** Länge, eine für
-    die **beste bisher**. Beide starten bei 0.
-
-    Pro Position: Ist dort ein Loch, setzt du die laufende Länge auf 0. Sonst
-    erhöhst du sie um 1 und vergleichst sie mit der besten.
-
-    Achte darauf, dass du auch nach dem letzten Abschnitt noch verglichen hast.
-    Am einfachsten ist es, bei **jedem** Schritt zu vergleichen — dann kann der
-    Fall gar nicht auftreten.
-
----
-
-## Das Konzept
-
-### Die Schranke ist eine Nachricht
+### Worum es geht
 
 In der Aufgabenstellung steht nicht zufällig N ≤ 100 000. Wer die Aufgabe
-gestellt hat, hat sich bei jeder Teilaufgabe überlegt, welche Lösungen damit
-noch durchlaufen und welche nicht.
+gestellt hat, hat sich bei jeder Teilaufgabe überlegt, welche Lösungen damit noch
+durchlaufen und welche nicht.
 
-**Kernsatz:** Die Schranke sagt dir, welche Komplexität erlaubt ist. Lies sie,
-bevor du programmierst — nicht danach.
+Die Schranke ist also keine Randnotiz. Sie ist eine Nachricht an dich.
 
-Die Rechnung dazu geht immer gleich:
+### Die Idee
 
-1. **Schleifen zählen.** Ineinander liegende Schleifen über die Eingabe:
-   eine ist O(N), zwei sind O(N²), drei sind O(N³).
+> **Kernsatz:** Die Schranke sagt dir, welche Komplexität erlaubt ist. Lies sie,
+> bevor du programmierst — nicht danach.
+
+Die Rechnung geht immer gleich, in vier Schritten:
+
+1. **Schleifen zählen.** Ineinander liegende Schleifen über die Eingabe: eine
+   ist O(N), zwei sind O(N²), drei sind O(N³).
 2. **N einsetzen.** Aus O(N²) mit N = 100 000 werden 10¹⁰ Schritte.
 3. **Mal T.** Bei 100 Testfällen also 10¹².
 4. **Grössenordnung nachschlagen** und mit deinem Budget vergleichen.
@@ -144,6 +58,42 @@ Schritt 3 wird am häufigsten vergessen, und er ist ein Faktor 100.
 | 10¹⁰ | halbe Stunde |
 | 10¹² | Tage |
 
+### An einem Beispiel
+
+Dieselbe Aufgabe, dieselbe Lösung, nur eine andere Zahl in den Limits:
+
+| | Schritte pro Testfall | mal T = 100 | Grössenordnung |
+|---|---|---|---|
+| Teilaufgabe 2, O(N²), N = 100 | 10⁴ | 10⁶ | Sekundenbruchteil |
+| Teilaufgabe 3, O(N²), N = 10⁵ | 10¹⁰ | 10¹² | Tage |
+| Teilaufgabe 3, O(N), N = 10⁵ | 10⁵ | 10⁷ | rund eine Sekunde |
+
+Zwischen der zweiten und dritten Zeile liegt der Unterschied zwischen „wird nie
+fertig" und „läuft sofort" — bei identischer Aufgabe.
+
+### Dein Budget sind fünf Minuten, keine Sekunde
+
+Hier weicht dieser Kurs von allem ab, was du sonst über
+Wettbewerbsprogrammierung liest. Dort gilt meist ein Zeitlimit von ein bis zwei
+Sekunden, und das Programm wird abgebrochen, wenn es länger braucht.
+
+**Bei uns nicht.** Wir laden eine Ausgabedatei hoch, kein Programm. Niemand
+misst deine Laufzeit. Die einzige Uhr sind die fünf Minuten zwischen Download
+und Upload.
+
+| Schritte insgesamt | Grössenordnung | Urteil |
+|---|---|---|
+| bis 10⁸ | Sekunden | unproblematisch |
+| 10⁹ | Minuten | ohne Reserve für einen zweiten Versuch |
+| ab 10¹⁰ | halbe Stunde und mehr | ausgeschlossen |
+
+Daraus folgt eine Regel, die überraschend viel erklärt:
+
+> **Kleine Unterschiede sind egal. Grosse sind tödlich.**
+
+Ob dein Programm einen Sekundenbruchteil oder ein paar Sekunden braucht, ändert
+an deiner Punktzahl nichts. Zwischen Sekunden und Tagen liegt dagegen alles.
+
 !!! warning "Diese Rechnung ist absichtlich grob"
     Der Tabelle liegt eine Annahme zugrunde: **Python schafft rund 10⁷ Schritte
     pro Sekunde, und jeder Schritt ist gleich teuer.** Beides stimmt nicht genau.
@@ -158,103 +108,159 @@ Schritt 3 wird am häufigsten vergessen, und er ist ein Faktor 100.
     und mehr**. Ob 10⁸ Schritte nun sieben oder dreissig Sekunden dauern, ändert
     an keiner Entscheidung etwas. Ob es 10⁸ oder 10¹² sind, entscheidet alles.
 
-    **Schätze also die Grössenordnung, nie die Sekunden.**
+    **Schätze die Grössenordnung, nie die Sekunden.**
 
-### Dein Budget sind fünf Minuten, keine Sekunde
+### Wann du es brauchst
 
-Hier weicht unser Kurs von allem ab, was du sonst über Wettbewerbsprogrammierung
-liest. Dort gilt meist ein Zeitlimit von ein bis zwei Sekunden, und das
-Programm wird abgebrochen, wenn es länger braucht.
+Vor dem Programmieren. Immer. Die Rechnung dauert eine Minute auf Papier und
+entscheidet, ob die nächste halbe Stunde sinnvoll investiert ist.
 
-**Bei uns nicht.** Wir laden eine Ausgabedatei hoch, kein Programm. Niemand misst
-deine Laufzeit. Die einzige Uhr sind die fünf Minuten zwischen Download und
-Upload.
+Woran du merkst, dass du es übersprungen hast:
 
-| Schritte insgesamt | Grössenordnung | Urteil |
-|---|---|---|
-| bis 10⁸ | Sekunden | unproblematisch |
-| 10⁹ | Minuten | ohne Reserve für einen zweiten Versuch |
-| ab 10¹⁰ | halbe Stunde und mehr | ausgeschlossen |
+- Du startest dein Programm mit der echten Eingabe und wartest, ob es fertig
+  wird. Das ist keine Messung, das ist Hoffen.
+- Du liest die Limits erst, wenn etwas nicht funktioniert.
+- Du kannst nicht sagen, welche Komplexität deine eigene Lösung hat.
 
-Daraus folgt eine Regel, die überraschend viel erklärt:
+### Typische Fallen
 
-> **Kleine Unterschiede sind egal. Grosse sind tödlich.**
+- **Den Faktor T vergessen.** Der häufigste Fehler überhaupt. N ≤ 1000 mit
+  O(N²) klingt nach 10⁶ und ist in Wahrheit 10⁸.
+- **Sekunden statt Grössenordnungen.** Wer „17,4 Sekunden" schätzt, täuscht eine
+  Genauigkeit vor, die die Rechnung nicht hergibt.
+- **Die Schranke als Warnung lesen statt als Einladung.** N ≤ 100 heisst nicht
+  „pass auf", sondern „hier ist Brute Force beabsichtigt".
 
-Ob dein Programm einen Sekundenbruchteil oder ein paar Sekunden braucht, ändert
-an deiner Punktzahl nichts. Zwischen Sekunden und Tagen liegt dagegen alles.
-Deshalb geht es beim Laufzeitdenken um **Grössenordnungen**, nie um Feinschliff —
-und deshalb darf die Rechnung so grob sein.
+---
 
-### Die Rechnung für Endurance
+## Weitergeben statt neu berechnen
 
-| | Schritte pro Testfall | mal T = 100 | Grössenordnung |
-|---|---|---|---|
-| Teilaufgabe 2, O(N²), N = 100 | 10⁴ | 10⁶ | Sekundenbruchteil |
-| Teilaufgabe 3, O(N²), N = 10⁵ | 10¹⁰ | 10¹² | Tage |
-| Teilaufgabe 3, O(N), N = 10⁵ | 10⁵ | 10⁷ | rund eine Sekunde |
+### Worum es geht
 
-Dieselbe Lösung, dieselbe Aufgabe, nur eine andere Zahl in den Limits — und der
-Unterschied zwischen „läuft sofort" und „wird nie fertig".
+Teilaufgabe 3 der Ausdauer verlangt eine Lösung, die jede Position **einmal**
+anschaut statt N-mal. Aber wie soll das gehen — man muss doch alle Abschnitte
+prüfen?
 
-### Ein einziger Durchgang
+Muss man nicht. Man muss nur aufhören, dieselbe Information wegzuwerfen.
 
-Die schnelle Lösung schaut jede Position **genau einmal** an und führt dabei zwei
-Zahlen mit: die laufende Länge und das bisher beste Ergebnis.
+### Die Idee
 
-Während die Schleife läuft, gilt durchgehend:
+> **Kernsatz:** Wenn du für jede Position dasselbe neu ausrechnest, was du an der
+> vorherigen schon wusstest, dann gib es weiter statt es neu zu berechnen.
+
+Bei der Ausdauer führst du beim Durchgehen zwei Zahlen mit: die **laufende**
+Länge und die **beste bisher**. Während die Schleife läuft, gilt:
 
 > **`laenge` ist die Länge des lochfreien Stücks, das an der aktuellen Position
-> endet. `bestes` ist das längste lochfreie Stück, das ganz links davon liegt
-> oder hier endet.**
+> endet. `bestes` ist das längste lochfreie Stück, das hier oder weiter links
+> endet.**
 
-Am Ende ist die ganze Strasse angeschaut, und `bestes` ist die Antwort. Das ist
-die **Invariante** aus M2, nur schärfer formuliert: Sie erlaubt, das Ergebnis für
-eine Position aus dem Ergebnis der vorherigen abzuleiten, statt neu zu zählen.
+Das ist die Invariante aus [M2](../m02-vollstaendige-suche/index.md#die-invariante),
+nur schärfer: Sie erlaubt, das Ergebnis für eine Position aus dem Ergebnis der
+vorherigen abzuleiten.
 
-Genau das ist der Sprung von O(N²) auf O(N): **weitergeben statt neu berechnen.**
+> **Analogie:** Du willst wissen, wie viele Schritte du am Stück gehen kannst,
+> ohne auf eine Fuge zu treten. Du stellst dich auf die erste Bodenplatte und
+> gehst los, bis eine Fuge kommt. Dann gehst du zurück, stellst dich auf die
+> zweite Platte und gehst wieder los. Dann auf die dritte. Bei zwanzig Platten
+> ist das mühsam, bei hunderttausend gehst du dieselbe Strecke immer wieder ab,
+> obwohl sich am Boden nichts ändert.
+>
+> **Bruchstelle:** Die Analogie zeigt die Verschwendung, aber nicht, was du
+> stattdessen tun sollst. Sie verführt ausserdem zu der Annahme, Wiederholung
+> lasse sich immer vermeiden. Das stimmt nicht: Bei manchen Problemen hilft kein
+> einzelner Durchgang, sondern erst eine andere Anordnung der Daten — Sortieren
+> etwa, und das kommt in [M5](../m05-sortieren-und-suchen/index.md).
 
-### Was du nicht siehst: das Einlesen zählt mit
+### An einem Beispiel
 
-Bei N = 100 000 und T = 100 stehen **zehn Millionen Zahlen** in der
-Eingabedatei.
+Die Strasse `0 0 1 0 0 0`, ein Durchgang von links nach rechts:
 
-Jede einzelne davon muss gelesen und in eine Zahl umgewandelt werden. Das ist
-selbst eine Schleife über die ganze Eingabe, also **O(N · T)** — dieselbe
-Grössenordnung wie dein Algorithmus. Der Aufwand steht nirgends im Code, den du
-schreibst, aber er ist da.
+```
+Position:      0    1    2    3    4    5
+Wert:          0    0    1    0    0    0
 
-Daraus folgt eine Grenze, die du nicht unterbieten kannst:
+laenge:        1    2    0    1    2    3
+bestes:        1    2    2    2    2    3
+```
 
-> **Dein Programm kann nie schneller sein als das Einlesen.**
+An Position 2 kommt ein Loch: `laenge` fällt auf 0, `bestes` bleibt bei 2 — das
+bisher Gefundene ist nicht verloren, es steckt schon in `bestes`. Ab Position 3
+wächst `laenge` wieder und überholt am Schluss.
 
-Bei Endurance Teilaufgabe 3 sind beide Teile gleich gross. Das ist ein gutes
-Zeichen: Wenn das Einlesen mit dem Algorithmus gleichzieht, ist beim Algorithmus
-nichts mehr zu holen.
+### Im Code
 
-Gefährlich wird es, wenn die Eingabe grösser ist als nötig. Eine Aufgabe mit
-N ≤ 10⁶ und T = 100 hat **hundert Millionen Zahlen** in der Eingabe. Das sind
-allein fürs Einlesen 10⁸ Schritte — dort wird selbst eine perfekte O(N)-Lösung
-unangenehm, und die Datei ist mehrere hundert Megabyte gross.
+```python
+def loese(n, p):
+    bestes = 0
+    laenge = 0
+    for i in range(n):
+        if p[i] == 1:
+            laenge = 0
+        else:
+            laenge = laenge + 1
+        if laenge > bestes:
+            bestes = laenge
+    return bestes
+```
 
-Merk dir: Die Grösse der Eingabe ist Teil der Laufzeit.
+Bei **jedem** Schritt vergleichen, nicht nur beim Loch. Sonst geht das letzte
+Stück verloren, wenn die Strasse ohne Loch endet.
 
-### Die versteckte Schleife
+### Laufzeit
 
-Nicht jede Schleife ist als Schleife zu erkennen. Manche stecken in einer
-harmlosen Zeile:
+Eine Schleife über N Positionen: **O(N)**. Bei N = 10⁵ und T = 100 sind das 10⁷
+Schritte — rund eine Sekunde.
+
+Aus O(N²) wird O(N), weil jede Position genau einmal angeschaut wird statt
+einmal pro möglichem Startpunkt.
+
+### Woran du es erkennst
+
+- Deine Lösung hat **zwei ineinander liegende Schleifen**, und die innere fängt
+  jedes Mal wieder von vorne an.
+- Zwei benachbarte Durchläufe der äusseren Schleife rechnen **fast dasselbe** —
+  sie unterscheiden sich nur an einem Ende.
+- Du könntest die Antwort für Position i leicht angeben, **wenn du die Antwort
+  für Position i−1 kennen würdest**.
+
+Der letzte Punkt ist der zuverlässigste Test. Wenn du diesen Satz formulieren
+kannst, ist die Lösung meist schon da.
+
+### Typische Fallen
+
+- **Zu wenig mitführen.** Bei der Ausdauer sind es zwei Zahlen. Wer nur eine
+  mitführt, verliert entweder das laufende Stück oder das beste.
+- **Am Ende nicht vergleichen.** Der klassische Fehler, wenn man nur beim Loch
+  vergleicht und die Strasse ohne Loch endet.
+- **Zu früh optimieren.** In M2 war O(N²) richtig. Weitergeben lohnt sich erst,
+  wenn die Schranke es verlangt — und das sagt dir die Rechnung von oben.
+
+---
+
+## Versteckte Schleifen
+
+### Worum es geht
+
+Nicht jede Schleife sieht aus wie eine Schleife. Manche stecken in einer Zeile,
+die harmlos aussieht — und kippen die Komplexität, ohne dass du eine zweite
+Schleife tippst.
+
+### Die Idee
+
+> **Kernsatz:** Eine Zeile ist nicht deshalb billig, weil sie kurz ist. Frag bei
+> jeder Operation, wie viele Elemente sie anfassen muss.
+
+### An einem Beispiel
 
 ```python
 liste.pop(0)
 ```
 
-Das entfernt das **erste** Element einer Liste. Dabei müssen alle übrigen
-Elemente um einen Platz nach vorne rücken — das ist selbst eine Schleife über
-die ganze Liste. Wer `pop(0)` in einer Schleife aufruft, hat O(N²) geschrieben,
-ohne eine zweite Schleife zu tippen.
+Das entfernt das **erste** Element. Dabei müssen alle übrigen um einen Platz
+nach vorne rücken — das ist selbst eine Schleife über die ganze Liste.
 
-Zähl nach, was es kostet, eine Liste mit N Elementen so ganz zu leeren:
-
-| | Schritte pro Aufruf | Schritte insgesamt | |
+| | Schritte pro Aufruf | eine Liste ganz leeren | |
 |---|---|---|---|
 | `pop(0)` (vorne) | bis zu N | rund N² / 2 | O(N²) |
 | `pop()` (hinten) | 1 | N | O(N) |
@@ -262,26 +268,125 @@ Zähl nach, was es kostet, eine Liste mit N Elementen so ganz zu leeren:
 Beim ersten Aufruf rücken N−1 Elemente nach, beim zweiten N−2, und so weiter.
 Diese Summe ist ungefähr N²/2.
 
-Die Signatur erkennst du beim Messen: Bei `pop(0)` brauchen **doppelt so viele
-Elemente etwa viermal so lange**, bei `pop()` nur doppelt so lange. In den
-Übungen misst du genau das selbst.
+Die zweite häufige Falle:
 
-`pop()` ohne Argument nimmt das letzte Element — dahinter steht nichts, was
-verschoben werden müsste, also ein Schritt unabhängig von der Länge.
+```python
+if zahl not in gesehen:      # gesehen ist eine Liste
+```
 
-### Die Analogie und ihre Grenze
+Python kennt den Inhalt einer Liste nicht auswendig. Um `in` zu beantworten,
+geht es sie **von vorne bis hinten durch**. Steht die Zahl nicht drin, wurde die
+ganze Liste angeschaut. In einer Schleife über N Zahlen ergibt das wieder O(N²).
 
-> **Analogie:** Für jede Bodenplatte zurückgehen und neu loslaufen, statt einmal
-> durchzugehen.
+### Wann du es brauchst
 
-**Bruchstelle:** Die Analogie zeigt dir die Verschwendung, aber nicht, was du
-stattdessen tun sollst. Sie verführt ausserdem zu der Annahme, Wiederholung
-lasse sich immer vermeiden. Das stimmt nicht. Bei manchen Problemen hilft kein
-einzelner Durchgang, sondern erst eine andere Anordnung der Daten — Sortieren
-etwa, und das kommt in M5.
+Beim Schleifenzählen aus dem ersten Konzept. Wenn du O(N) herausbekommst, dein
+Programm aber deutlich langsamer ist als erwartet, steckt fast immer eine
+versteckte Schleife drin.
 
-Was sie richtig zeigt: Wenn du beim zweiten Durchgang dasselbe erfährst wie beim
-ersten, war der zweite überflüssig.
+Woran du sie findest: Geh deinen Schleifenrumpf Zeile für Zeile durch und frag
+bei jeder, wie viele Elemente sie berührt. Verdächtig sind alle Operationen auf
+Listen und Zeichenketten, bei denen kein Index dabeisteht.
+
+**Die Signatur beim Messen:** Bei O(N²) brauchen doppelt so viele Elemente rund
+**viermal** so lange, bei O(N) doppelt so lange. Achte nicht auf die Sekunden,
+sondern auf den Faktor. In den Übungen misst du das selbst.
+
+### Typische Fallen
+
+- **`pop(0)` statt `pop()`.** Wenn du die Reihenfolge nicht brauchst, nimm das
+  letzte Element.
+- **`x in liste` in einer Schleife.** Der Ausweg ist das nächste Konzept.
+- **Das Einlesen vergessen.** Bei N = 10⁵ und T = 100 stehen **zehn Millionen
+  Zahlen** in der Eingabedatei. Jede muss gelesen und umgewandelt werden, das ist
+  O(N · T) — dieselbe Grössenordnung wie ein guter Algorithmus.
+
+    > **Dein Programm kann nie schneller sein als das Einlesen.**
+
+    Bei der Ausdauer ziehen beide gleich, das ist ein gutes Zeichen. Gefährlich
+    wird es bei N ≤ 10⁶ und T = 100: Das sind hundert Millionen Zahlen, allein
+    fürs Einlesen 10⁸ Schritte, und die Datei ist mehrere hundert Megabyte
+    gross. Die Grösse der Eingabe ist Teil der Laufzeit.
+
+---
+
+## Mengen und Wörterbücher
+
+### Worum es geht
+
+Du willst wiederholt wissen: **Habe ich diesen Wert schon gesehen?** Mit einer
+Liste kostet jede solche Frage O(N) — das ist die versteckte Schleife von eben.
+
+Python hat für genau diese Frage einen eigenen Behälter.
+
+### Die Idee
+
+> **Kernsatz:** Wenn du oft fragst, *ob* ein Wert dabei ist, nimm ein `set`
+> statt einer Liste. Die Frage kostet dann einen Schritt statt N.
+
+Ein **set** (eine Menge) merkt sich, welche Werte enthalten sind, und beantwortet
+`in` ohne alles durchzugehen. Ein **dict** (ein Wörterbuch) tut dasselbe und
+speichert zu jedem Wert zusätzlich etwas ab — etwa, wie oft er vorkam.
+
+### An einem Beispiel
+
+Zählen, wie viele **verschiedene** Zahlen in einer Liste vorkommen:
+
+```python
+gesehen = []                      # langsam: O(N²)
+for zahl in zahlen:
+    if zahl not in gesehen:
+        gesehen.append(zahl)
+```
+
+```python
+gesehen = set()                   # schnell: O(N)
+for zahl in zahlen:
+    gesehen.add(zahl)
+
+anzahl = len(gesehen)
+```
+
+Statt `append` heisst es `add`, sonst ist alles gleich. Ein set speichert jeden
+Wert ohnehin nur einmal, die Abfrage `if` kann also ganz entfallen.
+
+Ein `dict`, wenn du zusätzlich zählen willst:
+
+```python
+anzahl = {}
+for zahl in zahlen:
+    if zahl in anzahl:
+        anzahl[zahl] = anzahl[zahl] + 1
+    else:
+        anzahl[zahl] = 1
+```
+
+### Laufzeit
+
+| | eine Frage | N Fragen | |
+|---|---|---|---|
+| Liste, `in` durchsucht alles | O(N) | rund N² / 2 | O(N²) |
+| set oder dict, `in` fragt direkt | O(1) | N | O(N) |
+
+Bei 20 000 Zahlen ist der Unterschied schon ein Faktor in der Grössenordnung von
+hundert, und er wächst mit N weiter.
+
+### Woran du es erkennst
+
+- In deiner Schleife steht `in` auf einer **Liste**, die selbst mitwächst.
+- Die Aufgabe fragt nach **verschiedenen**, **doppelten** oder **schon
+  gesehenen** Werten.
+- Du willst zu einem Wert etwas nachschlagen — dann ein `dict`.
+
+### Typische Fallen
+
+- **Ein set hat keine Reihenfolge.** Wer die Reihenfolge braucht, nimmt eine
+  Liste — oder beides nebeneinander.
+- **Ein set speichert jeden Wert nur einmal.** Beim Zählen von Duplikaten ist
+  ein `dict` der richtige Behälter.
+- **`in` auf einer Liste sieht genauso aus wie `in` auf einem set.** Der
+  Unterschied steht nirgends im Code, nur im Typ. Genau deshalb ist die Falle so
+  gemein.
 
 ---
 
@@ -308,12 +413,11 @@ ersten, war der zweite überflüssig.
 
     10⁹ Schritte sind die Grössenordnung von Minuten. Das passt in die fünf
     Minuten, aber ohne Reserve: Wenn etwas schiefgeht und du noch einmal starten
-    musst, wird es knapp. Und ob es bei dir eine Minute oder fünf werden, sagt
-    dir die Schätzung nicht.
+    musst, wird es knapp.
 
     Genau hier lohnt sich das Messen — nicht als Ersatz für die Schätzung,
-    sondern als Kontrolle: einmal mit dem Beispiel laufen lassen, hochrechnen,
-    und **dann** herunterladen. Nicht umgekehrt.
+    sondern als Kontrolle: einmal mit einem grossen selbstgebauten Testfall
+    laufen lassen, hochrechnen, und **dann** herunterladen. Nicht umgekehrt.
 
 ??? success "Vergleiche deine Antwort — Frage 3"
     **Warum ist `while liste: liste.pop(0)` langsam, `while liste: liste.pop()`
@@ -326,22 +430,32 @@ ersten, war der zweite überflüssig.
     `pop()` nimmt das letzte Element. Dahinter steht nichts, was verschoben
     werden müsste — ein Schritt, unabhängig von der Länge.
 
-    Die allgemeine Lehre: Eine Zeile ist nicht deshalb billig, weil sie kurz
-    ist. Frag bei jeder Listenoperation, wie viele Elemente sie anfassen muss.
-
 ??? success "Vergleiche deine Antwort — Frage 4"
     **Du liest eine neue Aufgabe. Teilaufgabe 1 hat N ≤ 100, Teilaufgabe 2 hat
     N ≤ 100 000. Was weisst du, bevor du die Aufgabe überhaupt verstanden hast?**
 
     Dass für Teilaufgabe 2 eine grundsätzlich andere Idee nötig ist.
 
-    Ein Sprung von 100 auf 100 000 ist kein Sprung, den man mit sauberer
-    Programmierung überbrückt. Der Faktor 1000 in N bedeutet Faktor 1 000 000
-    bei O(N²). Die Aufgabenstellenden trennen mit dieser Schranke absichtlich
-    zwei Lösungswege.
+    Ein Sprung von 100 auf 100 000 lässt sich nicht mit sauberer Programmierung
+    überbrücken. Der Faktor 1000 in N bedeutet Faktor 1 000 000 bei O(N²). Die
+    Aufgabenstellenden trennen mit dieser Schranke absichtlich zwei Lösungswege.
 
     Umgekehrt gilt genauso: Wenn eine Teilaufgabe N ≤ 100 erlaubt, ist Brute
     Force dort nicht nur geduldet, sondern **beabsichtigt**.
+
+??? success "Vergleiche deine Antwort — Frage 5"
+    **Dein Programm hat eine einzige Schleife über N Elemente und ist trotzdem
+    viel langsamer, als O(N) erwarten lässt. Wo suchst du?**
+
+    Im Schleifenrumpf, Zeile für Zeile: Welche davon fasst mehr als ein Element
+    an?
+
+    Die üblichen Verdächtigen sind `x in liste`, `liste.pop(0)`,
+    `liste.insert(0, x)` und das Zusammenkleben von Zeichenketten mit `+` in
+    einer Schleife. Alle vier sehen aus wie ein Schritt und sind N.
+
+    Die Gegenprobe ist eine Messung: Verdopple die Eingabe. Braucht es viermal
+    so lange, ist irgendwo eine versteckte Schleife.
 
 ---
 
@@ -355,12 +469,11 @@ und eine Schätzrunde über echte Aufgabenschranken.
 
 ## Weiter zu M4
 
-Wenn du Endurance Teilaufgabe 3 gelöst hast, kannst du aus einer Schranke
-ablesen, welche Lösung überhaupt in Frage kommt — und du hast einmal erlebt,
-wie aus O(N²) ein einzelner Durchgang wird.
+Wenn du Ausdauer Teilaufgabe 3 gelöst hast, kannst du aus einer Schranke
+ablesen, welche Lösung überhaupt in Frage kommt — und du hast einmal erlebt, wie
+aus O(N²) ein einzelner Durchgang wird.
 
 In [M4 — Felder und lineare Techniken](../m04-lineare-techniken/index.md) wird
-daraus ein Werkzeug. Der Trick „weitergeben statt neu berechnen" hat einen Namen
-und mehrere Formen: Präfixsummen und Zweizeiger. Damit fallen Teilaufgabe 4 und 5
-von Endurance — und Treppenlauf Teilaufgabe 4, die du hier nur diagnostiziert
-hast.
+daraus ein Werkzeug. „Weitergeben statt neu berechnen" hat zwei feste Formen:
+Präfixsummen und Zweizeiger. Damit fallen Teilaufgabe 4 und 5 der Ausdauer — und
+Treppenlauf Teilaufgabe 4, die du hier nur diagnostiziert hast.

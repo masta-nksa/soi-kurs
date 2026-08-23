@@ -4,7 +4,7 @@ Diese Seite verrät die Lösung. Hast du es wirklich selbst versucht?
 
 ---
 
-## Cheeseparty, Teilaufgabe 1
+## Käsefest, Teilaufgabe 1
 
 **Das Modell.** An der Party sind N Familien mit je K + 2 Mäusen, dazu Stofl:
 
@@ -52,14 +52,14 @@ if EINGABE == "bsp_ein.txt":
     pruefe.vergleiche(ERWARTET, AUSGABE)
 ```
 
-Beachte die Ausgabe: nur die Zahl, kein `Case #0:`. Cheeseparty hat keine
+Beachte die Ausgabe: nur die Zahl, kein `Case #0:`. Das Käsefest hat keine
 Testfälle.
 
 Zum Testen brauchst du `bsp_ein.txt` mit `4 3 6` und `bsp_aus.txt` mit `126`.
 
 ---
 
-## Cheeseparty, Teilaufgabe 2
+## Käsefest, Teilaufgabe 2
 
 Der Kopf mit dem Leser bleibt unverändert. Nur der untere Teil ändert sich:
 
@@ -91,7 +91,7 @@ zurückzurechnen. Das geht nicht eindeutig und wäre auch gar nicht gefragt.
 
 ---
 
-## Directions, Teilaufgaben 1 bis 3
+## Wegbeschreibung, Teilaufgaben 1 bis 3
 
 **Das Modell.** Gesucht ist: Ist Stofls Zeichenkette `s` der Anfang von Binnas
 Zeichenkette `b`?

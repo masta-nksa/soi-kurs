@@ -1,195 +1,158 @@
 # M4 — Felder und lineare Techniken
 
-## Das Problem
+!!! note "Du kannst hier einsteigen, wenn ..."
+    ... du zu einer unbekannten Teilaufgabe aus Schranke, Komplexität und
+    Testfallzahl eine Dauer ausrechnest und begründet entscheidest, ob du damit
+    einreichen kannst — **bevor** du programmierst. Das ist der Inhalt von
+    [M3](../m03-laufzeitdenken/index.md).
 
-Wieder dieselbe Strasse mit denselben Löchern. Aber jetzt hat Binna Material
-dabei: Sie darf **bis zu K Löcher reparieren**, bevor der Marathon startet.
+    **Bring deine Lösung von Ausdauer Teilaufgabe 3 mit.** Sie ist der
+    Ausgangspunkt und zugleich deine Kontrolle.
 
-Wie lang ist die längste Strecke, die sie so hinbekommt?
+**In diesem Modul:** [Präfixsummen](#prafixsummen)
+· [Zweizeiger und Fenster](#zweizeiger-und-fenster)
 
-**Endurance**, Teilaufgabe 4 und 5. Das Eingabeformat ändert sich leicht: In
-der ersten Zeile eines Testfalls stehen jetzt zwei Zahlen, N und K.
+In M3 hast du eine Lösung von O(N²) auf O(N) gebracht, indem du unterwegs etwas
+mitgeführt hast statt neu zu rechnen. Das war kein Einzelfall — es ist ein
+Muster mit zwei festen Formen, und beide bekommen hier einen Namen.
 
-| Teilaufgabe | Schranken | Punkte | |
-|---|---|---|---|
-| 1 bis 3 | ohne Reparaturen | 60 | erledigt in M2 und M3 |
-| 4 | 1 ≤ N ≤ 100, K = 3 | 20 | **dieses Modul** |
-| 5 | 1 ≤ N ≤ 100 000, 1 ≤ K ≤ 100 | 20 | **dieses Modul** |
-
-T = 100 wie immer. Nach diesem Modul sind alle 100 Punkte dieser Aufgabe
-erreicht.
-
-```
-Eingabe:                        Ausgabe:
-
-2                               Case #0: 10
-10 3                            Case #1: 8
-0 0 0 1 1 1 0 0 0 0
-12 3
-0 1 0 0 1 1 0 1 0 0 1 0
-```
-
-Im ersten Testfall gibt es genau drei Löcher, und alle drei dürfen repariert
-werden — also ist die ganze Strasse befahrbar, Länge 10. Im zweiten liegt die
-beste Strecke von Position 2 bis Position 9; dort sind drei Löcher, genau so
-viele, wie Binna reparieren kann.
-
-!!! note "Du musst nichts nachschlagen"
-    Alles zum Lösen steht auf dieser Seite: Geschichte, Format, Schranken und
-    Beispiel. Auf soi.ch gehst du erst, wenn deine Lösung am Beispiel läuft —
-    dort holst du die Eingabedaten, und dann läuft die Uhr.
+**Präfixsummen** beantworten viele Fragen nach einer einmaligen Vorbereitung.
+**Der Zweizeiger** schiebt ein Fenster über die Daten, ohne je zurückzugehen.
+Beide beruhen auf demselben Gedanken: weitergeben statt neu berechnen.
 
 ---
 
-## Probier es selbst
+## Präfixsummen
 
-Nimm dir **35 Minuten**. Erst Teilaufgabe 4, dann Teilaufgabe 5.
+### Worum es geht
 
-Bevor du programmierst, mach den Schritt aus M3: Schätz für deine Idee die
-Grössenordnung, für beide Teilaufgaben getrennt. Bei Teilaufgabe 4 wirst du
-merken, dass du grosszügig sein darfst. Bei Teilaufgabe 5 nicht.
+Du hast eine Reihe von Zahlen und musst immer wieder dieselbe Sorte Frage
+beantworten:
 
-!!! tip "Weiterhin Gerüststufe 2"
-    `vorlage-stufe2.py` aus dem Ordner `vorlagen/`. Achtung, das Einleseformat
-    hat sich geändert — pro Testfall stehen jetzt **zwei** Zahlen vor der Liste.
-    Genau dafür ist die Lücke da.
+> *Wie viele Löcher liegen zwischen Position a und Position b?*
 
-??? tip "Kommst du nicht weiter?"
-    Dann arbeite dich durch die Hinweise unten, einen nach dem anderen.
+Naiv zählst du sie jedes Mal durch. Bei einer Frage ist das in Ordnung. Bei
+tausend Fragen zählst du dieselben Abschnitte tausendmal.
 
-    Wenn du gar nicht erst anfängst, weil dir das Reparieren zu kompliziert
-    vorkommt: Hinweis 1 räumt genau das aus dem Weg.
+### Die Idee
 
-!!! success "Erst wenn deine Lösung am Beispiel läuft"
-    Dann geht es zum Einreichen. Die Links springen direkt zur richtigen
-    Teilaufgabe:
+> **Kernsatz:** Rechne **einmal** eine Hilfsliste aus, in der jeder Eintrag die
+> Summe von ganz links bis zu dieser Stelle enthält. Danach ist jede
+> Bereichsfrage eine Subtraktion — ein Schritt statt einer Schleife.
 
-    - [Endurance Teilaufgabe 4](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-4-strasse-flicken-20-punkte)
-    - [Teilaufgabe 5](https://soi.ch/contests/2025/preround/endurance/#teilaufgabe-5-marathon-20-punkte)
+`praefix[i]` ist die Anzahl Löcher in den **ersten i** Positionen. Die Liste hat
+ein Element mehr als die Strasse und beginnt mit 0.
 
-    Ab dem Klick auf „Eingabedaten herunterladen" hast du fünf Minuten.
+> **Analogie:** Ein Kilometerzähler im Auto. Er zählt nicht die Länge einzelner
+> Etappen, sondern nur die Gesamtstrecke seit dem ersten Tag. Willst du wissen,
+> wie weit du zwischen Bern und Chur gefahren bist, liest du zweimal ab und
+> ziehst voneinander ab — du musst die Strecke nicht nachfahren.
+>
+> **Bruchstelle:** Der Kilometerzähler geht nur vorwärts, und genau das ist die
+> Voraussetzung: Präfixsummen funktionieren, solange sich die Daten nicht
+> ändern. Sobald sich unterwegs ein einzelner Wert ändert, musst du die ganze
+> Hilfsliste ab dieser Stelle neu bauen — dann ist der Vorteil weg.
 
----
-
-## Hinweise
-
-??? tip "Hinweis 1 — erst selbst versuchen"
-    Formuliere die Aufgabe um, **ohne das Wort „reparieren" zu benutzen**.
-
-    Binna sucht einen Abschnitt. Welche Bedingung muss dieser Abschnitt erfüllen,
-    damit er nach der Reparatur befahrbar ist? Schreib den Satz auf, bevor du
-    weiterliest.
-
-??? tip "Hinweis 2 — erst selbst versuchen"
-    > **Analogie:** Im Klassenbuch stehen die Absenzen eines ganzen Jahres. Du
-    > darfst drei Fehltage nachträglich entschuldigen lassen. Wie lang ist die
-    > längste Strecke ohne unentschuldigte Absenz?
-
-    Nimm ein kleines Beispiel und such die Antwort von Hand:
-
-    ```
-    0 1 0 0 1 1 0 1 0 0 1 0     mit K = 3
-    ```
-
-    Wie bist du vorgegangen? Vermutlich hast du irgendwo angefangen und nach
-    rechts geschaut, bis es zu viele wurden. Genau darum geht es gleich.
-
-??? tip "Hinweis 3 — erst selbst versuchen"
-    Denk an einen Abschnitt als **Fenster** mit einem linken und einem rechten
-    Ende, das höchstens K Löcher enthält.
-
-    Jetzt schiebst du das rechte Ende um eine Position weiter, und dort ist ein
-    Loch — es sind K + 1 geworden. Das Fenster ist nicht mehr erlaubt.
-
-    Was tust du? Und die eigentliche Frage: Musst du dabei das linke Ende je
-    **nach links** bewegen?
-
-??? tip "Hinweis 4 — erst selbst versuchen"
-    Das linke Ende muss nie zurückwandern.
-
-    Überleg, warum. Wenn ein Fenster bei einem bestimmten linken Ende schon zu
-    viele Löcher hatte, wird es durch ein weiter rechts liegendes rechtes Ende
-    nicht besser.
-
-??? tip "Hinweis 5 — nur bei Implementierungsproblemen"
-    Zwei Positionen, beide starten bei 0, dazu ein Zähler für die Löcher im
-    Fenster.
-
-    Die äussere Schleife schiebt das rechte Ende Schritt für Schritt nach rechts
-    und erhöht den Zähler, wenn dort ein Loch ist. Solange der Zähler grösser als
-    K ist, schiebst du das linke Ende nach rechts und verringerst den Zähler,
-    wenn du dabei über ein Loch hinweggehst.
-
-    Die Länge des Fensters ist `rechts - links + 1`. Vergiss das `+ 1` nicht.
-
----
-
-## Das Konzept
-
-### Zuerst: die Umformulierung
-
-„Bis zu K Löcher reparieren" klingt nach einer Entscheidung, die du treffen
-musst: welche Löcher denn? In Wahrheit gibt es nichts zu entscheiden.
-
-> **Ein Abschnitt ist genau dann brauchbar, wenn er höchstens K Löcher enthält.**
-
-Wenn du einen Abschnitt gewählt hast, ist klar, was zu reparieren ist — nämlich
-alle Löcher darin. Und wenn es höchstens K sind, reicht dein Material.
-
-Damit ist aus der Aufgabe wieder die alte geworden, nur mit einer weicheren
-Bedingung: statt „gar keine Löcher" jetzt „höchstens K Löcher". Für K = 0 ist es
-exakt Teilaufgabe 3.
-
-Diese Umformulierung ist der eigentliche Denkschritt — dasselbe Modellieren wie
-in M1, nur auf einem Problem, das du schon kennst.
-
-### Drei Lösungen, drei Grössenordnungen
-
-| | Idee | Komplexität | mal T bei N = 100 | bei N = 10⁵ |
-|---|---|---|---|---|
-| A | alle Abschnitte, Löcher jedes Mal neu zählen | O(N³) | 10⁸ | — |
-| B | alle Abschnitte, Löcher in einem Schritt zählen | O(N²) | 10⁶ | 10¹² |
-| C | Zweizeiger | O(N) | 10⁴ | 10⁷ |
-
-**Für Teilaufgabe 4 reichen alle drei.** Selbst A landet bei der Grössenordnung
-von Sekunden — 20 Punkte, ohne etwas Neues zu können. Für Teilaufgabe 5 bleibt
-nur C.
-
-### Präfixsummen: eine Frage in einem Schritt beantworten
-
-Der Schritt von A nach B lohnt sich weit über diese Aufgabe hinaus. Die Frage
-lautet: *Wie viele Löcher liegen zwischen Position a und Position b?*
-
-Naiv zählst du sie jedes Mal durch. Stattdessen baust du **einmal** eine
-Hilfsliste: `praefix[i]` ist die Anzahl Löcher in den ersten i Positionen.
+### An einem Beispiel
 
 ```
-Strasse:      0   1   0   0   1   1   0
-praefix:    0   0   1   1   1   2   3   3
+Position:      0   1   2   3   4   5   6
+Strasse:       0   1   0   0   1   1   0
+
+praefix:     0   0   1   1   1   2   3   3
+Index:       0   1   2   3   4   5   6   7
 ```
 
-`praefix` hat ein Element mehr als die Strasse und beginnt mit 0. Damit gilt für
-jeden Abschnitt von a bis b (beide eingeschlossen):
+Für jeden Abschnitt von a bis b (beide eingeschlossen) gilt:
 
 ```
 Anzahl Löcher = praefix[b + 1] - praefix[a]
 ```
 
-Im Beispiel: Löcher von Position 1 bis 4 sind `praefix[5] - praefix[1]` = 2 − 0 = 2.
+Löcher von Position 1 bis 4: `praefix[5] - praefix[1]` = 2 − 0 = 2.
 Nachzählen: Positionen 1, 2, 3, 4 sind `1 0 0 1` — stimmt.
 
-Die Hilfsliste kostet einmal O(N). Danach ist **jede** Bereichsfrage ein einziger
-Schritt statt einer Schleife. Bei Endurance wird daraus O(N²) statt O(N³); wo
-viele solche Fragen gestellt werden, ist der Gewinn noch grösser.
+Das `+ 1` und der Startwert 0 sind der Grund, warum die Liste ein Element länger
+ist. Wer sie gleich lang macht, muss ständig Sonderfälle für a = 0 behandeln.
 
-### Zweizeiger: das linke Ende wandert nie zurück
+### Im Code
 
-Jetzt der Sprung, der Teilaufgabe 5 löst.
+```python
+def baue_praefix(p):
+    praefix = [0]
+    summe = 0
+    for wert in p:
+        summe = summe + wert
+        praefix.append(summe)
+    return praefix
 
-Statt alle Abschnitte durchzugehen, führst du ein **Fenster** mit: ein linkes
-Ende, ein rechtes Ende, und die Anzahl Löcher darin. Das rechte Ende wandert
-Schritt für Schritt über die Strasse. Wird das Fenster ungültig, ziehst du das
-linke Ende so weit nach, bis es wieder passt.
+
+def bereich(praefix, a, b):
+    return praefix[b + 1] - praefix[a]
+```
+
+### Laufzeit
+
+Die Hilfsliste kostet einmal **O(N)**. Danach ist **jede** Bereichsfrage **O(1)**.
+
+Bei Q Fragen an N Zahlen:
+
+| | Schritte | |
+|---|---|---|
+| jede Frage durchzählen | Q · N | O(Q · N) |
+| einmal vorbereiten, dann ablesen | N + Q | O(N + Q) |
+
+Bei N = Q = 100 000 ist das der Unterschied zwischen 10¹⁰ und 2 · 10⁵ — und der
+Faktor T kommt bei beiden noch dazu.
+
+### Woran du es erkennst
+
+- Die Aufgabe stellt **viele Fragen** nach Summen oder Anzahlen über Bereiche.
+- In deiner Lösung steht eine Schleife, die ein Teilstück durchzählt, und diese
+  Schleife steckt in einer weiteren Schleife.
+- Zwei benachbarte Bereiche **überlappen sich stark** — du rechnest fast dasselbe
+  noch einmal.
+- Die Daten ändern sich während der Fragen **nicht**.
+
+### Typische Fallen
+
+- **Verrutschen um eins.** Der häufigste Fehler überhaupt. Prüf deine Formel
+  immer an einem winzigen Beispiel, bei dem du von Hand nachzählen kannst.
+- **Die Hilfsliste gleich lang machen wie die Daten.** Dann brauchst du einen
+  Sonderfall für den Bereichsanfang bei 0. Das zusätzliche führende 0-Element
+  kostet nichts und spart die Fallunterscheidung.
+- **Vorbereiten, obwohl es nur eine Frage gibt.** Dann lohnt es sich nicht — die
+  Vorbereitung kostet ja selbst O(N).
+
+---
+
+## Zweizeiger und Fenster
+
+### Worum es geht
+
+Dieselbe Strasse wie in M2 und M3, aber Binna hat jetzt Material dabei: Sie darf
+**bis zu K Löcher reparieren**, bevor der Marathon startet. Wie lang ist die
+längste Strecke, die sie so hinbekommt?
+
+Der erste Denkschritt hat mit Programmieren nichts zu tun. „Bis zu K Löcher
+reparieren" klingt nach einer Entscheidung — welche Löcher denn? In Wahrheit gibt
+es nichts zu entscheiden:
+
+> **Ein Abschnitt ist genau dann brauchbar, wenn er höchstens K Löcher enthält.**
+
+Wenn du einen Abschnitt gewählt hast, ist klar, was zu reparieren ist — alle
+Löcher darin. Und wenn es höchstens K sind, reicht dein Material. Damit ist aus
+der Aufgabe wieder die alte geworden, nur mit einer weicheren Bedingung. Für
+K = 0 ist es exakt Teilaufgabe 3.
+
+Das ist dasselbe Modellieren wie in [M1](../m01-problemanalyse/index.md), nur auf
+einem Problem, das du schon kennst.
+
+### Die Idee
+
+> **Kernsatz:** Führ ein Fenster mit einem linken und einem rechten Ende mit.
+> Das rechte Ende wandert Schritt für Schritt weiter; wird das Fenster ungültig,
+> ziehst du das linke Ende nach. **Das linke Ende wandert nie zurück.**
 
 Während das läuft, gilt durchgehend:
 
@@ -204,37 +167,126 @@ weil weiter links zu viele Löcher lagen. Wenn das rechte Ende nun weiter nach
 rechts geht, kommen höchstens Löcher dazu. Ein linkes Ende weiter links war schon
 vorher zu viel und ist es jetzt erst recht.
 
-### Warum das O(N) ist, obwohl zwei Schleifen dastehen
+> **Analogie:** Im Klassenbuch stehen die Absenzen eines ganzen Jahres. Du darfst
+> drei Fehltage nachträglich entschuldigen lassen. Wie lang ist die längste
+> Strecke ohne unentschuldigte Absenz?
+>
+> **Bruchstelle:** Die Analogie legt nahe, dass du für jeden Starttag neu
+> durchzählst. Genau das ist die langsame Lösung — sie erklärt das Problem, nicht
+> die Lösung. Dass die Bruchstelle hier der naive Weg ist, macht sie brauchbar:
+> Sie motiviert den nächsten Schritt, statt ihn vorwegzunehmen.
+>
+> Was sie ausserdem verschweigt: Der Zweizeiger funktioniert nur, weil die
+> Bedingung **monoton** ist — ein längeres Fenster hat nie weniger Löcher als ein
+> kürzeres. Bei Bedingungen ohne diese Eigenschaft hilft er nicht.
 
-Im Code steht eine Schleife in einer Schleife. Trotzdem ist das Verfahren O(N),
-und der Grund ist eine schöne Überlegung:
+### An einem Beispiel
+
+Die Strasse `0 1 0 0 1 1 0 1 0 0 1 0` mit K = 3. Das Fenster wandert:
+
+Die Tabelle zeigt den Zustand am **Ende** jedes Durchlaufs, also nachdem das
+linke Ende gegebenenfalls nachgezogen wurde:
+
+```
+rechts  Wert   links   Löcher   Fenster      Länge
+   0      0      0       0      [0 ..  0]      1
+   1      1      0       1      [0 ..  1]      2
+   2      0      0       1      [0 ..  2]      3
+   3      0      0       1      [0 ..  3]      4
+   4      1      0       2      [0 ..  4]      5
+   5      1      0       3      [0 ..  5]      6
+   6      0      0       3      [0 ..  6]      7
+   7      1      2       3      [2 ..  7]      6     links nachgezogen 0 -> 2
+   8      0      2       3      [2 ..  8]      7
+   9      0      2       3      [2 ..  9]      8     <- beste
+  10      1      5       3      [5 .. 10]      6     links nachgezogen 2 -> 5
+  11      0      5       3      [5 .. 11]      7
+```
+
+Die beste Länge ist 8, von Position 2 bis 9.
+
+Zwei Dinge lohnen einen zweiten Blick. Erstens: Das linke Ende geht nur vorwärts,
+0 → 2 → 5, und insgesamt fünf Schritte über den ganzen Durchlauf. Zweitens: In
+der Spalte „Löcher" steht nie mehr als 3 — genau das ist die Invariante, und sie
+gilt am Ende jedes Durchlaufs.
+
+### Im Code
+
+```python
+def loese(n, k, p):
+    bestes = 0
+    links = 0
+    loecher = 0
+    for rechts in range(n):
+        if p[rechts] == 1:
+            loecher = loecher + 1
+        while loecher > k:
+            if p[links] == 1:
+                loecher = loecher - 1
+            links = links + 1
+        laenge = rechts - links + 1
+        if laenge > bestes:
+            bestes = laenge
+    return bestes
+```
+
+Die Länge ist `rechts - links + 1`. Vergiss das `+ 1` nicht.
+
+### Laufzeit
+
+**O(N)** — obwohl eine Schleife in einer Schleife steht. Der Grund ist eine
+schöne Überlegung:
 
 **Zähl nicht die Schleifendurchläufe, sondern die Bewegungen der beiden Enden.**
 
-Das rechte Ende bewegt sich N mal — einmal pro Position. Das linke Ende bewegt
+Das rechte Ende bewegt sich N mal, einmal pro Position. Das linke Ende bewegt
 sich ebenfalls höchstens N mal, denn es geht nur nach rechts und kommt nie über
-das Ende der Strasse hinaus. Zusammen also höchstens 2N Bewegungen, egal wie sie
-sich auf die Durchläufe verteilen.
+das Ende der Strasse hinaus. Zusammen höchstens 2N Bewegungen, egal wie sie sich
+auf die Durchläufe verteilen.
 
 In einem einzelnen Durchgang kann die innere Schleife durchaus viele Schritte
-machen — aber dann macht sie in den übrigen Durchgängen entsprechend weniger. Man
-nennt das **amortisiert O(N)**: nicht jeder einzelne Schritt ist billig, aber die
-Summe über alle ist es.
+machen — aber dann macht sie in den übrigen entsprechend weniger. Man nennt das
+**amortisiert O(N)**: nicht jeder einzelne Schritt ist billig, aber die Summe
+über alle ist es.
 
-### Die Analogie und ihre Grenze
+Zum Vergleich, bei T = 100 Testfällen:
 
-> **Analogie:** Im Klassenbuch die längste Strecke ohne unentschuldigte Absenz
-> suchen, wenn du drei Fehltage entschuldigen darfst.
+| | Idee | Komplexität | bei N = 100 | bei N = 10⁵ |
+|---|---|---|---|---|
+| A | alle Abschnitte, Löcher jedes Mal neu zählen | O(N³) | 10⁸ | — |
+| B | alle Abschnitte, Löcher per Präfixsumme | O(N²) | 10⁶ | 10¹² |
+| C | Zweizeiger | O(N) | 10⁴ | 10⁷ |
 
-**Bruchstelle:** Die Analogie legt nahe, dass du für jeden Starttag neu
-durchzählst. Genau das ist die langsame Lösung — sie erklärt das Problem, nicht
-die Lösung.
+**Für Teilaufgabe 4 reichen alle drei.** Selbst A landet bei der Grössenordnung
+von Sekunden — 20 Punkte, ohne etwas Neues zu können. Für Teilaufgabe 5 bleibt
+nur C.
 
-Dass die Bruchstelle hier der naive Weg ist, macht sie brauchbar: Sie motiviert
-den nächsten Schritt, statt ihn vorwegzunehmen. Was die Analogie ausserdem
-verschweigt: Der Zweizeiger funktioniert nur, weil die Bedingung **monoton** ist
-— ein längeres Fenster hat nie weniger Löcher als ein kürzeres. Bei Bedingungen
-ohne diese Eigenschaft hilft er nicht.
+### Woran du es erkennst
+
+- Du suchst den **längsten oder kürzesten zusammenhängenden Abschnitt**, der eine
+  Bedingung erfüllt.
+- Die Bedingung ist **monoton**: Wenn ein Fenster sie verletzt, verletzt jedes
+  längere sie auch.
+- Du hast eine O(N²)-Lösung, die alle Paare aus linkem und rechtem Ende
+  durchgeht.
+- Beim Verschieben des rechten Endes um eins ändert sich am Fensterinhalt nur
+  **ein** Element.
+
+Der zweite Punkt ist die Bedingung, ohne die es nicht geht. Prüf ihn, bevor du
+programmierst.
+
+### Typische Fallen
+
+- **Das `+ 1` bei der Länge.** Von Position 2 bis 9 sind es 8 Positionen, nicht
+  7.
+- **Die Reihenfolge im Schleifenrumpf.** Erst das neue Element aufnehmen, dann
+  nachziehen, dann messen. Wer zuerst misst, misst ein ungültiges Fenster.
+- **`if` statt `while` beim Nachziehen.** Ein einzelner Schritt reicht nicht
+  immer — bei K = 0 und mehreren Löchern hintereinander muss das linke Ende
+  mehrfach vorrücken.
+- **Monotonie nicht geprüft.** Wenn ein längeres Fenster die Bedingung auch mal
+  wieder erfüllen kann, liefert der Zweizeiger falsche Ergebnisse, ohne
+  abzustürzen.
 
 ---
 
@@ -252,8 +304,8 @@ ohne diese Eigenschaft hilft er nicht.
     Fehler.
 
 ??? success "Vergleiche deine Antwort — Frage 2"
-    **Im Code steht eine Schleife in einer Schleife. Warum ist das trotzdem
-    nicht O(N²)?**
+    **Im Code steht eine Schleife in einer Schleife. Warum ist das trotzdem nicht
+    O(N²)?**
 
     Weil man nicht die Verschachtelung zählt, sondern die Bewegungen.
 
@@ -288,28 +340,42 @@ ohne diese Eigenschaft hilft er nicht.
     Bei N ≤ 100 gibt selbst die dreifach geschachtelte Lösung volle 20 Punkte.
     Wer sie hat, soll sie einreichen und nicht warten.
 
-    Der Zweizeiger lohnt sich, weil Teilaufgabe 5 dieselbe Aufgabe mit N ≤ 100 000
-    ist. Du schreibst ihn also einmal und bekommst beide Teilaufgaben — das ist
-    dasselbe Muster wie in M2 und M3.
+    Der Zweizeiger lohnt sich, weil Teilaufgabe 5 dieselbe Aufgabe mit
+    N ≤ 100 000 ist. Du schreibst ihn also einmal und bekommst beide
+    Teilaufgaben — dasselbe Muster wie in M2 und M3.
+
+??? success "Vergleiche deine Antwort — Frage 5"
+    **Du suchst den längsten Abschnitt, in dem die Summe der Werte *genau* 100
+    ist. Werte dürfen auch negativ sein. Funktioniert der Zweizeiger?**
+
+    Nein. Die Bedingung ist nicht monoton.
+
+    Bei negativen Werten kann ein längeres Fenster eine **kleinere** Summe haben
+    als ein kürzeres. Das rechte Ende weiterzuschieben macht die Lage also nicht
+    zwangsläufig schlechter, und damit gilt das Argument nicht mehr, dass das
+    linke Ende nie zurück muss.
+
+    Bei ausschliesslich positiven Werten wäre es dagegen wieder monoton, und der
+    Zweizeiger funktioniert. Diese Prüfung gehört vor jede Anwendung.
 
 ---
 
 ## Übungen
 
-Weiter geht es mit [den Übungen zu M4](uebungen.md): Treppenlauf Teilaufgabe 4,
-die du in M3 nur diagnostiziert hast, eine versteckte Anwendung von
-Präfixsummen und ein kleiner Laufzeitbeweis.
+Weiter geht es mit [den Übungen zu M4](uebungen.md): Ausdauer Teilaufgabe 4 und
+5, Treppenlauf Teilaufgabe 4, die du in M3 nur diagnostiziert hast, eine
+versteckte Anwendung von Präfixsummen und ein kleiner Laufzeitbeweis.
 
 ---
 
 ## Weiter zu M5
 
-Wenn du Endurance Teilaufgabe 4 und 5 gelöst hast, kennst du zwei Werkzeuge, die
-denselben Kern haben: **weitergeben statt neu berechnen**. Präfixsummen geben
+Wenn du Ausdauer Teilaufgabe 4 und 5 gelöst hast, kennst du zwei Werkzeuge mit
+demselben Kern: **weitergeben statt neu berechnen**. Präfixsummen geben
 Zwischenergebnisse an spätere Fragen weiter, der Zweizeiger gibt das Fenster von
 einer Position zur nächsten weiter.
 
-In M5 kommt ein Werkzeug dazu, das anders ansetzt: Manche Probleme werden erst
-lösbar, wenn man die Daten vorher **umordnet**. Sortieren ist keine Lösung für
-sich, sondern eine Vorbereitung.
-<!-- TODO Link setzen, sobald M5 existiert -->
+In [M5 — Sortieren und Suchen](../m05-sortieren-und-suchen/index.md) kommt ein
+Werkzeug dazu, das anders ansetzt: Manche Probleme werden erst lösbar, wenn man
+die Daten vorher **umordnet**. Sortieren ist keine Lösung für sich, sondern eine
+Vorbereitung.
