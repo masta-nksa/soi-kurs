@@ -915,3 +915,28 @@ Beim Umbau nachgezogen:
    `python -m mkdocs serve`, die Seite liegt dann unter
    `http://localhost:8000/soi-kurs/`. **Der Dateiwächter greift im
    OneDrive-Ordner nicht zuverlässig** — nach Änderungen den Server neu starten.
+
+9. **GitHub Actions führt auf diesem Konto keine Jobs aus.** Seit dem
+   12. August 2026 bleibt jeder Lauf in der Warteschlange stehen, ohne dass ein
+   Runner anspringt; ältere Läufe wurden nach 46 und 228 Stunden abgebrochen.
+   Actions ist aktiviert, der Workflow aktiv, das Repository öffentlich — die
+   Ursache liegt auf Konto-Ebene und ist von aussen nicht zu beheben. **Das
+   gehört geklärt**, denn ohne Actions gibt es keine automatische
+   Veröffentlichung.
+
+    Bis dahin läuft das Deployment von Hand, in zwei Schritten:
+
+    ```
+    python -m mkdocs gh-deploy
+    gh api -X POST repos/masta-nksa/soi-kurs/pages/builds
+    ```
+
+    Der erste Befehl baut die Seite und schiebt sie auf den Branch `gh-pages`.
+    Der zweite stösst den Pages-Build an — nötig, weil auch der automatische
+    Branch-Build über Actions liefe.
+
+    Die Pages-Quelle steht dafür auf **Branch `gh-pages`** statt auf „GitHub
+    Actions". Solange das so ist, würde `.github/workflows/deploy.yml` beim
+    Schritt `actions/deploy-pages` scheitern, falls Actions wieder anspringt.
+    Dann entweder die Quelle zurückstellen oder den Workflow auf `gh-pages`
+    umbauen.
