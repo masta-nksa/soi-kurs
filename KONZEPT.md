@@ -916,27 +916,47 @@ Beim Umbau nachgezogen:
    `http://localhost:8000/soi-kurs/`. **Der Dateiwächter greift im
    OneDrive-Ordner nicht zuverlässig** — nach Änderungen den Server neu starten.
 
-9. **GitHub Actions führt auf diesem Konto keine Jobs aus.** Seit dem
-   12. August 2026 bleibt jeder Lauf in der Warteschlange stehen, ohne dass ein
-   Runner anspringt; ältere Läufe wurden nach 46 und 228 Stunden abgebrochen.
-   Actions ist aktiviert, der Workflow aktiv, das Repository öffentlich — die
-   Ursache liegt auf Konto-Ebene und ist von aussen nicht zu beheben. **Das
-   gehört geklärt**, denn ohne Actions gibt es keine automatische
-   Veröffentlichung.
+9. **Der Veröffentlichungs-Workflow stand elf Tage still — Ursache war ein
+   Deadlock in der Concurrency-Gruppe.** Vom 12. bis zum 23. August 2026 hat
+   `deploy.yml` keinen einzigen Job gestartet; die Live-Seite zeigte
+   entsprechend einen Stand von Wochen zuvor.
 
-    Bis dahin läuft das Deployment von Hand, in zwei Schritten:
+    `deploy.yml` enthält
 
-    ```
-    python -m mkdocs gh-deploy
-    gh api -X POST repos/masta-nksa/soi-kurs/pages/builds
+    ```yaml
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     ```
 
-    Der erste Befehl baut die Seite und schiebt sie auf den Branch `gh-pages`.
-    Der zweite stösst den Pages-Build an — nötig, weil auch der automatische
-    Branch-Build über Actions liefe.
+    Lauf 13 blieb am 12. August in dieser Gruppe hängen. Weil
+    `cancel-in-progress: false` gesetzt ist, reihte sich **jeder** folgende Lauf
+    dahinter ein und kam nie dran. Die Läufe 14 und 15 wurden nach 46 und 228
+    Stunden von GitHub aus der Warteschlange geworfen — das sah nach einem
+    Runner- oder Kontoproblem aus, war aber keines.
 
-    Die Pages-Quelle steht dafür auf **Branch `gh-pages`** statt auf „GitHub
-    Actions". Solange das so ist, würde `.github/workflows/deploy.yml` beim
-    Schritt `actions/deploy-pages` scheitern, falls Actions wieder anspringt.
-    Dann entweder die Quelle zurückstellen oder den Workflow auf `gh-pages`
-    umbauen.
+    **Behoben** durch Abbrechen von Lauf 13. Der nächste Lauf startete sofort
+    und war in 23 Sekunden durch.
+
+    **Merkregel:** Wenn Läufe „queued" bleiben, ohne dass ein Job erscheint,
+    zuerst nach einem älteren Lauf in derselben Concurrency-Gruppe suchen:
+
+    ```
+    gh api "repos/masta-nksa/soi-kurs/actions/workflows/deploy.yml/runs" \
+      --jq '[.workflow_runs[] | select(.status=="queued") | {id, run_number, created_at}]'
+    ```
+
+10. **Zwei Veröffentlichungswege existieren derzeit nebeneinander.** Während der
+    Fehlersuche wurde die Pages-Quelle von „GitHub Actions" auf den Branch
+    `gh-pages` umgestellt, damit der Stand überhaupt live gehen konnte. Seit der
+    Deadlock behoben ist, funktioniert auch `deploy.yml` wieder.
+
+    | Weg | Auslöser | Zustand |
+    |---|---|---|
+    | Branch `gh-pages` | `python -m mkdocs gh-deploy`, dann `gh api -X POST .../pages/builds` | aktive Pages-Quelle |
+    | `deploy.yml` | Push auf `main` | läuft wieder, veröffentlicht aber nicht mehr die Live-Seite |
+
+    **Das gehört bereinigt.** Sauberer Endzustand wäre, die Pages-Quelle wieder
+    auf „GitHub Actions" zu stellen und den Branch `gh-pages` zu löschen — dann
+    veröffentlicht jeder Push auf `main` automatisch, so wie ursprünglich
+    gedacht.
