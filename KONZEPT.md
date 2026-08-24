@@ -1,6 +1,6 @@
 # SOI-Vorbereitungskurs — Konzept
 
-Stand: 23. August 2026
+Stand: 24. August 2026
 
 Dieses Dokument hält den Stand der Konzeptarbeit fest. Es ist die Grundlage für
 die weitere Ausarbeitung der einzelnen Module und für die technische Umsetzung.
@@ -807,6 +807,14 @@ Anker, der **Kern** die Verschärfung, die **Vertiefung** die Verkleidung.
 
 ## 13. Stand und nächste Schritte
 
+### In einem Satz
+
+**M0 bis M5 sind gebaut, im Konzept-zuerst-Format, und live unter
+<https://masta-nksa.github.io/soi-kurs/>.** Als Nächstes stehen zwei Dinge an, in
+beliebiger Reihenfolge: **M6 Zeichenketten und Gitter** (Punkt 1 unter „Offen")
+und die **Überarbeitung der Gestaltung** (Punkt 8). Alles Weitere in der
+Offen-Liste ist kleiner.
+
 ### Erledigt
 
 - **Technisches Gerüst** — Repo, MkDocs Material, GitHub Pages über Actions,
@@ -908,15 +916,43 @@ Beim Umbau nachgezogen:
    stammen von einem Gerät. Auf Schulgeräten einmal nachmessen; die
    Grössenordnungen sollten stimmen, die Sekundenwerte können abweichen.
 
+**Gestaltung.**
+
+8. **Das Erscheinungsbild überarbeiten.** Die Seite läuft bisher auf dem
+   Standard-Aussehen von MkDocs Material mit Primärfarbe Teal — funktional, aber
+   ohne eigenen Charakter und ohne Bezug zur SOI. Das ist bewusst so gewachsen:
+   Bis hierher ging es um Struktur und Inhalt.
+
+    Zu klären, bevor gebaut wird:
+
+    - **Farbe und Typografie.** Eigene Palette statt Teal? Google Fonts sind in
+      Material ohne Zusatzpaket einbindbar. Kontrast in beiden Designs prüfen.
+    - **Logo und Favicon.** Fehlen beide. Falls etwas von der SOI übernommen
+      wird, vorher die Nutzungsrechte klären — der Kurs ist kein offizielles
+      SOI-Angebot und darf nicht so aussehen.
+    - **Startseite.** Die Einstiegskarten sind der erste gestaltete Baustein.
+      Trägt das Raster, oder braucht es Icons und mehr Luft?
+    - **Wiedererkennung der Seitenteile.** Konzeptblock, Aufgabe, Hinweis und
+      Musterlösung sehen im Fliesstext ähnlich aus. Eine ruhige visuelle
+      Unterscheidung würde die Orientierung verbessern — ohne die Farbcodierung
+      der Aufklappelemente zu verwässern (orange Hinweis, grüner Selbstcheck).
+    - **Code-Darstellung.** Zeilennummern sind aktiviert, aber nirgends
+      referenziert. Entweder nutzen oder abschalten.
+
+    **Achtung, Regelkonflikt:** `CLAUDE.md` verbietet unter „Aufklappbares"
+    eigenes CSS. Diese Regel war gegen selbstgebaute Admonition-Typen gerichtet,
+    nicht gegen Theming. Sie ist beim Gestalten zu präzisieren, statt sie
+    stillschweigend zu brechen.
+
 **Technisches.**
 
-8. **MkDocs ist jetzt lokal installiert** (`mkdocs`, `mkdocs-material`), damit
+9. **MkDocs ist jetzt lokal installiert** (`mkdocs`, `mkdocs-material`), damit
    vor jedem Vorlegen ein `mkdocs build --strict` läuft. Zum Anschauen:
    `python -m mkdocs serve`, die Seite liegt dann unter
    `http://localhost:8000/soi-kurs/`. **Der Dateiwächter greift im
    OneDrive-Ordner nicht zuverlässig** — nach Änderungen den Server neu starten.
 
-9. **Der Veröffentlichungs-Workflow stand elf Tage still — Ursache war ein
+10. **Der Veröffentlichungs-Workflow stand elf Tage still — Ursache war ein
    Deadlock in der Concurrency-Gruppe.** Vom 12. bis zum 23. August 2026 hat
    `deploy.yml` keinen einzigen Job gestartet; die Live-Seite zeigte
    entsprechend einen Stand von Wochen zuvor.
@@ -946,17 +982,8 @@ Beim Umbau nachgezogen:
       --jq '[.workflow_runs[] | select(.status=="queued") | {id, run_number, created_at}]'
     ```
 
-10. **Zwei Veröffentlichungswege existieren derzeit nebeneinander.** Während der
-    Fehlersuche wurde die Pages-Quelle von „GitHub Actions" auf den Branch
-    `gh-pages` umgestellt, damit der Stand überhaupt live gehen konnte. Seit der
-    Deadlock behoben ist, funktioniert auch `deploy.yml` wieder.
-
-    | Weg | Auslöser | Zustand |
-    |---|---|---|
-    | Branch `gh-pages` | `python -m mkdocs gh-deploy`, dann `gh api -X POST .../pages/builds` | aktive Pages-Quelle |
-    | `deploy.yml` | Push auf `main` | läuft wieder, veröffentlicht aber nicht mehr die Live-Seite |
-
-    **Das gehört bereinigt.** Sauberer Endzustand wäre, die Pages-Quelle wieder
-    auf „GitHub Actions" zu stellen und den Branch `gh-pages` zu löschen — dann
-    veröffentlicht jeder Push auf `main` automatisch, so wie ursprünglich
-    gedacht.
+    **Veröffentlichung ist wieder automatisch.** Der Umweg über einen
+    `gh-pages`-Branch, der während der Fehlersuche nötig war, ist zurückgebaut:
+    Die Pages-Quelle steht wieder auf „GitHub Actions", der Branch ist gelöscht.
+    Jeder Push auf `main` veröffentlicht die Seite, ein Lauf dauert rund fünf
+    Minuten. Von Hand anstossen geht mit `gh workflow run deploy.yml --ref main`.

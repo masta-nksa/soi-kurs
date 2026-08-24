@@ -207,10 +207,18 @@ ein Werkzeug innen funktioniert — nicht, wie man eine Aufgabe löst.
 
 ## Aufklappbares
 
-Nur die Standardtypen von Material verwenden, **kein eigenes CSS**:
+Nur die Standardtypen von Material verwenden, **keine selbstgebauten Typen**:
 
 - Hinweis: `??? tip "Hinweis 2 — erst selbst versuchen"` (orange)
 - Selbstcheck: `??? success "Vergleiche deine Antwort — Frage 1"` (grün)
+
+Die Farbcodierung orange/grün ist Teil der Orientierung und bleibt. Eine neue
+Admonition-Art zu erfinden, weil eine Stelle „irgendwie anders" ist, macht das
+Material unlesbar — dann lieber den Text ändern.
+
+**Das ist keine Absage an Theming.** Farbpalette, Schrift, Logo und Abstände
+dürfen gestaltet werden (siehe `KONZEPT.md` Abschnitt 13, Punkt 8). Verboten ist
+nur, die Bedeutung der Standardtypen zu verwässern.
 
 **Musterlösungen kommen nie in ein Aufklappelement**, sondern auf `loesung.md`.
 Der Seitenwechsel ist die Hürde — ein Klick auf ein zugeklapptes Element passiert
@@ -335,5 +343,26 @@ Ein Modul pro Durchgang. Nach jedem Modul stoppen und zur Durchsicht vorlegen,
 nicht mehrere Module am Stück generieren.
 
 Vor dem Vorlegen prüfen: Musterlösungen laufen lassen (aus der Markdown-Datei
-extrahiert), interne Links und Anker prüfen, `mkdocs.yml` ergänzen. MkDocs ist
-lokal nicht installiert — der Bau läuft nur in der CI.
+extrahiert), interne Links und Anker prüfen, `mkdocs.yml` ergänzen, und
+
+```
+python -m mkdocs build --strict
+```
+
+MkDocs ist lokal installiert. Zum Anschauen `python -m mkdocs serve`, die Seite
+liegt dann unter `http://localhost:8000/soi-kurs/` — der Pfad gehört dazu, weil
+`site_url` ihn enthält. **Der Dateiwächter greift im OneDrive-Ordner nicht
+zuverlässig**: nach Änderungen den Server neu starten.
+
+## Veröffentlichen
+
+Jeder Push auf `main` veröffentlicht die Seite über
+`.github/workflows/deploy.yml`. Ein Lauf dauert rund fünf Minuten, das Ergebnis
+steht auf <https://masta-nksa.github.io/soi-kurs/>.
+
+Von Hand anstossen: `gh workflow run deploy.yml --ref main`.
+
+**Wenn ein Lauf „queued" bleibt, ohne dass ein Job erscheint**, liegt es fast
+sicher an der Concurrency-Gruppe `pages`: Ein älterer hängender Lauf blockiert
+alle folgenden, weil `cancel-in-progress: false` gesetzt ist. Den alten Lauf
+suchen und abbrechen — Diagnosebefehl in `KONZEPT.md` Abschnitt 13, Punkt 10.
